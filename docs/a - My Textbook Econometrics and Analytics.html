@@ -233,21 +233,85 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
-<div id="ai-assistant-panel" style="position:fixed; top:60px; left:0; width:280px; height:90%; padding:10px; overflow:auto; background:#f8f9fa; border-right:1px solid #ccc; z-index:1000;">
-
-  <h4 style="margin-top:0;">🤖 Ask AI</h4>
-
-  <textarea id="user-input" style="width:100%; height:80px;" placeholder="Ask a question..."></textarea>
-
-  <button onclick="sendToAssistant()" style="width:100%; margin-top:5px;">Send</button>
-
-  <div id="assistant-response" style="margin-top:10px; font-size:0.9em;"></div>
-
-</div>
-
-
-
 <script>
+
+  let textbookContent = "";
+
+
+
+  const textFiles = [
+
+    "labs/Week 1-Lab Handbook 2023-24 v001.txt",
+
+    "labs/Week 2-Lab Handbook 2023-24 v001.txt",
+
+    "labs/Week 3-Lab Handbook 2023-24 v001.txt",
+
+    "labs/Week 4-Lab Handbook 2023-24 v001.txt",
+
+    "labs/Week 5-Lab Handbook 2023-24 v001.txt",
+
+    "labs/Week 6-Lab Handbook 2023-24 v001.txt"
+
+  ];
+
+
+
+  async function loadTextFiles() {
+
+    const fetches = textFiles.map(file => fetch(file).then(r => r.text()));
+
+    const contents = await Promise.all(fetches);
+
+    textbookContent = contents.join("\n").slice(0, 3000);  // Limit context length
+
+  }
+
+
+
+  document.addEventListener("DOMContentLoaded", async function () {
+
+    await loadTextFiles();
+
+
+
+    const sidebar = document.querySelector(".sidebar-navigation");
+
+    if (!sidebar) return;
+
+
+
+    const aiContainer = document.createElement("div");
+
+    aiContainer.style.marginTop = "30px";
+
+    aiContainer.style.padding = "10px";
+
+    aiContainer.style.background = "#f8f9fa";
+
+    aiContainer.style.borderTop = "1px solid #ccc";
+
+
+
+    aiContainer.innerHTML = `
+
+      <h4 style="margin-top:0;">🤖 Ask AI</h4>
+
+      <textarea id="user-input" style="width:100%; height:60px; font-size:0.85em;" placeholder="Ask a question..."></textarea>
+
+      <button onclick="sendToAssistant()" style="width:100%; margin-top:5px; font-size:0.85em;">Send</button>
+
+      <div id="assistant-response" style="margin-top:10px; font-size:0.8em; max-height:150px; overflow:auto;"></div>
+
+    `;
+
+
+
+    sidebar.appendChild(aiContainer);
+
+  });
+
+
 
   async function sendToAssistant() {
 
@@ -269,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 
         "Content-Type": "application/json",
 
-        "Authorization": "Bearer YOUR_OPENAI_API_KEY"  // Replace with your actual key
+        "Authorization": "Bearer YOUR_OPENAI_API_KEY"
 
       },
 
@@ -277,7 +341,25 @@ ul.task-list li input[type="checkbox"] {
 
         model: "gpt-3.5-turbo",
 
-        messages: [{ role: "user", content: userInput }],
+        messages: [
+
+          {
+
+            role: "system",
+
+            content: `You are a helpful teaching assistant for a book titled "Econometrics and Analytics" by Camilo Calderon. Here is part of the textbook:\n\n${textbookContent}`
+
+          },
+
+          {
+
+            role: "user",
+
+            content: userInput
+
+          }
+
+        ],
 
         temperature: 0.7
 
@@ -296,8 +378,6 @@ ul.task-list li input[type="checkbox"] {
   }
 
 </script>
-
-
 
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
