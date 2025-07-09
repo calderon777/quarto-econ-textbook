@@ -691,7 +691,7 @@ ul.task-list li input[type="checkbox"] {
 
     const contents = await Promise.all(fetches);
 
-    textbookContent = contents.join("\n").slice(0, 3000);  // Limit context length
+    textbookContent = contents.join("\n").slice(0, 3000);  // Limit context length if needed
 
   }
 
@@ -759,9 +759,7 @@ ul.task-list li input[type="checkbox"] {
 
       headers: {
 
-        "Content-Type": "application/json",
-
-        "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+        "Content-Type": "application/json"
 
       },
 

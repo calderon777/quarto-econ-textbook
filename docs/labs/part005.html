@@ -1326,7 +1326,7 @@ window.Quarto = {
 
     const contents = await Promise.all(fetches);
 
-    textbookContent = contents.join("\n").slice(0, 3000);  // Limit context length
+    textbookContent = contents.join("\n").slice(0, 3000);  // Limit context length if needed
 
   }
 
@@ -1394,9 +1394,7 @@ window.Quarto = {
 
       headers: {
 
-        "Content-Type": "application/json",
-
-        "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+        "Content-Type": "application/json"
 
       },
 
