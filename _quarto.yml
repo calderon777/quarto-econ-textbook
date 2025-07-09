@@ -31,11 +31,10 @@ website:
           - labs/part003.qmd
           - labs/part004.qmd
           - labs/part005.qmd
-    tools:
-      - html: _includes/assistant.html
 
 format:
   html:
     theme: cosmo
     toc: true
     page-layout: full
+    include-after-body: _includes/assistant.html
