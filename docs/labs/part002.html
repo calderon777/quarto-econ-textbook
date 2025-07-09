@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Lab Part – Econometrics and Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../labs/part003.html" rel="next">
+<link href="../labs/part001.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/part001.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/part002.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab Part</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Econometrics and Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Econometrics and Analytics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Labs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part001.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part002.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part003.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part004.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part005.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#we-download-the-data-from-the-ons-and-selected-the-monthly-reading" id="toc-we-download-the-data-from-the-ons-and-selected-the-monthly-reading" class="nav-link active" data-scroll-target="#we-download-the-data-from-the-ons-and-selected-the-monthly-reading"><span class="header-section-number">4</span> We download the data from the ONS and selected the monthly reading</a></li>
+  <li><a href="#we-define-the-data-as-time-series-and-generated-our-first-time-series-graph" id="toc-we-define-the-data-as-time-series-and-generated-our-first-time-series-graph" class="nav-link" data-scroll-target="#we-define-the-data-as-time-series-and-generated-our-first-time-series-graph"><span class="header-section-number">5</span> we define the data as time series and generated our first time series graph</a></li>
+  <li><a href="#this-section-contains-the-partition-of-the-dataset-into-training-and-validation-period." id="toc-this-section-contains-the-partition-of-the-dataset-into-training-and-validation-period." class="nav-link" data-scroll-target="#this-section-contains-the-partition-of-the-dataset-into-training-and-validation-period."><span class="header-section-number">6</span> This section contains the partition of the dataset into training and validation period.</a></li>
+  <li><a href="#this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going" id="toc-this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going" class="nav-link" data-scroll-target="#this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going"><span class="header-section-number">7</span> This is the command for the naive forecast, I am creating the variable ‘naive4cast’, which is going</a></li>
+  <li><a href="#to-capture-the-results-for-the-naive-forecast-in-the-training-period." id="toc-to-capture-the-results-for-the-naive-forecast-in-the-training-period." class="nav-link" data-scroll-target="#to-capture-the-results-for-the-naive-forecast-in-the-training-period."><span class="header-section-number">8</span> to capture the results for the naive forecast in the training period.</a></li>
+  <li><a href="#we-forecast-using-the-training-period" id="toc-we-forecast-using-the-training-period" class="nav-link" data-scroll-target="#we-forecast-using-the-training-period"><span class="header-section-number">9</span> We forecast using the training period</a></li>
+  <li><a href="#we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture" id="toc-we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture" class="nav-link" data-scroll-target="#we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture"><span class="header-section-number">10</span> We find level of accuracy, we will cover this during the next lecture</a></li>
+  <li><a href="#we-create-a-histogram-of-the-residualserrors-random-error" id="toc-we-create-a-histogram-of-the-residualserrors-random-error" class="nav-link" data-scroll-target="#we-create-a-histogram-of-the-residualserrors-random-error"><span class="header-section-number">11</span> We create a histogram of the residuals/errors/ random error</a></li>
+  <li><a href="#we-plot-the-results-of-the-forecast" id="toc-we-plot-the-results-of-the-forecast" class="nav-link" data-scroll-target="#we-plot-the-results-of-the-forecast"><span class="header-section-number">12</span> We plot the results of the forecast</a></li>
+  <li><a href="#we-plot-the-validation-period" id="toc-we-plot-the-validation-period" class="nav-link" data-scroll-target="#we-plot-the-validation-period"><span class="header-section-number">13</span> we plot the validation period</a></li>
+  <li><a href="#we-do-the-same-but-we-use-the-full-time-series-to-forecast-2018" id="toc-we-do-the-same-but-we-use-the-full-time-series-to-forecast-2018" class="nav-link" data-scroll-target="#we-do-the-same-but-we-use-the-full-time-series-to-forecast-2018"><span class="header-section-number">14</span> We do the same, but we use the full time series to forecast 2018</a></li>
+  <li><a href="#code-for-computing-the-predictive-measures-for-roll-forward-one-month-ahead-forecasts" id="toc-code-for-computing-the-predictive-measures-for-roll-forward-one-month-ahead-forecasts" class="nav-link" data-scroll-target="#code-for-computing-the-predictive-measures-for-roll-forward-one-month-ahead-forecasts"><span class="header-section-number">15</span> Code for computing the predictive measures for roll-forward one-month ahead forecasts</a></li>
+  <li><a href="#we-create-this-variables-to-generate-the-roll-window" id="toc-we-create-this-variables-to-generate-the-roll-window" class="nav-link" data-scroll-target="#we-create-this-variables-to-generate-the-roll-window"><span class="header-section-number">16</span> we create this variables to generate the roll window</a></li>
+  <li><a href="#we-create-the-variable-error-using-the-command-rep-this-command-replicates-a-date" id="toc-we-create-the-variable-error-using-the-command-rep-this-command-replicates-a-date" class="nav-link" data-scroll-target="#we-create-the-variable-error-using-the-command-rep-this-command-replicates-a-date"><span class="header-section-number">17</span> we create the variable error using the command rep, this command replicates a date</a></li>
+  <li><a href="#we-create-a-loop" id="toc-we-create-a-loop" class="nav-link" data-scroll-target="#we-create-a-loop"><span class="header-section-number">18</span> we create a loop</a></li>
+  <li><a href="#the-training-period-will-increase-in-one-observationdate" id="toc-the-training-period-will-increase-in-one-observationdate" class="nav-link" data-scroll-target="#the-training-period-will-increase-in-one-observationdate"><span class="header-section-number">19</span> the training period will increase in one observation/date</a></li>
+  <li><a href="#de-validation-period-will-decrease-in-one-observationdate" id="toc-de-validation-period-will-decrease-in-one-observationdate" class="nav-link" data-scroll-target="#de-validation-period-will-decrease-in-one-observationdate"><span class="header-section-number">20</span> de validation period will decrease in one observation/date</a></li>
+  <li><a href="#we-create-the-naive-forecast-for-the-training-period" id="toc-we-create-the-naive-forecast-for-the-training-period" class="nav-link" data-scroll-target="#we-create-the-naive-forecast-for-the-training-period"><span class="header-section-number">21</span> we create the naive forecast for the training period</a></li>
+  <li><a href="#we-save-the-forecasted-results-to-the-variable-error" id="toc-we-save-the-forecasted-results-to-the-variable-error" class="nav-link" data-scroll-target="#we-save-the-forecasted-results-to-the-variable-error"><span class="header-section-number">22</span> we save the forecasted results to the variable ‘error’</a></li>
+  <li><a href="#we-calculate-the-following-statistics" id="toc-we-calculate-the-following-statistics" class="nav-link" data-scroll-target="#we-calculate-the-following-statistics"><span class="header-section-number">23</span> we calculate the following statistics</a></li>
+  <li><a href="#we-plot-the-validation-period-1" id="toc-we-plot-the-validation-period-1" class="nav-link" data-scroll-target="#we-plot-the-validation-period-1"><span class="header-section-number">24</span> we plot the validation period</a></li>
+  <li><a href="#check-what-is-the-directory-r-is-looking-at" id="toc-check-what-is-the-directory-r-is-looking-at" class="nav-link" data-scroll-target="#check-what-is-the-directory-r-is-looking-at"><span class="header-section-number">25</span> Check what is the directory R is looking at</a></li>
+  <li><a href="#change-the-working-directory" id="toc-change-the-working-directory" class="nav-link" data-scroll-target="#change-the-working-directory"><span class="header-section-number">26</span> change the working directory</a></li>
+  <li><a href="#open-the-library-of-commands-to-download-excel-files" id="toc-open-the-library-of-commands-to-download-excel-files" class="nav-link" data-scroll-target="#open-the-library-of-commands-to-download-excel-files"><span class="header-section-number">27</span> open the library of commands to download excel files</a></li>
+  <li><a href="#plot-the-variable-average-daily-deaths" id="toc-plot-the-variable-average-daily-deaths" class="nav-link" data-scroll-target="#plot-the-variable-average-daily-deaths"><span class="header-section-number">28</span> Plot the variable ‘average daily deaths’</a></li>
+  <li><a href="#we-add-vertical-lines-with-the-command-abline" id="toc-we-add-vertical-lines-with-the-command-abline" class="nav-link" data-scroll-target="#we-add-vertical-lines-with-the-command-abline"><span class="header-section-number">29</span> We add vertical lines with the command abline</a></li>
+  <li><a href="#there-are-three-events-in-june-we-only-use-one-vertical-line" id="toc-there-are-three-events-in-june-we-only-use-one-vertical-line" class="nav-link" data-scroll-target="#there-are-three-events-in-june-we-only-use-one-vertical-line"><span class="header-section-number">30</span> there are three events in June, we only use one vertical line</a></li>
+  <li><a href="#install-the-package-forecast-if-you-have-not-done-so-previously." id="toc-install-the-package-forecast-if-you-have-not-done-so-previously." class="nav-link" data-scroll-target="#install-the-package-forecast-if-you-have-not-done-so-previously."><span class="header-section-number">31</span> install the package forecast if you have not done so previously.</a></li>
+  <li><a href="#create-the-object-snaive.edeaths-to-keep-in-there-the-snaive-estimation" id="toc-create-the-object-snaive.edeaths-to-keep-in-there-the-snaive-estimation" class="nav-link" data-scroll-target="#create-the-object-snaive.edeaths-to-keep-in-there-the-snaive-estimation"><span class="header-section-number">32</span> create the object snaive.edeaths to keep in there the snaive estimation</a></li>
+  <li><a href="#by-visualisation-i-used-a-10-months-frequency-in-the-waves-on-this-data" id="toc-by-visualisation-i-used-a-10-months-frequency-in-the-waves-on-this-data" class="nav-link" data-scroll-target="#by-visualisation-i-used-a-10-months-frequency-in-the-waves-on-this-data"><span class="header-section-number">33</span> by visualisation I used a 10 months frequency in the waves on this data</a></li>
+  <li><a href="#we-define-the-data-as-time-series-and-generated-our-first-time-series-graph-1" id="toc-we-define-the-data-as-time-series-and-generated-our-first-time-series-graph-1" class="nav-link" data-scroll-target="#we-define-the-data-as-time-series-and-generated-our-first-time-series-graph-1"><span class="header-section-number">34</span> we define the data as time series and generated our first time series graph</a></li>
+  <li><a href="#this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going-1" id="toc-this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going-1" class="nav-link" data-scroll-target="#this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going-1"><span class="header-section-number">35</span> This is the command for the naive forecast, I am creating the variable ‘naive4cast’, which is going</a></li>
+  <li><a href="#to-capture-the-results-for-the-naive-forecast-in-the-training-period.-1" id="toc-to-capture-the-results-for-the-naive-forecast-in-the-training-period.-1" class="nav-link" data-scroll-target="#to-capture-the-results-for-the-naive-forecast-in-the-training-period.-1"><span class="header-section-number">36</span> to capture the results for the naive forecast in the training period.</a></li>
+  <li><a href="#we-forecast-using-the-training-period-1" id="toc-we-forecast-using-the-training-period-1" class="nav-link" data-scroll-target="#we-forecast-using-the-training-period-1"><span class="header-section-number">37</span> We forecast using the training period</a></li>
+  <li><a href="#we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture-1" id="toc-we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture-1" class="nav-link" data-scroll-target="#we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture-1"><span class="header-section-number">38</span> We find level of accuracy, we will cover this during the next lecture</a></li>
+  <li><a href="#we-create-a-histogram-of-the-residualserrors-random-error-1" id="toc-we-create-a-histogram-of-the-residualserrors-random-error-1" class="nav-link" data-scroll-target="#we-create-a-histogram-of-the-residualserrors-random-error-1"><span class="header-section-number">39</span> We create a histogram of the residuals/errors/ random error</a></li>
+  <li><a href="#install-the-bloomberg-package-and-connect" id="toc-install-the-bloomberg-package-and-connect" class="nav-link" data-scroll-target="#install-the-bloomberg-package-and-connect"><span class="header-section-number">40</span> install the Bloomberg package, and connect</a></li>
+  <li><a href="#get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it" id="toc-get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it" class="nav-link" data-scroll-target="#get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it"><span class="header-section-number">41</span> get the Bloomberg data history for SPY US Equity - last 100 days - and plot it</a></li>
+  <li><a href="#find-out-what-other-fields-are-available-for-prices" id="toc-find-out-what-other-fields-are-available-for-prices" class="nav-link" data-scroll-target="#find-out-what-other-fields-are-available-for-prices"><span class="header-section-number">42</span> find out what other fields are available for prices</a></li>
+  <li><a href="#get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it-1" id="toc-get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it-1" class="nav-link" data-scroll-target="#get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it-1"><span class="header-section-number">43</span> get the Bloomberg data history for SPY US Equity - last 100 days - and plot it</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+<div id="chatbox" style="font-family: sans-serif; max-width: 600px; margin: auto;">
+
+  <h3 class="anchored">Ask me anything from the textbook!</h3>
+
+  <textarea id="userInput" rows="4" style="width: 100%;" placeholder="Type your question here..."></textarea>
+
+  <br>
+
+  <button onclick="askQuestion()" style="margin-top: 8px;">Ask</button>
+
+  <pre id="response" style="background: #f4f4f4; padding: 1em; white-space: pre-wrap;"></pre>
+
+</div>
+
+
+
+<script>
+
+  async function askQuestion() {
+
+    const userInput = document.getElementById("userInput").value;
+
+    const responseBox = document.getElementById("response");
+
+    responseBox.textContent = "Thinking...";
+
+
+
+    const textbookContent = `You are a helpful teaching assistant for a textbook on R, data science, and econometrics. Your answers should be beginner-friendly and based strictly on the material. Avoid hallucinating information.`
+
+
+
+    try {
+
+      const response = await fetch("/api/chat", {
+
+        method: "POST",
+
+        headers: {
+
+          "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify({
+
+          messages: [
+
+            { role: "system", content: textbookContent },
+
+            { role: "user", content: userInput }
+
+          ]
+
+        })
+
+      });
+
+
+
+      const data = await response.json();
+
+
+
+      if (data && data.choices && data.choices.length > 0) {
+
+        responseBox.textContent = data.choices[0].message.content.trim();
+
+      } else {
+
+        responseBox.textContent = "No response from the assistant.";
+
+      }
+
+
+
+    } catch (error) {
+
+      responseBox.textContent = "Error: " + error.message;
+
+    }
+
+  }
+
+</script>
+
+
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/part001.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/part002.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab Part</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab Part</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Lecture 1 – Confident Presentations (Healthy DMU)</p>
+<p>This session is relevant for your assignment.</p>
+<p>Click here for the &amp; a file supporting the session.</p>
+<p>This link will be used during the session: https://padlet.com/DMUdisability/confident-presentations-e62q6tn8vh9h available to students</p>
+<p>The sessions:</p>
+<p>Tue 5th 9am HU2.01</p>
+<p>Wed 6th 1pm HU2.01</p>
+<p>Lecture 2 – Performance &amp; Evaluation II</p>
+<p>Slide 1</p>
+<p>Slide 2</p>
+<p>#UK unemployment</p>
+<section id="we-need-to-install-the-libraries-before-hand-so-we-can-use-the-commands-below" class="level5" data-number="3.0.0.0.1">
+<h5 data-number="3.0.0.0.1" class="anchored" data-anchor-id="we-need-to-install-the-libraries-before-hand-so-we-can-use-the-commands-below"><span class="header-section-number">3.0.0.0.1</span> We need to install the libraries before hand, so we can use the commands below</h5>
+<p>library(readxl)</p>
+<p>install.packages(“forecast”)</p>
+<p>library(forecast)</p>
+</section>
+<section id="we-download-the-data-from-the-ons-and-selected-the-monthly-reading" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> We download the data from the ONS and selected the monthly reading</h1>
+<p>ONS_UKgdp &lt;- read_excel(“ONS UKgdp.xls”)</p>
+<p>View(ONS_UKgdp)</p>
+<p>par(mfrow = c(1,1))</p>
+</section>
+<section id="we-define-the-data-as-time-series-and-generated-our-first-time-series-graph" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> we define the data as time series and generated our first time series graph</h1>
+<p>gdp.ts &lt;- ts(ONS_UKgdp$gdpgrowth, start = c(1956,1), end = c(2017, 3), freq = 4)</p>
+<p>plot(gdp.ts, xlab = “Date”, ylab = “UK GDP growth”, main = “UK GDP growth”)</p>
+</section>
+<section id="this-section-contains-the-partition-of-the-dataset-into-training-and-validation-period." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> This section contains the partition of the dataset into training and validation period.</h1>
+<p>stepsAhead &lt;- 5</p>
+<p>nTrain &lt;- length(gdp.ts) - stepsAhead</p>
+<p>train.ts &lt;- window(gdp.ts, start = c(2011, 1), end = c(1956,nTrain))</p>
+<p>valid.ts &lt;- window(gdp.ts, start = c(1956, nTrain + 1), end = c(1956, nTrain + stepsAhead))</p>
+<p>trainvalid.ts &lt;- window(gdp.ts, start = c(2011, 1), end = c(2017,3))</p>
+</section>
+<section id="this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> This is the command for the naive forecast, I am creating the variable ‘naive4cast’, which is going</h1>
+</section>
+<section id="to-capture-the-results-for-the-naive-forecast-in-the-training-period." class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> to capture the results for the naive forecast in the training period.</h1>
+<p>snaive4cast&lt;-snaive(train.ts, h= 5)</p>
+</section>
+<section id="we-forecast-using-the-training-period" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> We forecast using the training period</h1>
+<p>forecast(snaive4cast, h=5)</p>
+</section>
+<section id="we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> We find level of accuracy, we will cover this during the next lecture</h1>
+<p>accuracy(snaive4cast,valid.ts)</p>
+</section>
+<section id="we-create-a-histogram-of-the-residualserrors-random-error" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> We create a histogram of the residuals/errors/ random error</h1>
+<p>hist(naive4cast$residuals, ylab = “Frequency”, xlab = “Forecast Error”, bty = “l”, main = ““)</p>
+</section>
+<section id="we-plot-the-results-of-the-forecast" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> We plot the results of the forecast</h1>
+<p>plot(forecast(snaive4cast), ylim = c(-8,12), ylab = “UK GDP growth”, xlab=“Year-quarter”, bty=“l”,</p>
+<p>xaxt=“n”, xlim= c(2011, 2018.5), main = “UK GDP growth forecast (Naive - seasonal)”, flty= 2)</p>
+<p>axis(1, at = seq(2011, 2018, 1), labels = format(seq(2011, 2018, 1)))</p>
+</section>
+<section id="we-plot-the-validation-period" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> we plot the validation period</h1>
+<p>lines (valid.ts)</p>
+<p>#we plot the forecast for the validation period</p>
+<p>lines(snaive4cast$fitted, lwd = 2)</p>
+</section>
+<section id="we-do-the-same-but-we-use-the-full-time-series-to-forecast-2018" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> We do the same, but we use the full time series to forecast 2018</h1>
+<p>fullnaive &lt;-snaive(trainvalid.ts, h= 12)</p>
+<p>forecast(fullnaive)</p>
+<p>plot(forecast(fullnaive), ylim = c(0,12), ylab = “UK GDP growth”, xlab=“Year”, bty=“l”,</p>
+<p>xaxt=“n”, xlim= c(2011, 2020.5), main = “UK GDP growth forecast 2018 (Naive - Seasonal)”, flty= 2)</p>
+<p>axis(1, at = seq(2011, 2019, 1), labels = format(seq(2011, 2019, 1)))</p>
+<p>lines(fullnaive$fitted, lwd = 2)</p>
+<p>#prediction cones</p>
+<p>gdp.ets.aan &lt;- ets(trainvalid.ts, model=“AAN”)</p>
+<p>gdp.ets.mnn &lt;- ets(trainvalid.ts, model=“MMN”, damped=FALSE)</p>
+<p>gdp.ets.mmdn &lt;- ets(trainvalid.ts, model=“MMN”, damped=TRUE)</p>
+<p>gdp.ets.aan.pred &lt;- forecast(gdp.ets.aan, h=12, level= c(0.2,0.4, 0.6, 0.8) )</p>
+<p>gdp.ets.mnn.pred &lt;- forecast(gdp.ets.mnn, h=12, level= c(0.2,0.4, 0.6, 0.8) )</p>
+<p>gdp.ets.mmdn.pred &lt;- forecast(gdp.ets.mmdn, h=12, level= c(0.2,0.4, 0.6, 0.8) )</p>
+<p>par(mfrow = c(1,3)) # this command sets the plot window to show 1 row of 3 plots</p>
+<p>plot(gdp.ets.aan.pred, xlab=“Year”, ylab=“GDP growth in %”, ylim= c(-2,5) )</p>
+<p>plot(gdp.ets.mnn.pred, xlab=“Year”, ylab=“GDP growth in %”, ylim= c(-2,5) )</p>
+<p>plot(gdp.ets.mmdn.pred, xlab=“Year”, ylab=“GDP growth in %”, ylim= c(-2,5) )</p>
+<p>accuracy(gdp.ets.mnn.pred$fitted,valid.ts)</p>
+<p>#Hyndman, R.J., Koehler, A.B., Snyder, R.D., and Grose, S. (2002) “A state space framework for automatic forecasting using exponential smoothing methods”, International J. Forecasting, 18(3), 439-454.</p>
+<p>#Hyndman, R.J., Akram, Md., and Archibald, B. (2008) “The admissible parameter space for exponential smoothing models”. Annals of Statistical Mathematics, 60(2), 407-426.</p>
+<p>#Hyndman, R.J., Koehler, A.B., Ord, J.K., and Snyder, R.D. (2008) Forecasting with exponential smoothing: the state space approach, Springer-Verlag. http://www.exponentialsmoothing.net.</p>
+<p>par(mfrow = c(1,1))</p>
+</section>
+<section id="code-for-computing-the-predictive-measures-for-roll-forward-one-month-ahead-forecasts" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Code for computing the predictive measures for roll-forward one-month ahead forecasts</h1>
+</section>
+<section id="we-create-this-variables-to-generate-the-roll-window" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> we create this variables to generate the roll window</h1>
+<p>fixed.nValid &lt;- 12</p>
+<p>fixed.nTrain &lt;- length(gdp.ts) - fixed.nValid</p>
+<p>stepsAhead &lt;- 1</p>
+</section>
+<section id="we-create-the-variable-error-using-the-command-rep-this-command-replicates-a-date" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> we create the variable error using the command rep, this command replicates a date</h1>
+<p>error &lt;- rep(0, fixed.nValid - stepsAhead + 1)</p>
+<p>percent.error &lt;- rep(0, fixed.nValid - stepsAhead + 1)</p>
+</section>
+<section id="we-create-a-loop" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> we create a loop</h1>
+<p>for(j in fixed.nTrain:(fixed.nTrain + fixed.nValid - stepsAhead)) {</p>
+</section>
+<section id="the-training-period-will-increase-in-one-observationdate" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> the training period will increase in one observation/date</h1>
+<p>train1.ts &lt;- window(gdp.ts, start = c(1956, 1), end = c(1956, j))</p>
+</section>
+<section id="de-validation-period-will-decrease-in-one-observationdate" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> de validation period will decrease in one observation/date</h1>
+<p>valid1.ts &lt;- window(gdp.ts, start = c(1956, j + stepsAhead), end = c(1956, j + stepsAhead))</p>
+</section>
+<section id="we-create-the-naive-forecast-for-the-training-period" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> we create the naive forecast for the training period</h1>
+<p>naive.pred &lt;- naive(train1.ts, h = stepsAhead)</p>
+</section>
+<section id="we-save-the-forecasted-results-to-the-variable-error" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> we save the forecasted results to the variable ‘error’</h1>
+<p>error[j - fixed.nTrain + 1] &lt;- valid1.ts - naive.pred$mean[stepsAhead]</p>
+<p>percent.error[j - fixed.nTrain + 1] &lt;- error[j - fixed.nTrain + 1]/ valid1.ts</p>
+<p>}</p>
+</section>
+<section id="we-calculate-the-following-statistics" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> we calculate the following statistics</h1>
+<p>mean(abs(error))</p>
+<p>sqrt(mean(error^2))</p>
+<p>mean(abs(percent.error))</p>
+<p>stepsAhead &lt;- 12</p>
+<p>nTrain &lt;- length(gdp.ts) - stepsAhead</p>
+<p>train.ts &lt;- window(gdp.ts, start = c(1956, 1), end = c(1956,nTrain))</p>
+<p>valid.ts &lt;- window(gdp.ts, start = c(1956, nTrain + 1), end = c(1956, nTrain + stepsAhead))</p>
+<p>plot(gdp.ts, ylim = c(-6,5), ylab = “UK GDP growth”, xlab=“Year”, bty=“l”,</p>
+<p>xaxt=“n”, xlim= c(2011, 2018.5), main = “UK GDP forecast (roll - Naive)”, flty= 2)</p>
+<p>axis(1, at = seq(2011, 2018, 1), labels = format(seq(2011, 2018, 1)))</p>
+<p>error.ts &lt;- ts(error, start = c(2014,4), end = c(2017, 3), freq = 4)</p>
+<p>validation.ts &lt;- window(gdp.ts, start = c(2014, 4), end = c(2017, 3))</p>
+<p>forecast.ts &lt;- (validation.ts - error.ts)</p>
+</section>
+<section id="we-plot-the-validation-period-1" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> we plot the validation period</h1>
+<p>lines (forecast.ts, lwd=2)</p>
+<p>Lecture 3: video: Forecasting Methods &amp; Smoothing Methods I</p>
+<p>Lecture 4: video: Smoothing Methods II and III</p>
+<p>Lab 7 – Refinitiv: ECOP / Covid: naïve forecast</p>
+<p>Adapted from Advanced user Manual for Refinitiv (2016)</p>
+<p>Economic Indicator Poll <ecop> - What dates could be appropriate to make partitions for forecasting? Use a ten years data set Mortgage Lending to 2025.</ecop></p>
+<p>Another APP to the different economic markets would be the Economic Indicator poll.</p>
+<p>By selecting the country as well as the indicator, users can view the Reuters Poll (consolidated from different polls) as well SmartEstimate and the Actual figures.</p>
+<p>In the Eikon toolbar, search <ecop>; select the United Kingdom in the appropriate box ‘Country’, then select mortgage lending and ’Export to Excel ‘ setting five years time series.</ecop></p>
+<p>Uncheck the boxes below ‘Actual’. You can also explore individual contributors in the tab ‘Contributor Data’. Afterwards, download the actual values by clicking on the appropriate Excel Icon.</p>
+<p>Revisiting the dataset of Covid deaths in the UK, what analysis can we perform from the forecasts?</p>
+<p>In the search box type ‘United Kingdom weekly deaths’ and choose the ticker ‘aGBEDTEX’</p>
+<p>Click on the export ‘excel data’ icon, and download all the available observations of data.</p>
+<p>Remember to log in to Refinitiv within your Excel software.</p>
+<p>Select the dataset fro row 17 and copy and paste the values in a new sheet; afterwards, delete the sheet ‘Historical Values’. The file should look like in the picture below.</p>
+<p>Sort the data by date from oldest to newest.</p>
+<p>Save the dataset in your folder as ‘e-deaths.xlsx’</p>
+<p>Open RStudio and upload the file ‘covid-deaths.xlsx’</p>
+</section>
+<section id="check-what-is-the-directory-r-is-looking-at" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> Check what is the directory R is looking at</h1>
+<p>getwd()</p>
+</section>
+<section id="change-the-working-directory" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> change the working directory</h1>
+<p>setwd(“C:/Users/Cam/OneDrive - De Montfort University/a-ECON2545 2022-23 PUBLIC/datasets/”)</p>
+</section>
+<section id="open-the-library-of-commands-to-download-excel-files" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> open the library of commands to download excel files</h1>
+<p>library(readxl)</p>
+<p>#create an object edeaths for the excel file e-deaths.xlsx</p>
+<p>edeaths &lt;- read_excel(“e-deaths.xlsx”)</p>
+<p>#view the object e</p>
+<p>View(edeaths)</p>
+</section>
+<section id="plot-the-variable-average-daily-deaths" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> Plot the variable ‘average daily deaths’</h1>
+<p>plot(edeaths$excess)</p>
+<p>Enter the following key dates (bulletpoints taken from the Independent and wikipedia) using the command abline. use red for restrictive measures, blue for unrestrictive measures, black for ‘other’ important information.</p>
+<p>March 23: The UK public is told that they will only be allowed to leave their homes for limited reasons, including food shopping, exercise once per day, medical need and travelling for work when absolutely necessary. All shops selling non-essential goods are told to close, gatherings of more than two people in public are banned, events including weddings - but excluding funerals - are cancelled.</p>
+<p>10 May: Mr Johnson announces the first easing of England’s lockdown, telling people they are allowed to sunbathe in parks and leave the house to exercise more than once a day. He says England may be in a position “to begin the phased reopening of shops” and get primary pupils back to school in steps staggered by year groups “at the earliest by 1 June”.</p>
+<p>1 June: Lockdown measures are eased, with school children in England in Reception, Year 1 and Year 6 returning to the classroom.</p>
+<p>15 June: England’s retail parks, high streets and shopping centres welcome customers, while zoos and safari parks open their doors for the first time since March. Places of worship reopen for private prayer while some secondary school pupils have begun returning to their classrooms.</p>
+<p>16 June: The cheap steroid dexamethasone is hailed as a major breakthrough as a study suggests it is the first drug to reduce deaths from coronavirus.</p>
+<p>28 August: Those facilitating or organising illegal raves, unlicensed music events, or any other unlawful gathering of more than 30 people may now face a £10,000 fine, as tougher measures come into force before the bank holiday weekend.</p>
+<p>11 September: The R value of coronavirus transmission across the UK rises above 1 for the first time since early March, according to government advisers, with the estimate between 1.0 and 1.2.</p>
+<p>18 September: Mr Johnson warns that a second wave of coronavirus has arrived in the UK. Sage estimates the R number - representing the number of people an infected person will pass the virus to - at between 1.1 and 1.4, meaning cases could rise very quickly.Parts of England’s North West, West Yorkshire and the Midlands face tough new restrictions in response to “major increases” in cases.</p>
+<p>21 September: Chief scientific adviser Sir Patrick tells a televised briefing the UK could see 50,000 cases a day by mid-October and a daily death toll of 200 or more a month later unless urgent action is taken.</p>
+<p>22 September: The prime minister announces new restrictions, including a 10pm curfew on pubs, bars and restaurants in England from 24 September, while face coverings are made mandatory in more scenarios and limits for weddings and receptions are cut to 15 people maximum. Scotland and Northern Ireland deviate from the restrictions in place for England by announcing bans on households mixing indoors, while Wales includes a ban on alcohol sales in off-licences and supermarkets after 10pm in addition to the curfew on hospitality venues.</p>
+<p>24 September: New regulations (SI 1029) come into force, in part, at 5 am in England, prohibiting certain ′restricted businesses′ and ′restricted services′ from carrying on that business or providing that service between the hours of 22:00 and 05:00. The regulations affect a wide range of establishments, including restaurants, bars, public houses, social clubs, casinos, bingo halls, bowling alleys, cinemas, theatres, concert halls, amusement arcades, funfairs (indoors or outdoors), theme parks and adventure parks. The protected area of Bolton is excluded from the scope of this legislation as additional restrictions apply</p>
+<p>27 September: The Labour Party urges the government to pause the return of university students as thousands self-isolate due to COVID-19 outbreaks, but the return is defended by Culture Secretary Oliver Dowden, who says clear guidelines are in place for universities. David Lammy, the Shadow Secretary of State for Justice, expresses concern that 10pm pub curfews have led to drinkers continuing to socialise afterwards, with them “hanging around towns” and “potentially spreading the virus”.</p>
+<p>2 October: Around a quarter of the population of the United Kingdom, about 16.8 million people, are now in local lockdowns. This includes 23% of people in England, 76% of people in Wales and 32% of people in Scotland</p>
+<p>14 October: The new three-tier system of restrictions for England, taking effect from 14 October. Areas are grouped into one of three risk categories – medium, high, or very high. Medium areas are subject to the rule of six and the 10pm curfew, high areas have restrictions on indoor meetings but groups of six can continue to meet in outdoor settings, and very high areas will see the closure of businesses such as pubs and casinos, but not restaurants. The Liverpool City Region is the only area to be placed in the very high category</p>
+<p>31 October: After scientists project that there could be several thousand COVID deaths a day, Prime Minister Boris Johnson announces a second lockdown for England, for four weeks from Thursday 5 November to Wednesday 2 December, in order to prevent what he describes as a “medical and moral disaster” for the NHS. England will then revert back to the tier system.</p>
+</section>
+<section id="we-add-vertical-lines-with-the-command-abline" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> We add vertical lines with the command abline</h1>
+<p>abline(v =4, col=“red”)</p>
+<p>abline(v =6, col=“blue”)</p>
+</section>
+<section id="there-are-three-events-in-june-we-only-use-one-vertical-line" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> there are three events in June, we only use one vertical line</h1>
+<p>abline(v =7, col=“blue”)</p>
+<p>abline(v =9, col=“red”)</p>
+<p>abline(v =10, col=“red”)</p>
+<p>Was covid a hoax?</p>
+<p>Going forward, what timelines makes sense to make the partitions of the data to forecast?</p>
+<p>Perform a 12 months forecast using seasonal naïve forecast; what would be the beast ?</p>
+</section>
+<section id="install-the-package-forecast-if-you-have-not-done-so-previously." class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> install the package forecast if you have not done so previously.</h1>
+<p>install.packages(“forecast”)</p>
+<p>#open the library forecast</p>
+<p>library(forecast)</p>
+</section>
+<section id="create-the-object-snaive.edeaths-to-keep-in-there-the-snaive-estimation" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> create the object snaive.edeaths to keep in there the snaive estimation</h1>
+</section>
+<section id="by-visualisation-i-used-a-10-months-frequency-in-the-waves-on-this-data" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> by visualisation I used a 10 months frequency in the waves on this data</h1>
+<p>#h=6 as the excercise asks for a 6 monts forecast</p>
+<p>snaive.edeaths &lt;- snaive(ts(edeaths$excess, frequency = 10), h=12)</p>
+<p>plot(snaive.edeaths)</p>
+<p>To what extend the excess deaths decreased using the first wave of covid and the last fourth wave?</p>
+<p>Excess deaths decreased 83,17%</p>
+<p>What are the maximum deaths in the new calculation?</p>
+<p>Around 34,881 excess deaths.</p>
+<p>Create two horizontal lines, one for zero (2015-19 average), and the second for the peak of the last death wave.</p>
+<p>If excess deaths cross that threshold there might be a new lockdown?</p>
+<p>Do we anticipate a lockdown this Christmas?</p>
+<p>How many excess deaths register the dataset in the first 12 months?</p>
+<p>325,624</p>
+<p>How many casualties the model forecast in 12 months? Is this the new normal?</p>
+<p>The same number of the previous 12 months, 196,080.</p>
+<p>What could be an appropriate date to perform a partition?</p>
+<p>The troughts of the waves</p>
+<p>Why were the data partitioned?</p>
+<p>The validation partition provides a benchmark against which to test predictions, which is important because the goal of this effort is to forecast future excess deaths in the context of covid and backlogs in the treatment of other health issues.</p>
+<p>Why did the analyst choose 12 months for the validation period?</p>
+<p>The forecast horizon is monthly forecasts for 1-12 months ahead. Choosing 12 months for the validation partition allows evaluating the prediction accuracy of 12-month ahead forecasts. A choice of a longer validation period might have been avoided to include recent data in the training period.</p>
+<p>What is the naive forecast for the validation period? (assume that you must provide forecasts for 12 months ahead)</p>
+<p>Because there is seasonality in the series (waves), the naïve forecast for each of the months in the validation period is equal to an estimation of the duration of the wave, ceteris-paribus of other variables that can shorten or increase the length of the wave.</p>
+<p>Compute the RMSE and MAPE for the naive forecasts.</p>
+<p>RMSE =</p>
+<p>MAPE =</p>
+<section id="partition-of-the-data-and-forecast" class="level6" data-number="33.0.0.0.0.1">
+<h6 data-number="33.0.0.0.0.1" class="anchored" data-anchor-id="partition-of-the-data-and-forecast"><span class="header-section-number">33.0.0.0.0.1</span> partition of the data and forecast</h6>
+</section>
+</section>
+<section id="we-define-the-data-as-time-series-and-generated-our-first-time-series-graph-1" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> we define the data as time series and generated our first time series graph</h1>
+<p>edeaths.ts &lt;- ts(edeaths$excess, start = c(2019,12), end = c(2022, 10), freq = 12)</p>
+<p>plot(edeaths.ts, xlab = “Date”, ylab = “weekly excess deaths per month”, main = “UK Excess Deaths”)</p>
+<p>stepsAhead &lt;- 9</p>
+<p>nTrain &lt;- length(edeaths.ts) - stepsAhead</p>
+<p>train.ts &lt;- window(edeaths.ts, start = c(2019, 12), end = c(2019,nTrain+12), freq=12)</p>
+<p>lines(train.ts, col=“blue”)</p>
+<p>valid.ts &lt;- window(edeaths.ts, start = c(2019, nTrain + 13), end = c(2019, 12+nTrain + stepsAhead), freq=12)</p>
+<p>lines(valid.ts, col =“red”)</p>
+</section>
+<section id="this-is-the-command-for-the-naive-forecast-i-am-creating-the-variable-naive4cast-which-is-going-1" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> This is the command for the naive forecast, I am creating the variable ‘naive4cast’, which is going</h1>
+</section>
+<section id="to-capture-the-results-for-the-naive-forecast-in-the-training-period.-1" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> to capture the results for the naive forecast in the training period.</h1>
+<p>snaive4cast&lt;-snaive(train.ts, h= 9)</p>
+</section>
+<section id="we-forecast-using-the-training-period-1" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> We forecast using the training period</h1>
+<p>forecast(snaive4cast, h=9)</p>
+</section>
+<section id="we-find-level-of-accuracy-we-will-cover-this-during-the-next-lecture-1" class="level1" data-number="38">
+<h1 data-number="38"><span class="header-section-number">38</span> We find level of accuracy, we will cover this during the next lecture</h1>
+<p>accuracy(snaive4cast,valid.ts)</p>
+<p>plot(snaive4cast)</p>
+<p>lines(valid.ts)</p>
+</section>
+<section id="we-create-a-histogram-of-the-residualserrors-random-error-1" class="level1" data-number="39">
+<h1 data-number="39"><span class="header-section-number">39</span> We create a histogram of the residuals/errors/ random error</h1>
+<p>hist(snaive4cast$residuals, ylab = “Frequency”, xlab = “Forecast Error”, bty = “l”, main = ““)</p>
+<p>Plot a histogram of the forecast errors that result from the naive forecasts (for the validation period). Plot also a time plot for the naive forecasts and the actual sales numbers in the validation period. What can you say about the behavior of the naive forecasts?</p>
+<p>The naïve forecasts are under-predictions of actual sales. This can be seen in both plots.</p>
+<p>The analyst found a forecasting model that gives satisfactory performance on the validation set. What must she do to use the forecasting model for generating forecasts for year 2002?</p>
+<p>The training and validation periods must be re-combined, and then the forecasting model should be applied to the complete series before producing future forecasts. (we did this at the beginning of this lab)</p>
+<p>Lab 8 – Refinitiv: KEYST, ECOW, COUN, WEI / API: Connecting R to Bloomberg</p>
+<p>REFINITIV/EIKON – end of cross asset commands</p>
+<p>Activity 1. Key Stats <keyst> - what is the best gold mine to invest?</keyst></p>
+<p>The KeyStats page allows users to compare a maximum of three different securities and to compare them across different valuation methods. In the Eikon Toolbar, search and choose the three securities to compare: Fresnillo, Centamin, and Polymetal. Search the meaning of the indicators and discuss what could be the best gold miner from this selection of companies.</p>
+<p>REFINITIV/EIKON – Forex commands</p>
+<p>Explore the following:</p>
+<ul>
+<li>FXBUZZ</li>
+</ul>
+<p>Bloomberg</p>
+<p>Activity 3. finding datasets for assignments</p>
+<p>There is a very wide array of information available on Bloomberg. Information can typically be split into country, industry or company information. This information sheet does not cover all of the detailed information which you may need, but should act as a signpost for where to find the information you need.</p>
+<p>COUNTRY-LEVEL INFORMATION</p>
+<p>ECOW <go> provides economic information of a wide variety, over a number of years, such that changes can also be observed. Select the appropriate country, and depending on the source information for that country, up to 200 different data items may be available, including GDP, CPI, unemployment, housing market data, retail sector data, exports, imports and exchange rates</go></p>
+<p>COUN <go> has 4 different tabs providing country information and charts, under the headings ‘financial’, ‘economic’, ‘risk’ and ‘profile’ which includes country officials and information about main exports for example.</go></p>
+<p>WEI <go> provides information about World Equity Indices and a snapshot of gains/losses in the indices.</go></p>
+<p>FFM<go> to find case studies written by Bloomberg specialists.</go></p>
+<p>Hit the key <help> on the function screen to access its instructions, definitions, documents and further information.</help></p>
+<p>Activity 3. Using Bloomberg From R and Excel</p>
+<p>Bloomberg from R</p>
+<p>First, you need to be logged on to Bloomberg.</p>
+<p>If the Bloomberg/Excel add-in does not work, then: 1. Close Excel and/or R 2. Keep Bloomberg running 3. Go to Start-&gt; Bloomberg -&gt; API Environment Diagnostics 4. Click Start when the Bloomberg API Diagnostics window has loaded 5. If a “Login to wintrv…” message below then pops up, this occurs when Bloomberg isn’t open – it is highly recommended that you have Bloomberg running; you can proceed without it, but you may not be able to resolve some errors if you do so 6. Once the check is finished, you will get a ‘Diagnostics completed’ message 7. If the Repair button is available to press on the Bloomberg API Diagnostics window, it means it needs to run the repair and you should do so by clicking Repair (it should take a couple of minutes) 8. Once the check is done, and repair if necessary, the ideal state is all green ticks except for 2 yellow “!” for Dotnet Installation and Excel Throttle Interval only. Else, you can still run Excel or R-Studio and see if the Bloomberg-associated functionality is working.</p>
+</section>
+<section id="install-the-bloomberg-package-and-connect" class="level1" data-number="40">
+<h1 data-number="40"><span class="header-section-number">40</span> install the Bloomberg package, and connect</h1>
+<p>install.packages(“Rblpapi”)</p>
+<p>library (Rblpapi)</p>
+<p>blpConnect()</p>
+</section>
+<section id="get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it" class="level1" data-number="41">
+<h1 data-number="41"><span class="header-section-number">41</span> get the Bloomberg data history for SPY US Equity - last 100 days - and plot it</h1>
+<p>x &lt;- bdh(“SPY US Equity”, “PX_LAST”, start.date=Sys.Date()-100)</p>
+<p>plot(x)</p>
+</section>
+<section id="find-out-what-other-fields-are-available-for-prices" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> find out what other fields are available for prices</h1>
+<p>res &lt;- fieldSearch(“price”)</p>
+<p>res</p>
+</section>
+<section id="get-the-bloomberg-data-history-for-spy-us-equity---last-100-days---and-plot-it-1" class="level1" data-number="43">
+<h1 data-number="43"><span class="header-section-number">43</span> get the Bloomberg data history for SPY US Equity - last 100 days - and plot it</h1>
+<p>x &lt;- bdh(“SPY US Equity”, “OPEN”, start.date=Sys.Date()-100) plot(x)</p>
+<p>Bloomberg from Excel</p>
+<p>As above, if the Bloomberg/Excel add-in does not work, then repair (Steps 1-8).</p>
+<p>Open an Excel Sheet, and type the following into a cell:</p>
+<p>Historical prices: BDH(“F US Equity”, “PX_LAST”, “16/11/2000”, “15/11/2016”); this will give you the last traded price (PX_LAST) for ’F US Equity (Ford Motor Company) from 16/11/2000 to 15/11/2016. The first parameter must be the Bloomberg stock code.</p>
+<p>For DMU students, this shows how to get data from Bloomberg into Excel. Also for DMU students, this shows how to use Bloomberg.</p>
+<p>Lab 9 – API: Getting data from Refinitiv using R script.</p>
+<p>Uploading data from Refinitiv into R</p>
+<p>There is a big community of developers and users for both R and Refinitiv. Students can visit the forums and ask questions to fix their codes. We will install the eikonapir package; more information about this package can be found at:</p>
+<p>Activity 1. Type APPKEY in the Eikon/Refinitiv search box.</p>
+<p>Activity 2. Type your name, tick all check the boxes, and click on Register New App.</p>
+<p>Activity 3. Read the Term and Conditions. Users/students must not share your App Key for Eikon/Refinitiv.</p>
+<p>Activity 4. Copy your App Key using right-click with your mouse.</p>
+<p>Activity 5. Paste the App key in the following code in R. You must open RStudio and write the following code within a Rscript</p>
+<p>install.packages(“devtools”)</p>
+<p>library(devtools)</p>
+<p>install_github(“ahmedmohamedali/eikonapir”)</p>
+<p>library(eikonapir)</p>
+<p>eikonapir:: set_proxy_port(9000L)</p>
+<p>eikonapir:: set_app_id(“Type your app key here”)</p>
+<p>result &lt;- get_symbology (list(“MSFT.O”, “GOOG.O”, “IBM.N”), “RIC”, list(“ISIN”),</p>
+<p>raw_output=FALSE, debug=FALSE)</p>
+<p>print(result)</p>
+<p>Activity 6. Run the code line by line using ctrl+enter (command +enter for MAC).</p>
+<p>Users need to install packages only the first time and update the packages from time to time. Users must open the libraries in line 3 and 5 (devtools and eikonapir) every time they use this rutine. Look carefully at each line and ask questions to your tutor if required.</p>
+<p>Activity 7. Making a reference list of assets’ identifiers in a dataframe.</p>
+<p>You can use this to find identifiers for datasets you are searching.</p>
+<p>This is the outcome:</p>
+<p>Activity 8. Get the last price, volume and lower price for IBM, Google, and Microsoft:</p>
+<p>Activity 9. Get the number of employees and profit for IBM</p>
+<p>Activity 10. Getting time series for MMM and III.L; this is 3M and 3i shares.</p>
+<p>You can investigate these businesses in the search box of Refinitiv are.</p>
+<p>Review the dataset for both shares with the command View in RStudio.</p>
+<p>Activity 11. Download yearly GDP for Italy, and quarterly CPI for Australia.</p>
+<p>Activity 12. Forecast five years (20 quarters) of CPI for Australia using moving averages and trailing moving averages (lecture for week 8).</p>
+<p>You can inspect the file “lab9.R” available in bb. What is the extend of the inflation/deflation assuming the pandemic never happened?</p>
+<p>Lab 10 – Exponential Forecasting</p>
+<p>ACTIVITY 1 - Impact of the pandemic on visitors to the UK</p>
+<p>Task 1- Find the publication ‘Overseas Travel and Tourism:2020’ on the ONS website and compare the release with the ‘Travel Trends in 2019’. What is the most popular reason to visit the UK? And why the trend change abruptly in 2020?</p>
+<p>Task 2 - Search the ‘overseas visitors to the UK’ in Refinitiv; alternatively, you can find the mnemotechnic ‘aGBTOURARR/A’</p>
+<p>Task 3 – Review the previous lab 9; using APPKEY in Refinitiv and the library eikonapir in R, get the time series for ‘aGBTOURARR/A’ since the year 2000.</p>
+<p>Task 4 – Performe some data management, convert aGBTOURARR/A to a numeric format (if the format is ‘character’) and set the series as a data frame in R.</p>
+<p>Task 5 – Open the library ‘forecast’ and ‘zoo’; what are these libraries for? Type ‘?forecast’ and ‘?zoo’ in the console without the quotes.</p>
+<p>Task 6 – Set the dataset as a timeseries and plot the data.</p>
+<p>Task 7 - perform double differencing on the data and plot the results. What is the effect on the data? Plot the double-differenced data.</p>
+<p>Task 8 – Perform a partition of the data with a validation period equal to 36 months.</p>
+<p>Task 9 - Perform a simple exponential forecast with additive errors and nothing for the trend and the seasonal component. Plot the results and compute the indicators of accuracy.</p>
+<p>Task 10 – repeat the procedure, this time do not use the double-differenced series, use the original data set and calculate the best Holt’s specification (Explain the Holt’s method discussed during the lecture). Show the accuracy measures and plot the forecasts.</p>
+<p>Forecast with double-differencing</p>
+<p>Forecast with the original data</p>
+<p>What is the best forecasting technique for this data? Double-differencing or forecast with the original data?</p>
+<p>ACTIVITY 2 - Forecasting Department store sales; CH5, problem 5, p110-112.</p>
+<p>The figure above is a time plot of the seasonally adjusted pre-September-11 Air series. Which of the following smoothing methods would be adequate for forecasting this series?</p>
+<p>Naive forecasts</p>
+<p>Moving average (with what window width?)</p>
+<p>Simple exponential smoothing</p>
+<p>Double exponential smoothing</p>
+<p>Holt-Winter’s exponential smoothing</p>
+<p>Note that the seasonally-adjusted series still contains a trend, and hence double exponential smoothing is needed.</p>
+<p>Lab 11 – MCQs assessment</p>
+<p>MCQs, weight 20%, deadline Dec 6, 2023 during the Lab sessions. Group 1: 11-12 noon, Group 2: 2-3 PM. The assessment for group 2 is from 2-3 PM to accomodate a guest speaking session.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../labs/part001.html" class="pagination-link" aria-label="Fundamentals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../labs/part003.html" class="pagination-link" aria-label="Lab Part">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lab Part</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

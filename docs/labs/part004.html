@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Lab Part – Econometrics and Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../labs/part005.html" rel="next">
+<link href="../labs/part003.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/part001.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/part004.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lab Part</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Econometrics and Analytics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Econometrics and Analytics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Labs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part001.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part002.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part003.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part004.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/part005.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lab Part</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">5.1</span> </a></li>
+  <li><a href="#call" id="toc-call" class="nav-link" data-scroll-target="#call"><span class="header-section-number">5.2</span> Call:</a></li>
+  <li><a href="#lmformula-food_exp-income-data-food" id="toc-lmformula-food_exp-income-data-food" class="nav-link" data-scroll-target="#lmformula-food_exp-income-data-food"><span class="header-section-number">5.3</span> lm(formula = food_exp ~ income, data = food)</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">5.4</span> </a></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals"><span class="header-section-number">5.5</span> Residuals:</a></li>
+  <li><a href="#min-1q-median-3q-max" id="toc-min-1q-median-3q-max" class="nav-link" data-scroll-target="#min-1q-median-3q-max"><span class="header-section-number">5.6</span> Min 1Q Median 3Q Max</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">5.7</span> -223.03 -50.82 -6.32 67.88 212.04</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">5.8</span> </a></li>
+  <li><a href="#coefficients" id="toc-coefficients" class="nav-link" data-scroll-target="#coefficients"><span class="header-section-number">5.9</span> Coefficients:</a></li>
+  <li><a href="#estimate-std.-error-t-value-prt" id="toc-estimate-std.-error-t-value-prt" class="nav-link" data-scroll-target="#estimate-std.-error-t-value-prt"><span class="header-section-number">5.10</span> Estimate Std. Error t value Pr(&gt;|t|)</a></li>
+  <li><a href="#intercept-83.42-43.41-1.92-0.062-." id="toc-intercept-83.42-43.41-1.92-0.062-." class="nav-link" data-scroll-target="#intercept-83.42-43.41-1.92-0.062-."><span class="header-section-number">5.11</span> (Intercept) 83.42 43.41 1.92 0.062 .</a></li>
+  <li><a href="#income-10.21-2.09-4.88-0.000019" id="toc-income-10.21-2.09-4.88-0.000019" class="nav-link" data-scroll-target="#income-10.21-2.09-4.88-0.000019"><span class="header-section-number">5.12</span> income 10.21 2.09 4.88 0.000019 ***</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">5.13</span> —</a></li>
+  <li><a href="#signif.-codes-0-0.001-0.01-0.05-.-0.1-1" id="toc-signif.-codes-0-0.001-0.01-0.05-.-0.1-1" class="nav-link" data-scroll-target="#signif.-codes-0-0.001-0.01-0.05-.-0.1-1"><span class="header-section-number">5.14</span> Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">5.15</span> </a></li>
+  <li><a href="#residual-standard-error-89.5-on-38-degrees-of-freedom" id="toc-residual-standard-error-89.5-on-38-degrees-of-freedom" class="nav-link" data-scroll-target="#residual-standard-error-89.5-on-38-degrees-of-freedom"><span class="header-section-number">5.16</span> Residual standard error: 89.5 on 38 degrees of freedom</a></li>
+  <li><a href="#multiple-r-squared-0.385-adjusted-r-squared-0.369" id="toc-multiple-r-squared-0.385-adjusted-r-squared-0.369" class="nav-link" data-scroll-target="#multiple-r-squared-0.385-adjusted-r-squared-0.369"><span class="header-section-number">5.17</span> Multiple R-squared: 0.385, Adjusted R-squared: 0.369</a></li>
+  <li><a href="#f-statistic-23.8-on-1-and-38-df-p-value-0.0000195" id="toc-f-statistic-23.8-on-1-and-38-df-p-value-0.0000195" class="nav-link" data-scroll-target="#f-statistic-23.8-on-1-and-38-df-p-value-0.0000195"><span class="header-section-number">5.18</span> F-statistic: 23.8 on 1 and 38 DF, p-value: 0.0000195</a></li>
+  <li><a href="#call-terms-residuals-coefficients" id="toc-call-terms-residuals-coefficients" class="nav-link" data-scroll-target="#call-terms-residuals-coefficients"><span class="header-section-number">5.19</span> [1] “call” “terms” “residuals” “coefficients”</a></li>
+  <li><a href="#aliased-sigma-df-r.squared" id="toc-aliased-sigma-df-r.squared" class="nav-link" data-scroll-target="#aliased-sigma-df-r.squared"><span class="header-section-number">5.20</span> [5] “aliased” “sigma” “df” “r.squared”</a></li>
+  <li><a href="#adj.r.squared-fstatistic-cov.unscaled" id="toc-adj.r.squared-fstatistic-cov.unscaled" class="nav-link" data-scroll-target="#adj.r.squared-fstatistic-cov.unscaled"><span class="header-section-number">5.21</span> [9] “adj.r.squared” “fstatistic” “cov.unscaled”</a></li>
+  <li><a href="#intercept-income-83.4160-10.2096" id="toc-intercept-income-83.4160-10.2096" class="nav-link" data-scroll-target="#intercept-income-83.4160-10.2096"><span class="header-section-number">5.22</span> (Intercept) income ## 83.4160 10.2096</a></li>
+  <li><a href="#income2000-2500-2700" id="toc-income2000-2500-2700" class="nav-link" data-scroll-target="#income2000-2500-2700"><span class="header-section-number">5.23</span> income=$2000 $2500 $2700</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">5.24</span> 287.609 338.657 359.076</a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">5.25</span> [1] 9.88</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">5.26</span> [1] 1884.44</a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"><span class="header-section-number">5.27</span> [1] 4.38175</a></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10"><span class="header-section-number">5.28</span> [1] -85.9032</a></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11"><span class="header-section-number">5.29</span> [1] 55776.6</a></li>
+  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12"><span class="header-section-number">5.30</span> [1] 0.0154213</a></li>
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"><span class="header-section-number">5.31</span> [1] 61.6852 123.3704 185.0556</a></li>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14"><span class="header-section-number">5.32</span> [1] 1.05030 1.63125 1.81741</a></li>
+  <li><a href="#section-15" id="toc-section-15" class="nav-link" data-scroll-target="#section-15"><span class="header-section-number">5.33</span> [1] 53.465</a></li>
+  <li><a href="#section-16" id="toc-section-16" class="nav-link" data-scroll-target="#section-16"><span class="header-section-number">5.34</span> [1] 0.936693</a></li>
+  <li><a href="#load-the-utown-dataset-which-contains-housing-data-including-proximity-to-a-university" id="toc-load-the-utown-dataset-which-contains-housing-data-including-proximity-to-a-university" class="nav-link" data-scroll-target="#load-the-utown-dataset-which-contains-housing-data-including-proximity-to-a-university"><span class="header-section-number">6</span> Load the ‘utown’ dataset which contains housing data, including proximity to a university</a></li>
+  <li><a href="#calculate-the-average-price-of-houses-not-close-to-the-university" id="toc-calculate-the-average-price-of-houses-not-close-to-the-university" class="nav-link" data-scroll-target="#calculate-the-average-price-of-houses-not-close-to-the-university"><span class="header-section-number">7</span> Calculate the average price of houses not close to the university</a></li>
+  <li><a href="#calculate-the-average-price-of-houses-close-to-the-university" id="toc-calculate-the-average-price-of-houses-close-to-the-university" class="nav-link" data-scroll-target="#calculate-the-average-price-of-houses-close-to-the-university"><span class="header-section-number">8</span> Calculate the average price of houses close to the university</a></li>
+  <li><a href="#perform-linear-regression-with-utown-as-an-indicator-variable" id="toc-perform-linear-regression-with-utown-as-an-indicator-variable" class="nav-link" data-scroll-target="#perform-linear-regression-with-utown-as-an-indicator-variable"><span class="header-section-number">9</span> Perform linear regression with ‘utown’ as an indicator variable</a></li>
+  <li><a href="#extract-coefficients-from-the-regression-model" id="toc-extract-coefficients-from-the-regression-model" class="nav-link" data-scroll-target="#extract-coefficients-from-the-regression-model"><span class="header-section-number">10</span> Extract coefficients from the regression model</a>
+  <ul class="collapse">
+  <li><a href="#section-17" id="toc-section-17" class="nav-link" data-scroll-target="#section-17"><span class="header-section-number">10.1</span> 2.5 % 97.5 %</a></li>
+  <li><a href="#intercept--4.46328-171.2953-income-5.97205-14.4472" id="toc-intercept--4.46328-171.2953-income-5.97205-14.4472" class="nav-link" data-scroll-target="#intercept--4.46328-171.2953-income-5.97205-14.4472"><span class="header-section-number">10.2</span> (Intercept) -4.46328 171.2953 ## income 5.97205 14.4472</a></li>
+  </ul></li>
+  <li><a href="#plot-the-density-function-and-the-values-of-t-curvedtx-df--2.5seb2-2.5seb2-ylab-xlabt-ablinevc-tcr-tcr-t-colcred-red-blue" id="toc-plot-the-density-function-and-the-values-of-t-curvedtx-df--2.5seb2-2.5seb2-ylab-xlabt-ablinevc-tcr-tcr-t-colcred-red-blue" class="nav-link" data-scroll-target="#plot-the-density-function-and-the-values-of-t-curvedtx-df--2.5seb2-2.5seb2-ylab-xlabt-ablinevc-tcr-tcr-t-colcred-red-blue"><span class="header-section-number">11</span> Plot the density function and the values of t: curve(dt(x, df), -2.5<em>seb2, 2.5</em>seb2, ylab=” “, xlab=”t”) abline(v=c(-tcr, tcr, t), col=c(“red”, “red”, “blue”),</a></li>
+  <li><a href="#calculating-the-p-value-for-a-right-tail-test" id="toc-calculating-the-p-value-for-a-right-tail-test" class="nav-link" data-scroll-target="#calculating-the-p-value-for-a-right-tail-test"><span class="header-section-number">12</span> Calculating the p-value for a right-tail test</a>
+  <ul class="collapse">
+  <li><a href="#section-18" id="toc-section-18" class="nav-link" data-scroll-target="#section-18"><span class="header-section-number">12.1</span> [1] 0.385002</a></li>
+  <li><a href="#section-19" id="toc-section-19" class="nav-link" data-scroll-target="#section-19"><span class="header-section-number">12.2</span> </a></li>
+  <li><a href="#call-1" id="toc-call-1" class="nav-link" data-scroll-target="#call-1"><span class="header-section-number">12.3</span> Call:</a></li>
+  <li><a href="#lmformula-food_exp-income-data-food-1" id="toc-lmformula-food_exp-income-data-food-1" class="nav-link" data-scroll-target="#lmformula-food_exp-income-data-food-1"><span class="header-section-number">12.4</span> lm(formula = food_exp ~ income, data = food)</a></li>
+  <li><a href="#section-20" id="toc-section-20" class="nav-link" data-scroll-target="#section-20"><span class="header-section-number">12.5</span> </a></li>
+  <li><a href="#residuals-1" id="toc-residuals-1" class="nav-link" data-scroll-target="#residuals-1"><span class="header-section-number">12.6</span> Residuals:</a></li>
+  <li><a href="#min-1q-median-3q-max-1" id="toc-min-1q-median-3q-max-1" class="nav-link" data-scroll-target="#min-1q-median-3q-max-1"><span class="header-section-number">12.7</span> Min 1Q Median 3Q Max</a></li>
+  <li><a href="#section-21" id="toc-section-21" class="nav-link" data-scroll-target="#section-21"><span class="header-section-number">12.8</span> -223.03 -50.82 -6.32 67.88 212.04</a></li>
+  <li><a href="#section-22" id="toc-section-22" class="nav-link" data-scroll-target="#section-22"><span class="header-section-number">12.9</span> </a></li>
+  <li><a href="#coefficients-1" id="toc-coefficients-1" class="nav-link" data-scroll-target="#coefficients-1"><span class="header-section-number">12.10</span> Coefficients:</a></li>
+  <li><a href="#estimate-std.-error-t-value-prt-1" id="toc-estimate-std.-error-t-value-prt-1" class="nav-link" data-scroll-target="#estimate-std.-error-t-value-prt-1"><span class="header-section-number">12.11</span> Estimate Std. Error t value Pr(&gt;|t|)</a></li>
+  <li><a href="#intercept-83.42-43.41-1.92-0.062-.-1" id="toc-intercept-83.42-43.41-1.92-0.062-.-1" class="nav-link" data-scroll-target="#intercept-83.42-43.41-1.92-0.062-.-1"><span class="header-section-number">12.12</span> (Intercept) 83.42 43.41 1.92 0.062 .</a></li>
+  <li><a href="#income-10.21-2.09-4.88-0.000019-1" id="toc-income-10.21-2.09-4.88-0.000019-1" class="nav-link" data-scroll-target="#income-10.21-2.09-4.88-0.000019-1"><span class="header-section-number">12.13</span> income 10.21 2.09 4.88 0.000019 ***</a></li>
+  <li><a href="#section-23" id="toc-section-23" class="nav-link" data-scroll-target="#section-23"><span class="header-section-number">12.14</span> —</a></li>
+  <li><a href="#signif.-codes-0-0.001-0.01-0.05-.-0.1-1-1" id="toc-signif.-codes-0-0.001-0.01-0.05-.-0.1-1-1" class="nav-link" data-scroll-target="#signif.-codes-0-0.001-0.01-0.05-.-0.1-1-1"><span class="header-section-number">12.15</span> Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</a></li>
+  <li><a href="#section-24" id="toc-section-24" class="nav-link" data-scroll-target="#section-24"><span class="header-section-number">12.16</span> </a></li>
+  <li><a href="#residual-standard-error-89.5-on-38-degrees-of-freedom-1" id="toc-residual-standard-error-89.5-on-38-degrees-of-freedom-1" class="nav-link" data-scroll-target="#residual-standard-error-89.5-on-38-degrees-of-freedom-1"><span class="header-section-number">12.17</span> Residual standard error: 89.5 on 38 degrees of freedom</a></li>
+  <li><a href="#multiple-r-squared-0.385-adjusted-r-squared-0.369-1" id="toc-multiple-r-squared-0.385-adjusted-r-squared-0.369-1" class="nav-link" data-scroll-target="#multiple-r-squared-0.385-adjusted-r-squared-0.369-1"><span class="header-section-number">12.18</span> Multiple R-squared: 0.385, Adjusted R-squared: 0.369</a></li>
+  <li><a href="#f-statistic-23.8-on-1-and-38-df-p-value-0.0000195-1" id="toc-f-statistic-23.8-on-1-and-38-df-p-value-0.0000195-1" class="nav-link" data-scroll-target="#f-statistic-23.8-on-1-and-38-df-p-value-0.0000195-1"><span class="header-section-number">12.19</span> F-statistic: 23.8 on 1 and 38 DF, p-value: 0.0000195</a></li>
+  <li><a href="#section-25" id="toc-section-25" class="nav-link" data-scroll-target="#section-25"><span class="header-section-number">12.20</span> </a></li>
+  <li><a href="#jarque-bera-test" id="toc-jarque-bera-test" class="nav-link" data-scroll-target="#jarque-bera-test"><span class="header-section-number">12.21</span> Jarque Bera Test</a></li>
+  <li><a href="#section-26" id="toc-section-26" class="nav-link" data-scroll-target="#section-26"><span class="header-section-number">12.22</span> </a></li>
+  <li><a href="#data-ehat" id="toc-data-ehat" class="nav-link" data-scroll-target="#data-ehat"><span class="header-section-number">12.23</span> data: ehat</a></li>
+  <li><a href="#x-squared-0.06334-df-2-p-value-0.969" id="toc-x-squared-0.06334-df-2-p-value-0.969" class="nav-link" data-scroll-target="#x-squared-0.06334-df-2-p-value-0.969"><span class="header-section-number">12.24</span> X-squared = 0.06334, df = 2, p-value = 0.969</a></li>
+  </ul></li>
+  <li><a href="#the-generalized-r-squared-rgsq---cornewbroilerq-yhatc2" id="toc-the-generalized-r-squared-rgsq---cornewbroilerq-yhatc2" class="nav-link" data-scroll-target="#the-generalized-r-squared-rgsq---cornewbroilerq-yhatc2"><span class="header-section-number">13</span> The generalized R-squared: rgsq &lt;- cor(newbroiler$q, yhatc)^2</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+<div id="chatbox" style="font-family: sans-serif; max-width: 600px; margin: auto;">
+
+  <h3 class="anchored">Ask me anything from the textbook!</h3>
+
+  <textarea id="userInput" rows="4" style="width: 100%;" placeholder="Type your question here..."></textarea>
+
+  <br>
+
+  <button onclick="askQuestion()" style="margin-top: 8px;">Ask</button>
+
+  <pre id="response" style="background: #f4f4f4; padding: 1em; white-space: pre-wrap;"></pre>
+
+</div>
+
+
+
+<script>
+
+  async function askQuestion() {
+
+    const userInput = document.getElementById("userInput").value;
+
+    const responseBox = document.getElementById("response");
+
+    responseBox.textContent = "Thinking...";
+
+
+
+    const textbookContent = `You are a helpful teaching assistant for a textbook on R, data science, and econometrics. Your answers should be beginner-friendly and based strictly on the material. Avoid hallucinating information.`
+
+
+
+    try {
+
+      const response = await fetch("/api/chat", {
+
+        method: "POST",
+
+        headers: {
+
+          "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify({
+
+          messages: [
+
+            { role: "system", content: textbookContent },
+
+            { role: "user", content: userInput }
+
+          ]
+
+        })
+
+      });
+
+
+
+      const data = await response.json();
+
+
+
+      if (data && data.choices && data.choices.length > 0) {
+
+        responseBox.textContent = data.choices[0].message.content.trim();
+
+      } else {
+
+        responseBox.textContent = "No response from the assistant.";
+
+      }
+
+
+
+    } catch (error) {
+
+      responseBox.textContent = "Error: " + error.message;
+
+    }
+
+  }
+
+</script>
+
+
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/part001.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/part004.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lab Part</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lab Part</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>School of Accounting, Finance and Economics</p>
+<p>BECS2002 / Econometrics and Data Analytics</p>
+<p>Lab Handbook</p>
+<p>Week 15</p>
+<p>Module coordinator: Dr Camilo Calderon</p>
+<p>Email: cam.calderon@dmu.ac.uk</p>
+<p>This version: 21/02/2025</p>
+<p>This handbook has been produced to provide students with specific information and guidance about their labs. The contents of this handbook are indicative, this means they can be updated or modified upon the review of the module leader (Cam).</p>
+<p>An electronic version of this handbook (which is continuously updated) is available on the VLE system, Blackboard, which you should consult regularly as the main reference point throughout your studies.</p>
+<p>Indicative Contents</p>
+<p>Prerequisite 6</p>
+<p>Lecture 1 - The Simple Linear Regression Model 7</p>
+<p>Lecture 2 - Prediction with the Linear Regression Model 15</p>
+<p>Video 1 - Using Indicator Variables in a Regression &amp; Monte Carlo 23</p>
+<p>Video 2 -Interval Estimation 28</p>
+<p>Lab 1 – Hypothesis Test, P-Value and Testing Linear Combination of Parameters 35</p>
+<p>Lab 2 -The p-Value 40</p>
+<p>Lab 3 - Prediction, R-squared, and Modelling 45</p>
+<p>Lab 4 Linear-Log Models 52</p>
+<p>Lab 5- Polynomial Models 59</p>
+<p>Lab 6 – Hands-on on your assignment 68</p>
+<p>Prerequisite</p>
+<p>Review the assignment brief for the report assessment and download an appropriate dataset.</p>
+<p>Students will adapt the R scripts of the next three weeks of labs to the dataset and topic of the report.</p>
+<p>Lecture 1 - The Simple Linear Regression Model</p>
+<p>Note: students must adapt the following R scrips to their assignment 2 (report) using an appropriate dataset.</p>
+<p>Summary: in simple linear regression, we use one independent variable to predict a dependent variable. The relationship is represented by a straight line with an intercept and a slope.</p>
+<p>Introduction: In this lecture, we will explore the fundamentals of the Simple Linear Regression Model, a statistical method used to understand the relationship between two variables. This model is foundational for understanding more complex statistical analyses in your future studies.</p>
+<p>Key terms: A dependent variable, represented as ‘y’, is what we aim to predict, while an independent variable, denoted as ‘x’, is the variable(s) we use to explain y. Imagine predicting a student’s final grade (y) based on their hours of study (x). Here, the final grade depends on, or is predicted by, the hours of study.</p>
+<p>The General Model</p>
+<p>The model assumes a linear relationship between the conditional expectation of a dependent variable, y, and an independent variable, x. Independent variable sometimes are called ‘response’ or ‘response variable’, and the independent variables ‘regressors.’ The assumed relationship has the form:</p>
+<p>yi = β1 + β2xi + ei, (1)</p>
+<p>where</p>
+<p>y is the dependent variable</p>
+<p>x is the independent variable</p>
+<p>e is an error term</p>
+<p>σ2 is the variance of the error term</p>
+<p>β1 is the intercept parameter or coefficient</p>
+<p>β2 is the slope parameter or coefficient</p>
+<p>i stands fot the i -th observation in the dataset, i = 1,2,…,N</p>
+<p>N is the number of observations in the dataset</p>
+<p>Figure: Example of several observations for any given x</p>
+<p>The predicted, or estimated value of y given x is given by the following equation; in general, the hat symbol indicates an estimated or a predicted value.</p>
+<p>yˆ = b1 + b2x (2)</p>
+<p>The model assumes that the values of x are previously chosen (therefore, they are non-random), that the variance of the error term, σ2, is the same for all values of x, and that there is no connection between one observation and another (no correlation between the error terms of two observations). In addition, it is assumed that the expected value of the error term for any value of x is zero.</p>
+<p>The subscript i in Equation 1 indicates that the relationship applies to each of the N observations. Thus, there must be specific values of y, x, and e for each observation. However, since x is not random, there are, typically, several observations sharing the same x, as the scatter diagram in Figure above shows.</p>
+<p>Example: Food Expenditure versus Income</p>
+<p>The data for this example is stored in the R package PoEdata (To check if the package PoEdata is installed, look in the Packages list.)</p>
+<p>library(PoEdata)</p>
+<p>data(food)</p>
+<p>head(food)</p>
+<p>It is always a good idea to visually inspect the data in a scatter diagram, which can be created using the function plot(). Figure 2.2 is a scatter diagram of food expenditure on income, suggesting that there is a positive relationship between income and food expenditure.</p>
+<p>data(“food”, package=“PoEdata”)</p>
+<p>plot(food<span class="math inline">\(income, food\)</span>food_exp, ylim=c(0, max(food<span class="math inline">\(food_exp)), xlim=c(0, max(food\)</span>income)), xlab=“weekly income in $100”, ylab=“weekly food expenditure in $”, type = “p”)</p>
+<p>Estimating a Linear Regression</p>
+<p>The R function for estimating a linear regression model is lm(y~x, data) which, used just by itself does not show any output; It is useful to give the model a name, such as mod1, then show the results using summary(mod1). If you are interested in only some of the results of the regression, such as the estimated coefficients, you can retrieve them using specific functions, such as the function coef(). For the food expenditure data, the regression model will be</p>
+<p>food_exp = β1 + β2income + e (3)</p>
+<p>where the subscript i has been omitted for simplicity.</p>
+<p>Figure: A scatter diagram for the food expenditure model</p>
+<p>library(PoEdata)</p>
+<p>mod1 &lt;- lm(food_exp ~ income, data = food)</p>
+<p>b1 &lt;- coef(mod1)[[1]]</p>
+<p>b2 &lt;- coef(mod1)[[2]]</p>
+<p>smod1 &lt;- summary(mod1)</p>
+<p>smod1</p>
+<section id="section" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="section"><span class="header-section-number">5.1</span> </h2>
+</section>
+<section id="call" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="call"><span class="header-section-number">5.2</span> Call:</h2>
+</section>
+<section id="lmformula-food_exp-income-data-food" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="lmformula-food_exp-income-data-food"><span class="header-section-number">5.3</span> lm(formula = food_exp ~ income, data = food)</h2>
+</section>
+<section id="section-1" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">5.4</span> </h2>
+</section>
+<section id="residuals" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="residuals"><span class="header-section-number">5.5</span> Residuals:</h2>
+</section>
+<section id="min-1q-median-3q-max" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="min-1q-median-3q-max"><span class="header-section-number">5.6</span> Min 1Q Median 3Q Max</h2>
+</section>
+<section id="section-2" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="section-2"><span class="header-section-number">5.7</span> -223.03 -50.82 -6.32 67.88 212.04</h2>
+</section>
+<section id="section-3" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="section-3"><span class="header-section-number">5.8</span> </h2>
+</section>
+<section id="coefficients" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="coefficients"><span class="header-section-number">5.9</span> Coefficients:</h2>
+</section>
+<section id="estimate-std.-error-t-value-prt" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="estimate-std.-error-t-value-prt"><span class="header-section-number">5.10</span> Estimate Std. Error t value Pr(&gt;|t|)</h2>
+</section>
+<section id="intercept-83.42-43.41-1.92-0.062-." class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="intercept-83.42-43.41-1.92-0.062-."><span class="header-section-number">5.11</span> (Intercept) 83.42 43.41 1.92 0.062 .</h2>
+</section>
+<section id="income-10.21-2.09-4.88-0.000019" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="income-10.21-2.09-4.88-0.000019"><span class="header-section-number">5.12</span> income 10.21 2.09 4.88 0.000019 ***</h2>
+</section>
+<section id="section-4" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="section-4"><span class="header-section-number">5.13</span> —</h2>
+</section>
+<section id="signif.-codes-0-0.001-0.01-0.05-.-0.1-1" class="level2" data-number="5.14">
+<h2 data-number="5.14" class="anchored" data-anchor-id="signif.-codes-0-0.001-0.01-0.05-.-0.1-1"><span class="header-section-number">5.14</span> Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</h2>
+</section>
+<section id="section-5" class="level2" data-number="5.15">
+<h2 data-number="5.15" class="anchored" data-anchor-id="section-5"><span class="header-section-number">5.15</span> </h2>
+<p>Figure: Scatter diagram and regression line for the food expenditure model</p>
+</section>
+<section id="residual-standard-error-89.5-on-38-degrees-of-freedom" class="level2" data-number="5.16">
+<h2 data-number="5.16" class="anchored" data-anchor-id="residual-standard-error-89.5-on-38-degrees-of-freedom"><span class="header-section-number">5.16</span> Residual standard error: 89.5 on 38 degrees of freedom</h2>
+</section>
+<section id="multiple-r-squared-0.385-adjusted-r-squared-0.369" class="level2" data-number="5.17">
+<h2 data-number="5.17" class="anchored" data-anchor-id="multiple-r-squared-0.385-adjusted-r-squared-0.369"><span class="header-section-number">5.17</span> Multiple R-squared: 0.385, Adjusted R-squared: 0.369</h2>
+</section>
+<section id="f-statistic-23.8-on-1-and-38-df-p-value-0.0000195" class="level2" data-number="5.18">
+<h2 data-number="5.18" class="anchored" data-anchor-id="f-statistic-23.8-on-1-and-38-df-p-value-0.0000195"><span class="header-section-number">5.18</span> F-statistic: 23.8 on 1 and 38 DF, p-value: 0.0000195</h2>
+<p>The function coef() returns a list containing the estimated coefficients. You can access individual coefficients. The estimated value of β1 is b1 &lt;- coef(mod1)[[1]], which is equal to 83.416002, and the estimated value of β2 is b2 &lt;- coef(mod1)[[2]], which is equal to 10.209643.</p>
+<p>The intercept parameter, β1, usually has little importance in econometric models. The estimated value of β2 suggests that the food expenditure for an average family increases by 10.209643 when the family income increases by 1 unit, which in this case is $100. See the coefficients in the estimation results table.</p>
+<p>The R function abline() adds the regression line to the previously plotted scatter diagram, as the Figure above shows.</p>
+<p>How can one retrieve various regression results? These results exist in two R objects produced by the lm() function: the regression object, such as mod1 in the above code sequence, and the regression summary, which I denoted by smod1. The next code shows how to list the names of all results in each object.</p>
+</section>
+<section id="call-terms-residuals-coefficients" class="level2" data-number="5.19">
+<h2 data-number="5.19" class="anchored" data-anchor-id="call-terms-residuals-coefficients"><span class="header-section-number">5.19</span> [1] “call” “terms” “residuals” “coefficients”</h2>
+</section>
+<section id="aliased-sigma-df-r.squared" class="level2" data-number="5.20">
+<h2 data-number="5.20" class="anchored" data-anchor-id="aliased-sigma-df-r.squared"><span class="header-section-number">5.20</span> [5] “aliased” “sigma” “df” “r.squared”</h2>
+</section>
+<section id="adj.r.squared-fstatistic-cov.unscaled" class="level2" data-number="5.21">
+<h2 data-number="5.21" class="anchored" data-anchor-id="adj.r.squared-fstatistic-cov.unscaled"><span class="header-section-number">5.21</span> [9] “adj.r.squared” “fstatistic” “cov.unscaled”</h2>
+<p>To retrieve a particular result you just refer to it with the name of the object, followed by the $ sign and the name of the result you wish to retrieve. For instance, if we want the vector of coefficients from mod1, we refer to it as mod1<span class="math inline">\(coefficients and smod1\)</span>coefficients:</p>
+<p>mod1$coefficients</p>
+</section>
+<section id="intercept-income-83.4160-10.2096" class="level2" data-number="5.22">
+<h2 data-number="5.22" class="anchored" data-anchor-id="intercept-income-83.4160-10.2096"><span class="header-section-number">5.22</span> (Intercept) income ## 83.4160 10.2096</h2>
+<p>smod1$coefficients</p>
+<p>As we have seen before, however, some of these results can be retrieved using specific functions, such as coef(mod1), resid(mod1), fitted(mod1), and vcov(mod1).</p>
+<p>MCQs</p>
+<p>What does a simple linear regression model assume about the relationship between the dependent variable y and the independent variable x?</p>
+<p>A. A quadratic relationship.</p>
+<p>B. A logarithmic relationship.</p>
+<p>C. A linear relationship.</p>
+<p>D. An exponential relationship.</p>
+<p>In the equation , what does represent?</p>
+<p>A. The slope of the regression line.</p>
+<p>B. The error term.</p>
+<p>C. The intercept of the regression line.</p>
+<p>D. The dependent variable.</p>
+<p>What is indicated by the slope parameter in a simple linear regression model?</p>
+<p>A. The variance of the error term.</p>
+<p>B. The change in y for a one-unit change in x.</p>
+<p>C. The intercept of the regression line.</p>
+<p>D. The number of observations in the dataset.</p>
+<p>In the context of simple linear regression, what does the term “residuals” refer to?</p>
+<p>A. The predicted values of y.</p>
+<p>B. The independent variable values.</p>
+<p>C. The differences between the observed and predicted values of y.</p>
+<p>D. The coefficients of the regression model.</p>
+<p>When using the R function lm() for linear regression, what is the purpose of the summary() function?</p>
+<p>A. To list the names of all results in the regression object.</p>
+<p>B. To change the coefficients of the regression model.</p>
+<p>C. To plot the regression line on a scatter plot.</p>
+<p>D. To display a detailed summary of the regression results, including coefficients, residuals, and R-squared values.</p>
+<p>What is the primary purpose of estimating a linear regression model using random subsamples in R?</p>
+<p>A. To change the coefficients of the original model.</p>
+<p>B. To assess the variability of the regression coefficients.</p>
+<p>C. To increase the number of observations in the dataset.</p>
+<p>D. To create a non-linear relationship between variables.</p>
+<p>In a simple linear regression model, what does an “Adjusted R-squared” value indicate?</p>
+<p>A. The total number of observations in the dataset.</p>
+<p>B. The precision of the intercept parameter.</p>
+<p>C. The proportion of variance in the dependent variable explained by the model, adjusted for the number of predictors.</p>
+<p>D. The standard error of the regression coefficients.</p>
+<p>Lecture 2 - Prediction with the Linear Regression Model</p>
+<p>The estimated regression parameters, b1 and b2 allow us to predict the expected food expenditure for any given income. All we need to do is to plug the estimated parameter values and the given income into an equation like Equation (2). For example, the expected value of food_exp for an income of $2000 is calculated in Equation (4) below. (Remember to divide the income by 100, since the data for the variable income is in hundreds of dollars.)</p>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<p>R does this calculations for us with its function called predict(). Extending the example to more than one income, say income = $2000, $2500, and $2700. The function predict() in</p>
+<p>R requires that the new values of the independent variables be organized under a particular form, called a data frame. In R, a set of numbers is held together using the structure c(). The following sequence shows this example.</p>
+</section>
+<section id="income2000-2500-2700" class="level2" data-number="5.23">
+<h2 data-number="5.23" class="anchored" data-anchor-id="income2000-2500-2700"><span class="header-section-number">5.23</span> income=$2000 $2500 $2700</h2>
+</section>
+<section id="section-6" class="level2" data-number="5.24">
+<h2 data-number="5.24" class="anchored" data-anchor-id="section-6"><span class="header-section-number">5.24</span> 287.609 338.657 359.076</h2>
+<p>Repeated Samples to Assess Regression Coefficients</p>
+<p>The regression coefficients b1 and b2 are random variables because they depend on the sample. Let us construct a number of random subsamples from the food data and re-calculate b1 and b2. A random subsample can be constructed using the function sample(), as the following example illustrates only for b2.</p>
+</section>
+<section id="section-7" class="level2" data-number="5.25">
+<h2 data-number="5.25" class="anchored" data-anchor-id="section-7"><span class="header-section-number">5.25</span> [1] 9.88</h2>
+<p>The result, b2 = 9.88, is the average of 50 estimates of b2.</p>
+<p>Estimated Variances and Covariance of Regression Coefficients</p>
+<p>Many applications require estimates of the variances and covariances of the regression coefficients. R stores them in the a matrix vcov():</p>
+<p>(varb1 &lt;- vcov(mod1)[1, 1])</p>
+</section>
+<section id="section-8" class="level2" data-number="5.26">
+<h2 data-number="5.26" class="anchored" data-anchor-id="section-8"><span class="header-section-number">5.26</span> [1] 1884.44</h2>
+<p>(varb2 &lt;- vcov(mod1)[2, 2])</p>
+</section>
+<section id="section-9" class="level2" data-number="5.27">
+<h2 data-number="5.27" class="anchored" data-anchor-id="section-9"><span class="header-section-number">5.27</span> [1] 4.38175</h2>
+<p>(covb1b2 &lt;- vcov(mod1)[1,2])</p>
+</section>
+<section id="section-10" class="level2" data-number="5.28">
+<h2 data-number="5.28" class="anchored" data-anchor-id="section-10"><span class="header-section-number">5.28</span> [1] -85.9032</h2>
+<p>Non-Linear Relationships</p>
+<p>Sometimes the scatter plot diagram or some theoretical considerations suggest a non-linear relationship. The most popular non-linear relationships involve logarithms of the dependent or independent variables and polynomial functions.</p>
+<p>The quadratic model requires the square of the independent variable.</p>
+<p>yi = β1 + β2x2i + ei (5)</p>
+<p>In R, independent variables involving mathematical operators can be included in a regression equation with the function I(). The following example uses the dataset br from the package PoEdata, which includes the sale prices and the attributes of 1080 houses in Baton Rouge, LA. price is the sale price in dollars, and sqft is the surface area in square feet.</p>
+<p>Figure 2.4: Fitting a quadratic model to the ’br‘ dataset</p>
+<p>elasticity=DpriceDsqft*sqftx/pricex</p>
+<p>b1; b2; DpriceDsqft; elasticity #prints results</p>
+</section>
+<section id="section-11" class="level2" data-number="5.29">
+<h2 data-number="5.29" class="anchored" data-anchor-id="section-11"><span class="header-section-number">5.29</span> [1] 55776.6</h2>
+</section>
+<section id="section-12" class="level2" data-number="5.30">
+<h2 data-number="5.30" class="anchored" data-anchor-id="section-12"><span class="header-section-number">5.30</span> [1] 0.0154213</h2>
+</section>
+<section id="section-13" class="level2" data-number="5.31">
+<h2 data-number="5.31" class="anchored" data-anchor-id="section-13"><span class="header-section-number">5.31</span> [1] 61.6852 123.3704 185.0556</h2>
+</section>
+<section id="section-14" class="level2" data-number="5.32">
+<h2 data-number="5.32" class="anchored" data-anchor-id="section-14"><span class="header-section-number">5.32</span> [1] 1.05030 1.63125 1.81741</h2>
+<p>Marginal Effect: it measures the change in the dependent variable (e.g., price) for a unit change in an independent variable (e.g., sqft)</p>
+<p>Elasticity: It measures the percentage change in the dependent variable (e.g., price) for a one percent change in an independent variable (e.g., sqft). For instance, if the elasticity of price with respect to sqft is 0.5, a 1% increase in sqft leads to a 0.5% increase in price. if the elasticity is less than 1, it suggests that changes in sqft have a proportionally smaller effect on price, which might imply that other factors are also important in determining the price. unlike linear models, in non-linear models, elasticity can change at different levels of the independent variable.</p>
+<p>Draw a scatter diagram and see how the quadratic function fits the data. The next chunk of code provides two alternatives for constructing such a graph. The first simply draws the quadratic function on the scatter diagram, using the R function curve(); the second uses the function lines, which requires ordering the dataset in increasing values of sqft before the regression model is evaluated, such that the resulting fitted values will also come out in the same order.</p>
+<p>mod31 &lt;- lm(price~I(sqft^2), data=br)</p>
+<p>plot(br<span class="math inline">\(sqft, br\)</span>price, xlab=“Total square feet”, ylab=“Sale price, $”, col=“grey”)</p>
+<p>#add the quadratic curve to the scatter plot:</p>
+<p>curve(b1+b2*x^2, col=“red”, add=TRUE)</p>
+<p>An alternative way to draw the fitted curve:</p>
+<p>Figure: A comparison between the histograms of ’price‘ and ’log(price)‘</p>
+<p>The log-linear model regresses the log of the dependent variable on a linear expression of the independent variable (unless otherwise specified, the log notation stands for natural logarithm, following a usual convention in economics):</p>
+<p>log(yi) = β1 + β2xi + ei (6)</p>
+<p>One of the reasons to use the log of an independent variable is to make its distribution closer to the normal distribution. Let us draw the histograms of price and log(price) to compare them (see last Figure above). It can be noticed that that the log is closer to the normal distribution.</p>
+<p>hist(br$price, col=‘grey’)</p>
+<p>hist(log(br$price), col=‘grey’)</p>
+<p>We are interested, as before, in the estimates of the coefficients and their interpretation, in the fitted values of price, and in the marginal effect of an increase in sqft on price.</p>
+<p>The coefficients are b1 = 10.84 and b2 = 0.00041, showing that an increase in the surface area (sqft) of an apartment by one unit (1 sqft) increases the price of the apartment by 0.041 percent. Thus, for a house price of $100,000, an increase of 100 sqft will increase the price by approximately 100 ∗ 0.041 percent, which is equal to $4112.7. In general, the marginal effect of an increase in x on y in Equation 6 is</p>
+<p>and the elasticity is</p>
+<p>The next lines of code show how to draw the fitted values curve of the loglinear model and how to calculate the marginal effect and the elasticity for the median price in the dataset. The fitted values are here calculated using the formula</p>
+<ol start="9" type="1">
+<li></li>
+</ol>
+<p>ordat &lt;- br[order(br$sqft), ] #order the dataset</p>
+<p>mod4 &lt;- lm(log(price)~sqft, data=ordat)</p>
+<p>plot(br<span class="math inline">\(sqft, br\)</span>price, col=“grey”)</p>
+<p>lines(exp(fitted(mod4))~ordat$sqft, col=“blue”, main=“Log-linear Model”)</p>
+<p>pricex&lt;- median(br$price)</p>
+<p>sqftx &lt;- (log(pricex)-coef(mod4)[[1]])/coef(mod4)[[2]]</p>
+<p>(DyDx &lt;- pricex*coef(mod4)[[2]])</p>
+</section>
+<section id="section-15" class="level2" data-number="5.33">
+<h2 data-number="5.33" class="anchored" data-anchor-id="section-15"><span class="header-section-number">5.33</span> [1] 53.465</h2>
+<p>(elasticity &lt;- sqftx*coef(mod4)[[2]])</p>
+</section>
+<section id="section-16" class="level2" data-number="5.34">
+<h2 data-number="5.34" class="anchored" data-anchor-id="section-16"><span class="header-section-number">5.34</span> [1] 0.936693</h2>
+<p>R allows us to calculate the same quantities for several (sqft, price) pairs at a time, as shown in the following sequence:</p>
+<p>Figure: The fitted value curve in the log-linear model</p>
+<p>MCQs</p>
+<p>1 What is the primary purpose of using the estimated regression parameters and in a linear regression model?</p>
+<p>A. To calculate the mean of the dependent variable.</p>
+<p>B. To predict the expected value of a dependent variable for a given independent variable.</p>
+<p>C. To determine the correlation between independent and dependent variables.</p>
+<p>D. To assess the distribution of the independent variable.</p>
+<p>2 In the context of R programming, what is the function of the lm() function when used in linear regression analysis?</p>
+<p>A. To plot the regression line on a scatter plot.</p>
+<p>B. To create a new data frame.</p>
+<p>C. To estimate a linear model.</p>
+<p>D. To calculate the mean of a dataset.</p>
+<ol start="3" type="1">
+<li>What does the predict() function in R primarily do in the context of linear regression?</li>
+</ol>
+<p>A. It calculates the variance of the regression coefficients.</p>
+<p>B. It estimates the dependent variable values based on the regression model and new data.</p>
+<p>C. It generates random samples for assessing regression coefficients.</p>
+<p>D. It plots a scatter diagram for visual inspection.</p>
+<ol start="4" type="1">
+<li>Why are regression coefficients and considered random variables?</li>
+</ol>
+<p>A. Because they vary depending on the chosen statistical test.</p>
+<p>B. Because they are calculated using random number generators.</p>
+<p>C. Because they depend on the specific sample used in the regression.</p>
+<p>D. Because they change with each iteration of the regression model.</p>
+<ol start="5" type="1">
+<li>What is the purpose of using random subsamples in the assessment of regression coefficients?</li>
+</ol>
+<p>A. To visualize the data distribution.</p>
+<p>B. To predict values for a new dataset.</p>
+<p>C. To evaluate the stability and variability of the coefficients.</p>
+<p>D. To calculate the mean and median of the dataset.</p>
+<ol start="6" type="1">
+<li>In the context of regression analysis, what is the vcov() matrix in R used for?</li>
+</ol>
+<p>A. For storing predicted values.</p>
+<p>B. For estimating variances and covariances of regression coefficients.</p>
+<p>C. For plotting regression lines.</p>
+<p>D. For generating random subsamples.</p>
+<ol start="7" type="1">
+<li>What is the significance of using the data.frame() function in conjunction with the predict() function in R?</li>
+</ol>
+<p>A. To format the independent variable values appropriately for prediction.</p>
+<p>B. To calculate the correlation coefficient between variables.</p>
+<p>C. To store the regression coefficients.</p>
+<p>D. To create a scatter plot of the data​</p>
+<p>bcbccba</p>
+<p>Video 1 - Using Indicator Variables in a Regression &amp; Monte Carlo</p>
+<p>An indicator or binary variable marks the presence or the absence of some attribute, such as gender or race if the observational unit is an individual or location if the observational unit is a house. In the dataset utown, the variable utown is 1 if a house is close to the university and 0 otherwise. Here is a simple linear regression model that involves the variable utown:</p>
+<p>pricei = β1 + β2utowni (10)</p>
+<p>The coefficient of such a variable in a simple linear model is equal to the difference between the average prices of the two categories; the intercept coefficient of the model in Equation 10 is equal to the average price of the houses that are not close to university. calculate the average prices for each category, which are denoted in the following sequence of code price0bar and price1bar:</p>
+</section>
+<section id="load-the-utown-dataset-which-contains-housing-data-including-proximity-to-a-university" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Load the ‘utown’ dataset which contains housing data, including proximity to a university</h1>
+<p>data(utown)</p>
+</section>
+<section id="calculate-the-average-price-of-houses-not-close-to-the-university" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Calculate the average price of houses not close to the university</h1>
+<p>price0bar &lt;- mean(utown<span class="math inline">\(price[which(utown\)</span>utown==0)])</p>
+</section>
+<section id="calculate-the-average-price-of-houses-close-to-the-university" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Calculate the average price of houses close to the university</h1>
+<p>price1bar &lt;- mean(utown<span class="math inline">\(price[which(utown\)</span>utown==1)])</p>
+<p>The = 277.24 for close to university, and = 215.73 for those not close. I now show that the same results yield the coefficients of the regression model in Equation 10:</p>
+</section>
+<section id="perform-linear-regression-with-utown-as-an-indicator-variable" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Perform linear regression with ‘utown’ as an indicator variable</h1>
+<p>mod5 &lt;- lm(price~utown, data=utown)</p>
+</section>
+<section id="extract-coefficients-from-the-regression-model" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Extract coefficients from the regression model</h1>
+<p>b1 &lt;- coef(mod5)[[1]] #intercept</p>
+<p>b2 &lt;- coef(mod5)[[2]] # Slope for the indicator variable</p>
+<p>The results are: = b1 = 215.73 for non-university houses, and = b1 +b2 = 277.24 for university houses.</p>
+<p>Monte Carlo Simulation</p>
+<p>A Monte Carlo simulation generates random values for the dependent variable when the regression coefficients and the distribution of the random term are given. The following example seeks to determine the distribution of the independent variable in the food expenditure model in Equation 3.</p>
+<p>Figure: The theoretical (true) probability distributions of food expenditure, given two levels of income</p>
+<p>Next, we calculate the variance of b2 and plot the corresponding density function.</p>
+<ol start="11" type="1">
+<li></li>
+</ol>
+<p>Now, with the same values of b1, b2, and error standard deviation, we can generate a set of values for y, regress y on x, and calculate an estimated value for the coefficient b2 and its standard error.</p>
+<p>set.seed(12345)</p>
+<p>y &lt;- b1+b2*x+rnorm(N, mean=0, sd=sde)</p>
+<p>mod6 &lt;- lm(y~x)</p>
+<p>b1hat &lt;- coef(mod6)[[1]]</p>
+<p>b2hat &lt;- coef(mod6)[[2]]</p>
+<p>mod6summary &lt;- summary(mod6) #the summary contains the standard errors seb2hat &lt;- coef(mod6summary)[2,2]</p>
+<p>The results are b2 = 11.64 and se(b2) = 1.64. The strength of a Monte Carlo simulation is the possibility of repeating the estimation of the regression parameters for a large number of automatically generated samples. Thus, we can obtain a large number of values for a parameter, say b2, and then determine its sampling characteristics. For instance, if the mean of these values is close to the initially assumed value b2 = 10, we conclude that our estimator (the method of estimating the parameter) is unbiased.</p>
+<p>We are going to use this time the values of x in the food dataset, and generate y using the linear model with b1 = 100 and b2 = 10.</p>
+<p>The mean and standard deviation of the estimated 40 values of b2 are, respectively, 9.974985 and 1.152632.</p>
+<p>The following figure shows the simulated distribution of b2 and the theoretical one.</p>
+<p>Figure: The simulated and theoretical distributions of b2</p>
+<p>Video 2 -Interval Estimation</p>
+<p>Understanding Interval Estimation:</p>
+<p>Interval estimation involves finding a range (interval) within which we expect the true value of a parameter, like a regression coefficient, lies.</p>
+<p>Unlike a single estimate, an interval gives a range of plausible values, offering a better understanding of the estimate’s precision.</p>
+<p>library(xtable)</p>
+<p>library(PoEdata)</p>
+<p>library(knitr)</p>
+<p>So far we estimated only a number for a regression parameter such as β2. This estimate gives no indication of its reliability, since it is just a realization of the random variable b2. An interval estimate, which is also known as a confidence interval is an interval centered on an estimated value, which includes the true parameter with a given probability, say 95%. A coefficient of the linear regression model such as b2 is normally distributed with its mean equal to the population parameter β2 and a variance that depends on the population variance σ2 and the sample size:</p>
+<ol type="1">
+<li></li>
+</ol>
+<p>The Estimated Distribution of Regression Coefficients</p>
+<p>In regression, coefficients (like b2) are not fixed numbers but random variables because they vary depending on the sample data.</p>
+<p>We often use the estimated coefficient (like b2 from our sample data) to guess the true population parameter (like β2).</p>
+<p>Equation 1 gives the theoretical distribution of a linear regression coefficient, a distribution that is not very useful since it requires the unknown population variance σ2. If we replace σ2 with an estimated variance σˆ2 given in Equation 2, the standardized distribution of b2 becomes a t distribution with N − 2 degrees of freedom.</p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>Equation 3 shows the the t-ratio:</p>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p>Confidence Interval in General</p>
+<p>A confidence interval includes the true parameter with a certain probability, such as 95%.</p>
+<p>It’s a way of saying, “We are 95% confident that the true value lies within this range.”</p>
+<p>The confidence interval for a coefficient is calculated using its estimated value, the standard error, and the t-distribution (since we typically don’t know the population variance).</p>
+<p>The standard error measures the variability of the estimate.</p>
+<p>An interval estimate of b2 based on the t-ratio is calculated in Equation 4, which we can consider as “an interval that includes the true parameter β2 with a probability of 100(1 − α)%.” In this context, α is called significance level, and the interval is called, for example, a 95% confidence interval estimate for β2. The critical value of the t-ratio, tc, depends on the chosen significance level and on the number of degrees of freedom. In R, the function that returns critical values for the t distribution is qt(1 − ,df), where df is the number of degrees of freedom.</p>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<p>A side note about using distributions in R. There are four types of functions related to distributions, each type’s name beginning with one of the following four letters: p for the cumulative distribution function, d for density, r for a draw of a random number from the respective distribution, and q for quantile. This first letter is followed by a few letters suggesting what distribution we refer to, such as norm, t, f, and chisq. Now, if we put together the first letter and the distribution name, we get functions such as the following, where x and q stand for quantiles, p stands for probability, df is degree of freedom (of which F has two), n is the desired number of draws, and lower.tail can be TRUE (default) if probabilities are P[X ≤ x] or FALSE if probabilities are P[X &gt; x]:</p>
+<p>• For the uniform distribution:</p>
+<p>dunif(x, min = 0, max = 1)</p>
+<p>punif(q, min = 0, max = 1, lower.tail = TRUE)</p>
+<p>qunif(p, min = 0, max = 1, lower.tail = TRUE)</p>
+<p>runif(n, min = 0, max = 1)</p>
+<p>• For the normal distribution:</p>
+<p>dnorm(x, mean = 0, sd = 1)</p>
+<p>pnorm(q, mean = 0, sd = 1, lower.tail = TRUE)</p>
+<p>qnorm(p, mean = 0, sd = 1, lower.tail = TRUE)</p>
+<p>rnorm(n, mean = 0, sd = 1)</p>
+<p>• For the t distribution:</p>
+<p>dt(x, df)</p>
+<p>pt(q, df, lower.tail = TRUE)</p>
+<p>qt(p, df, lower.tail = TRUE)</p>
+<p>rt(n, df)</p>
+<p>• For the F distribution:</p>
+<p>df(x, df1, df2)</p>
+<p>pf(q, df1, df2, lower.tail = TRUE)</p>
+<p>qf(p, df1, df2, lower.tail = TRUE)</p>
+<p>rf(n, df1, df2)</p>
+<p>• For the χ2 distribution:</p>
+<p>dchisq(x, df)</p>
+<p>pchisq(q, df, lower.tail = TRUE) – qchisq(p, df, lower.tail = TRUE)</p>
+<p>rchisq(n, df)</p>
+<p>Example: Confidence Intervals in the food Model</p>
+<p>Using R programming, you can calculate a confidence interval for a regression coefficient.</p>
+<p>For example, to find a 95% confidence interval for the coefficient on income in a food expenditure model, you would:</p>
+<p>Estimate the regression model (lm(food_exp~income data=food)).</p>
+<p>Calculate the standard error of the coefficient (seb2 &lt;- coef(smod1)[22]).</p>
+<p>Find the critical value from the t-distribution (tc &lt;- qt(1-alpha/2, df)).</p>
+<p>Calculate the lower and upper bounds of the interval (lowb &lt;- b2 - tc<em>seb2 and upb &lt;- b2 + tc</em>seb2).</p>
+<p>Calculate a 95% confidence interval for the coefficient on income in the food expenditure model. Besides calculating confidence intervals, the following lines of code show how to retrieve information such as standard errors of coefficients from the summary() output. The function summary summarizes the results of a linear regression, some of which are not available directly from running the model itself.</p>
+<p>The resulting confidence interval for the coefficient b2 in the food simple regression model is (5.97,14.45).</p>
+<p>R has a special function, confint(model), that can calculate confidence intervals taking as its argument the name of a regression model. The result of applying this function is a K×2 matrix with a confidence interval (two values: lower and upper bound) on each row and a number of lines equal to the number of parameters in the model (equal to 2 in the simple linear regression model). Compare the values from the next code to the ones from the previous to check that they are equal.</p>
+<p>ci &lt;- confint(mod1)</p>
+<p>print(ci)</p>
+<section id="section-17" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="section-17"><span class="header-section-number">10.1</span> 2.5 % 97.5 %</h2>
+</section>
+<section id="intercept--4.46328-171.2953-income-5.97205-14.4472" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="intercept--4.46328-171.2953-income-5.97205-14.4472"><span class="header-section-number">10.2</span> (Intercept) -4.46328 171.2953 ## income 5.97205 14.4472</h2>
+<p>lowb_b2 &lt;- ci[2, 1] # lower bound</p>
+<p>upb_b2 &lt;- ci[2, 2] # upper bound.</p>
+<p>Confidence Intervals in Repeated Samples</p>
+<p>The Table shows the lower and upper bounds of the confidence intervals of β1 and β2.</p>
+<p>Table: Confidence intervals for b1 and b2</p>
+<p>Key Points:</p>
+<p>Intervals vs.&nbsp;Single Estimates: Confidence intervals provide more information than just a point estimate by showing a range where the true value likely falls.</p>
+<p>Significance Level (α): The choice of α (like 0.05 for a 95% confidence interval) affects the interval’s width – lower α means a wider interval.</p>
+<p>Interpreting Confidence Intervals: If an interval for a coefficient does not include 0, it suggests the coefficient is significantly different from 0, indicating a potential relationship between the variables.</p>
+<p>Multiple Choice Questions:</p>
+<ol type="1">
+<li>What does an interval estimate in regression analysis typically provide?</li>
+</ol>
+<ol type="A">
+<li><p>A single fixed value of a parameter</p></li>
+<li><p>A range within which the true parameter value is likely to fall</p></li>
+<li><p>The exact value of the population variance</p></li>
+<li><p>The probability of the sample mean being accurate</p></li>
+</ol>
+<ol start="2" type="1">
+<li>Why are regression coefficients considered random variables?</li>
+</ol>
+<ol type="A">
+<li><p>They change with each new sample</p></li>
+<li><p>They are always equal to zero</p></li>
+<li><p>They remain constant across different samples</p></li>
+<li><p>They can only take integer values</p></li>
+</ol>
+<ol start="3" type="1">
+<li>A 95% confidence interval implies that:</li>
+</ol>
+<ol type="A">
+<li><p>The true parameter will always fall within this range</p></li>
+<li><p>There’s a 95% chance that the interval contains the true parameter</p></li>
+<li><p>95% of the sample data falls within this interval</p></li>
+<li><p>The interval is 95 units wide</p></li>
+</ol>
+<ol start="4" type="1">
+<li>What is required to calculate a confidence interval for a regression coefficient?</li>
+</ol>
+<ol type="A">
+<li><p>Only the mean of the coefficient</p></li>
+<li><p>The estimated coefficient and its standard error</p></li>
+<li><p>The population variance</p></li>
+<li><p>A z-distribution table</p></li>
+</ol>
+<ol start="5" type="1">
+<li>In the context of confidence intervals, what does the term ‘α’ represent?</li>
+</ol>
+<ol type="A">
+<li><p>Coefficient of determination</p></li>
+<li><p>Significance level</p></li>
+<li><p>Mean of the distribution</p></li>
+<li><p>Degree of freedom</p></li>
+</ol>
+<ol start="6" type="1">
+<li>What does the function qt(1-alpha/2, df) in R return?</li>
+</ol>
+<ol type="A">
+<li><p>The mean of the t-distribution</p></li>
+<li><p>The critical value from the t-distribution</p></li>
+<li><p>The standard error of the estimate</p></li>
+<li><p>The p-value for the test</p></li>
+</ol>
+<ol start="7" type="1">
+<li>What would be an indication that a regression coefficient is statistically significant?</li>
+</ol>
+<ol type="A">
+<li><p>Its confidence interval includes 0</p></li>
+<li><p>Its confidence interval does not include 0</p></li>
+<li><p>The interval is very narrow</p></li>
+<li><p>The standard error is zero</p></li>
+</ol>
+<p>Answer Key:</p>
+<ol start="2" type="A">
+<li><p>A range within which the true parameter value is likely to fall</p></li>
+<li><p>They change with each new sample</p></li>
+<li><p>There’s a 95% chance that the interval contains the true parameter</p></li>
+<li><p>The estimated coefficient and its standard error</p></li>
+<li><p>Significance level</p></li>
+<li><p>The critical value from the t-distribution</p></li>
+<li><p>Its confidence interval does not include 0</p></li>
+</ol>
+<p>Lab 1 – Hypothesis Test, P-Value and Testing Linear Combination of Parameters</p>
+<p>Hypothesis Tests</p>
+<p>Hypothesis testing seeks to establish whether the data sample at hand provides sufficient evidence to support a certain conjecture (hypothesis) about a population parameter such as the intercept in a regression model, the slope, or some combination of them. The procedure requires three elements: the hypotheses (the null and the alternative), a test statistic, which in the case of the simple linear regression parameters is the t-ratio, and a significance level, α.</p>
+<p>Suppose we believe that there is a significant relationship between a household’s income and its expenditure on food, a conjecture which has led us to formulate the food expenditure model in the first place. Thus, we believe that β2, the (population) parameter, is different from zero. Equation 5 shows the null and alternative hypotheses for such a test.</p>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<p>In general, if a null hypothesis H0 : βk = c is true, the t statistic (the t-ratio) is given by Equation 6 and has a t distribution with N − 2 degrees of freedom.</p>
+<ol start="6" type="1">
+<li></li>
+</ol>
+<p>Test the hypothesis in Equation 5, which makes c = 0 in Equation 6. Let α = 0.05. The following Table shows the regression output.</p>
+<p>Table: Regression output showing the coefficients</p>
+<p>The results t = 4.88 and tcr = 2.02 show that t &gt; tcr, and therefore t falls in the rejection region (see the following Figure).</p>
+</section>
+</section>
+<section id="plot-the-density-function-and-the-values-of-t-curvedtx-df--2.5seb2-2.5seb2-ylab-xlabt-ablinevc-tcr-tcr-t-colcred-red-blue" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Plot the density function and the values of t: curve(dt(x, df), -2.5<em>seb2, 2.5</em>seb2, ylab=” “, xlab=”t”) abline(v=c(-tcr, tcr, t), col=c(“red”, “red”, “blue”),</h1>
+<p>lty=c(2,2,3))</p>
+<p>legend(“topleft”, legend=c(“-tcr”, “tcr”, “t”), col= c(“red”, “red”, “blue”), lty=c(2, 2, 3))</p>
+<p>Figure: A two-tail hypothesis testing for b2 in the food example</p>
+<p>Suppose we are interested to determine if β2 is greater than 5.5. This conjecture will go into the alternative hypothesis: H0 ≤ 5.5, HA &gt; 5.5. The procedure is the same as for the two-tail test, but now the whole rejection region is to the right of the critical value tcr.</p>
+<p>The Figure below shows tcr = 1.685954, t = 2.249904. Since t falls again in the rejection region, we can reject the null hypothesis H0 : β2 ≤ 0.</p>
+<p>Figure: Right-tail test: the rejection region is to the right of tcr</p>
+<p>A left-tail test is not different from the right-tail one, but of course the rejection region is to the left of tcr. For example, if we are interested to determine if β2 is less than15, we place this conjecture in the alternative hypothesis: H0 ≥ 15, HA &lt; 15. The novelty here is how we use the qt() function to calculate tcr: instead of qt(1-alpha, …), we need to use qt(alpha, …). The Figure below illustrates this example, where the rejection region is, remember, to the left of tcr.</p>
+<p>R does automatically a test of significance, which is indeed testing the hypothesis H0 : β2 = 0, HA : β2 6= 0. The regression output shows the values of the t-ratio for all the regression coefficients.</p>
+<p>library(PoEdata) data(“food”)</p>
+<p>mod1 &lt;- lm(food_exp ~ income, data = food) table &lt;- data.frame(round(xtable(summary(mod1)), 3)) kable(table, caption = “Regression output for the ‘food’ model”)</p>
+<p>Figure: Left-tail test: the rejection region is to the left of tcr =</p>
+<p>The Table below shows the regression output where the t-statistics of the coefficients can be observed.</p>
+<p>Table: Regression output for the ’food’ model</p>
+<p>Lab 2 -The p-Value</p>
+<p>In the context of a hypothesis test, the p-value is the area outside the calculated t-statistic; it is the probability that the t-ratio takes a value that is more extreme than the calculated one, under the assumption that the null hypothesis is true. We reject the null hypothesis if the p-value is less than a chosen significance level. For a right-tail test, the p-value is the area to the right of the calculated t; for a left-tail test it is the area to the left of the calculated t; for a two-tail test the p-value is split in two equal amounts: p/2 to the left and p/2 to the right. p-values are calculated in R by the function pt(t, df), where t is the calculated t-ratio and df is the number of degrees of freedom in the estimated model.</p>
+<p>Right-tail test, H0 : β2 ≤ c, HA : β2 &gt; c.</p>
+</section>
+<section id="calculating-the-p-value-for-a-right-tail-test" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Calculating the p-value for a right-tail test</h1>
+<p>c &lt;- 5.5</p>
+<p>t &lt;- (b2-c)/seb2</p>
+<p>p &lt;- 1-pt(t, df) # pt() returns p-values;</p>
+<p>The right-tail test shown in the previous lab gives the p-value p = 0.01516.</p>
+<p>Left-tail test, H0 : β2 ≥ c, HA : β2 &lt; c.</p>
+<p>The left-tail test shown in the previous Lab gives the p-value p = 0.01388.</p>
+<p>Two-tail test, H0 : β2 = c, HA : β2 ≠c.</p>
+<p>The two-tail test shown in the Figure below gives the p-value p = 2 × 10−5, for a t-ratio t = 4.88.</p>
+<p>curve(dt(x, df), from=-2.5<em>seb2, to=2.5</em>seb2)</p>
+<p>abline(v=c(-t, t), col=c(“blue”, “blue”), lty=c(2, 2))</p>
+<p>legend(“topright”, legend=c(“-t”, “t”), col=c(“blue”, “blue”), lty=c(2, 4))</p>
+<p>Figure: The p-value in two-tail hypothesis testing</p>
+<p>R gives the p-values in the standard regression output, which we can retrieve using the summary(model) function. The Table below shows the output of the regression model, where the p-values can be observed.</p>
+<p>Table 3.4: Regression output showing p-values</p>
+<p>Testing Linear Combinations of Parameters</p>
+<p>Sometimes we wish to estimate the expected value of the dependent variable, y, for a given value of x. For example, according to our food model, what is the average expenditure of a household having income of $2000? We need to estimate the linear combination of the regression coefficients β1 and β2 given in Equation 3.7 (let’s denote the linear combination by L).</p>
+<p>L = E(food_exp|income = 20) = β1 + 20β2 (3.7)</p>
+<p>Finding confidence intervals and testing hypotheses about the linear combination in Equation 3.7 requires calculating a t-statistic similar to the one for the regression coefficients we calculated before. However, estimating the standard error of the linear combination is not as straightforward. In general, if X and Y are two random variables and a and b two constants, the variance of the linear combination aX + bY is</p>
+<p>var(aX + bY ) = a2var(X) + b2var(Y ) + 2abcov(X,Y ). (3.8)</p>
+<p>Now, let us apply the formula in Equation 3.8 to the linear combination of β1 and β2 given by Equation 3.7, we obtain Equation 3.9.</p>
+<p>var(b1 + 20b2) = var(b1) + 202var(b2) + 2 × 20cov(b1b2) (3.9)</p>
+<p>The following sequence of code determines an interval estimate for the expected value of food expenditure in a household earning $2000 a week.</p>
+<p>3.7. TESTING LINEAR COMBINATIONS OF PARAMETERS</p>
+<p>Figure 3.5: p−Values for positive and negative t as calculated using the formula 1 − pt(t,df)</p>
+<p>The result is the confidence interval (258.91, 316.31). Next, we test hypotheses about the linear combination L defined in Equation 3.7, looking at the three types of hypotheses: two-tail, left-tail, and right-tail. Equations 3.10 − 3.12 show the test setups for a hypothesized value of food expenditure c.</p>
+<p>One should use the function pt(t, df) carefully, because it gives wrong results when testing hypotheses using the p-value metod and the calculated t is negative. Therefore, the absolute value of t should be used. Figure 3.5 shows the p-values calculated with the formula 1-pt(t, df). When t is positive and the test is two-tail, doubling the p-value 1-pt(t, df) is correct; but when t is negative, the correct p-value is 2*p(t, df).</p>
+<p>.shadenorm(above=1.6, justabove=TRUE) segments(1.6,0,1.6,0.2,col=“blue”, lty=3)</p>
+<p>legend(“topleft”, legend=“t”, col=“blue”, lty=3)</p>
+<p>.shadenorm(above=-1.6, justabove=TRUE) segments(-1.6,0,-1.6,0.2,col=“blue”, lty=3) legend(“topleft”, legend=“t”, col=“blue”, lty=3) The next sequence uses the values already calculated before, a hypothesized level of food expenditure c=$250, and an income of $2000; it tests the two-tail hypothesis in Equation 3.10 first using the “critical t” method, then using the p-value method.</p>
+<p>The results are: t = 2.65, tcr = 2.02, and p = 0.0116. Since t &gt; tcr, we reject the null hypothesis. The same result is given by the p-value method, where the p-value is twice the probability area determined by the calculated t.</p>
+<p>Lab 3 - Prediction, R-squared, and Modelling</p>
+<p>rm(list=ls()) # Caution: this clears the Environment</p>
+<p>A prediction is an estimate of the value of y for a given value of x, based on a regression model of the form shown in Equation 4.1. Goodness-of-fit is a measure of how well an estimated regression line approximates the data in a given sample. One such measure is the correlation coefficient between the predicted values of y for all x-s in the data file and the actual y-s. Goodness-of-fit, along with other diagnostic tests help determining the most suitable functional form of our regression equation, i.e., the most suitable mathematical relationship between y and x.</p>
+<p>yi = β1 + β2xi + ei (4.1)</p>
+<p>Forecasting (Predicting a Particular Value)</p>
+<p>Assuming that the expected values of the error term in Equation 4.1 is zero, Equation 4.2 gives yˆi, the predicted value of the expectation of yi given xi, where b1 and b2 are the (least squares) estimates of the regression parameters β1 and β2.</p>
+<p>yˆi = b1 + b2xi (4.2)</p>
+<p>The predicted value yˆi is a random variable, since it depends on the sample; therefore, we can calculate a confidence interval and test hypothesis about it, provided we can determine its distribution and variance. The prediction has a normal distribution,</p>
+<p>45</p>
+<p>being a linear combination of two normally distributed random variables b1 and b2, and its variance is given by Equation 4.3. Please note that the variance in Equation 4.3 is not the same as the one in Equation 3.9; the former is the variance of the estimated expectation of y, while the latter is the variance of a particular occurrence of y. Let us call the latter the variance of the forecast error. Not surprisingly, the variance of the forecast error is greater than the variance of the predicted E(y|x).</p>
+<p>As before, since we need to use an estimated variance, we use a t-distribution instead of a normal one. Equation 4.3 applies to any given x, say x0, not only to those x-s in the dataset.</p>
+<p>” 2 #</p>
+<p>&nbsp;2 1 (xi − x¯) , (4.3)</p>
+<p>=1</p>
+<p>which can be reduced to</p>
+<p>(4.4)</p>
+<p>N</p>
+<p>Let’s determine a standard error for the food equation for a household earning $2000 a week, i.e., at x = x0 = 20, using Equation 4.4; to do so, we need to retrieve var(b2) and σˆ, the standard error of regression from the regression output.</p>
+<p>4.1. FORECASTING (PREDICTING A PARTICULAR VALUE)</p>
+<p>The result is the confidence interval for the forecast (104.13,471.09), which is, as expected, larger than the confidence interval of the estimated expected value of y based on Equation 3.9.</p>
+<p>Let us calculate confidence intervals of the forecast for all the observations in the sample and draw the upper and lower limits together with the regression line. Figure 4.1 shows the confidence interval band about the regression line.</p>
+<p>A different way of finding point and interval estimates for the predicted E(y|x) and forecasted y (please see the distinction I mentioned above) is to use the predict() function in R. This function requires that the values of the independent variable where the prediction (or forecast) is intended have a data frame structure. The next example shows in parallel point and interval estimates of predicted and forecasted food expenditures for income is $2000. As I have pointed out before, the point estimate is the same for both prediction and forecast, but the interval estimates are very different.</p>
+<p>incomex=data.frame(income=20)</p>
+<p>predict(m1, newdata=incomex, interval=“confidence”,level=0.95)</p>
+<p>Figure 4.1: Forecast confidence intervals for the food simple regression</p>
+<p>Let us now use the predict() function to replicate Figure 4.1. The result is Figure</p>
+<p>4.2, which shows, besides the interval estimation band, the points in the dataset. (I will create new values for income just for the purpose of plotting.)</p>
+<p>4.2. GOODNESS-OF-FIT</p>
+<p>Figure 4.2: Predicted and forecasted bands for the food dataset</p>
+<p>Figure 4.2 presents the predicted and forecasted bands on the same graph, to show that they have the same point estimates (the black, solid line) and that the forecasted band is much larger than the predicted one. Put another way, you may think about the distinction between the two types of intervals that we called prediction and forecast as follows: the prediction interval is not supposed to include, say, 95 percent of the points, but to include the regression line, E(y|x), with a probability of 95 percent; the forecasted interval, on the other hand, should include any true point with a 95 percent probability.</p>
+<p>4.2 Goodness-of-Fit</p>
+<p>The total variation of y about its sample mean, SST, can be decomposed in variation about the regression line, SSE, and variation of the regression line about the mean of y, SSR, as Equation 4.5 shows.</p>
+<p>SST = SSR + SSE (4.5)</p>
+<p>The coefficient of determination, R2, is defined as the proportion of the variance in y that is explained by the regression, SSR, in the total variation in y, SST. Dividing both sides of the Equation 4.5 by SST and re-arranging terms gives a formula to calculate R2, as shown in Equation 4.6.</p>
+<p>2 SSR SSE</p>
+<p>R = = 1 − (4.6)</p>
+<p>SST SST</p>
+<p>R2 takes values between 0 and 1, with higher values showing a closer fit of the regression line to the data. In R, the value of R2 can be retrieved from the summary of the regression model under the name r.squared; for instance, in our food example,</p>
+<p>R2 = 0.385. R2 is also printed as part of the summary of a regression model, as the following code sequence shows. (The parentheses around a command tells R to print the result.)</p>
+<p>(rsq &lt;- sm1$r.squared) #or</p>
+<section id="section-18" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="section-18"><span class="header-section-number">12.1</span> [1] 0.385002</h2>
+<p>sm1 #prints the summary of regression model m1</p>
+</section>
+<section id="section-19" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="section-19"><span class="header-section-number">12.2</span> </h2>
+</section>
+<section id="call-1" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="call-1"><span class="header-section-number">12.3</span> Call:</h2>
+</section>
+<section id="lmformula-food_exp-income-data-food-1" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="lmformula-food_exp-income-data-food-1"><span class="header-section-number">12.4</span> lm(formula = food_exp ~ income, data = food)</h2>
+</section>
+<section id="section-20" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="section-20"><span class="header-section-number">12.5</span> </h2>
+</section>
+<section id="residuals-1" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="residuals-1"><span class="header-section-number">12.6</span> Residuals:</h2>
+</section>
+<section id="min-1q-median-3q-max-1" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="min-1q-median-3q-max-1"><span class="header-section-number">12.7</span> Min 1Q Median 3Q Max</h2>
+</section>
+<section id="section-21" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="section-21"><span class="header-section-number">12.8</span> -223.03 -50.82 -6.32 67.88 212.04</h2>
+</section>
+<section id="section-22" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="section-22"><span class="header-section-number">12.9</span> </h2>
+</section>
+<section id="coefficients-1" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="coefficients-1"><span class="header-section-number">12.10</span> Coefficients:</h2>
+</section>
+<section id="estimate-std.-error-t-value-prt-1" class="level2" data-number="12.11">
+<h2 data-number="12.11" class="anchored" data-anchor-id="estimate-std.-error-t-value-prt-1"><span class="header-section-number">12.11</span> Estimate Std. Error t value Pr(&gt;|t|)</h2>
+</section>
+<section id="intercept-83.42-43.41-1.92-0.062-.-1" class="level2" data-number="12.12">
+<h2 data-number="12.12" class="anchored" data-anchor-id="intercept-83.42-43.41-1.92-0.062-.-1"><span class="header-section-number">12.12</span> (Intercept) 83.42 43.41 1.92 0.062 .</h2>
+</section>
+<section id="income-10.21-2.09-4.88-0.000019-1" class="level2" data-number="12.13">
+<h2 data-number="12.13" class="anchored" data-anchor-id="income-10.21-2.09-4.88-0.000019-1"><span class="header-section-number">12.13</span> income 10.21 2.09 4.88 0.000019 ***</h2>
+</section>
+<section id="section-23" class="level2" data-number="12.14">
+<h2 data-number="12.14" class="anchored" data-anchor-id="section-23"><span class="header-section-number">12.14</span> —</h2>
+</section>
+<section id="signif.-codes-0-0.001-0.01-0.05-.-0.1-1-1" class="level2" data-number="12.15">
+<h2 data-number="12.15" class="anchored" data-anchor-id="signif.-codes-0-0.001-0.01-0.05-.-0.1-1-1"><span class="header-section-number">12.15</span> Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</h2>
+</section>
+<section id="section-24" class="level2" data-number="12.16">
+<h2 data-number="12.16" class="anchored" data-anchor-id="section-24"><span class="header-section-number">12.16</span> </h2>
+</section>
+<section id="residual-standard-error-89.5-on-38-degrees-of-freedom-1" class="level2" data-number="12.17">
+<h2 data-number="12.17" class="anchored" data-anchor-id="residual-standard-error-89.5-on-38-degrees-of-freedom-1"><span class="header-section-number">12.17</span> Residual standard error: 89.5 on 38 degrees of freedom</h2>
+</section>
+<section id="multiple-r-squared-0.385-adjusted-r-squared-0.369-1" class="level2" data-number="12.18">
+<h2 data-number="12.18" class="anchored" data-anchor-id="multiple-r-squared-0.385-adjusted-r-squared-0.369-1"><span class="header-section-number">12.18</span> Multiple R-squared: 0.385, Adjusted R-squared: 0.369</h2>
+</section>
+<section id="f-statistic-23.8-on-1-and-38-df-p-value-0.0000195-1" class="level2" data-number="12.19">
+<h2 data-number="12.19" class="anchored" data-anchor-id="f-statistic-23.8-on-1-and-38-df-p-value-0.0000195-1"><span class="header-section-number">12.19</span> F-statistic: 23.8 on 1 and 38 DF, p-value: 0.0000195</h2>
+<p>If you need the sum of squared errors, SSE, or the sum of squares due to regression, SSR, use the anova function, which has the structure shown in Table 4.1.</p>
+<p>anov &lt;- anova(m1) dfr &lt;- data.frame(anov)</p>
+<p>kable(dfr,</p>
+<p>caption=“Output generated by the <code>anova</code> function”)</p>
+<p>Table 4.1 indicates that SSE = anov[2,2] = 3.045052 × 105, SSR = anov[1,2]</p>
+<p>= 1.90627 × 105, and SST = anov[1,2]+anov[2,2] = 4.951322 × 105. In our</p>
+<p>4.3. LINEAR-LOG MODELS</p>
+<p>Table 4.1: Output generated by the ’anova‘ function</p>
+<p>simple regression model, the sum of squares due to regression only includes the variable income. In multiple regression models, which are models with more than one independent variable, the sum of squares due to regression is equal to the sum of squares due to all independent variables. The anova results in Table 4.1 include other useful information: the number of degrees of freedom, anov[2,1] and the estimated variance σˆ 2 =anov[2,3].</p>
+<p>Lab 4 Linear-Log Models</p>
+<p>Non-linear functional forms of regression models are useful when the relationship between two variables seems to be more complex than the linear one. One can decide to use a non-linear functional form based on a mathematical model, reasoning, or simply inspecting a scatter plot of the data. In the food expenditure model, for example, it is reasonable to believe that the amount spent on food increases faster at lower incomes than at higher incomes. In other words, it increases at a decreasing rate, which makes the regression curve flatten out at higher incomes.</p>
+<p>What function could one use to model such a relationship? The logarithmic function fits this profile and, as it turns out, it is relatively easy to interpret, which makes it very popular in econometric models. The general form of a linear-log econometric model is provided in Equation 4.7.</p>
+<p>yi = β1 + β2log(xi) + ei (4.7)</p>
+<p>The marginal effect of a change in x on y is the slope of the regression curve and is given by Equation 4.8; unlike in the linear form, it depends on x and it is, therefore, only valid for small changes in x.</p>
+<p>dy β2</p>
+<p>= (4.8) dx x</p>
+<p>Related to the linear-log model, another measure of interest in economics is the semi-elasticity of y with respect to x, which is given by Equation 4.9. Semi-elasticity suggests that a change in x of 1% changes y by β2/100 units of y. Since semi-elasticity also changes when x changes, it should only be determined for small changes in x.</p>
+<p>Table 4.2: Linear-log model output for the <em>food</em> example</p>
+<p>dy = (%∆x) (4.9)</p>
+<p>Another quantity that might be of interest is the elasticity of y with respect to x, which is given by Equation 4.10 and indicates that a one percent increase in x produces a (β2/y) percent change in y.</p>
+<p>β2</p>
+<p>%∆y = (%∆x) (4.10)</p>
+<p>y</p>
+<p>Let us estimate a linear-log model for the food dataset, draw the regression curve, and calculate the marginal effects for some given values of the dependent variable.</p>
+<p>mod2 &lt;- lm(food_exp~log(income), data=food)</p>
+<p>tbl &lt;- data.frame(xtable(mod2)) kable(tbl, digits=5, caption=“Linear-log model output for the <em>food</em> example”)</p>
+<p>The results for an income of $1000 are as follows: dy/dx = 13.217, which indicates that an increase in income of $100 (i.e., one unit of x) increases expenditure by $</p>
+<p>4.4. RESIDUALS AND DIAGNOSTICS</p>
+<p>Figure 4.3: Linear-log representation for the food data</p>
+<p>13.217; for a 1% increase in income, that is, an increase of $10, expenditure increases by $ 1.322; and, finally, for a 1% increase in income expenditure incrases by 0.638%.</p>
+<p>4.4 Residuals and Diagnostics</p>
+<p>Regression results are reliable only to the extent to which the underlying assumptions are met. Plotting the residuals and calculating certain test statistics help deciding whether assumptions such as homoskedasticity, serial correlation, and normality of the errors are not violated. In R, the residuals are stored in the vector residuals of the regression output.</p>
+<p>ehat &lt;- mod2<span class="math inline">\(residuals plot(food\)</span>income, ehat, xlab=“income”, ylab=“residuals”)</p>
+<p>Figure 4.4 shows the residuals of the of the linear-log equation of the food expenditure example. One can notice that the spread of the residuals seems to be higher at higher incomes, which may indicate that the heteroskedasticity assumption is violated.</p>
+<p>Let us draw a residual plot generated with a simulated model that satisfies the regression assumptions. The data generating process is given by Equation 4.11, where x is a number between 0 and 10, randomly drawn from a uniform distribution, and the error term is randomly drawn from a standard normal distribution. Figure</p>
+<p>Figure 4.4: Residual plot for the food linear-log model 4.5 illustrates this simulated example.</p>
+<p>yi = 1 + xi + ei, i = 1,…,N (4.11)</p>
+<p>set.seed(12345) #sets the seed for the random number generator x &lt;- runif(300, 0, 10) e &lt;- rnorm(300, 0, 1) y &lt;- 1+x+e mod3 &lt;- lm(y~x) ehat &lt;- resid(mod3) plot(x,ehat, xlab=“x”, ylab=“residuals”)</p>
+<p>The next example illustrates how the residuals look like when a linear functional form is used when the true relationship is, in fact, quadratic. The data generating equation is given in Equation 4.12, where x is the same uniformly distributed between −2.5 and 2.5), and e ∼ N(0,4). Figure 4.6 shows the residuals from estimating an incorrectly specified, linear econometric model when the correct specification should be quadratic.</p>
+<p>yi = 15 − 4x2i + ei, i = 1,…,N (4.12)</p>
+<p>4.4. RESIDUALS AND DIAGNOSTICS</p>
+<p>Figure 4.5: Residuals generated by a simulated regression model that satisfies the regression assumptions</p>
+<p>Another assumption that we would like to test is the normality of the residuals, which assures reliable hypothesis testing and confidence intervals even in small samples. This assumption can be assessed by inspecting a histogram of the residuals, as well as performing a Jarque-Bera test, for which the null hypothesis is “Series is normally distributed”. Thus, a small p-value rejects the null hypothesis, which means the series fails the normality test. The Jarque-Bera test requires installing and loading the package tseries in R. Figure 4.7 shows a histogram and a superimposed normal distribution for the linear food expenditure model.</p>
+<p>Figure 4.6: Simulated quadratic residuals from an incorrectly specified econometric model</p>
+<p>jarque.bera.test(ehat) #(in package ‘tseries’)</p>
+</section>
+<section id="section-25" class="level2" data-number="12.20">
+<h2 data-number="12.20" class="anchored" data-anchor-id="section-25"><span class="header-section-number">12.20</span> </h2>
+</section>
+<section id="jarque-bera-test" class="level2" data-number="12.21">
+<h2 data-number="12.21" class="anchored" data-anchor-id="jarque-bera-test"><span class="header-section-number">12.21</span> Jarque Bera Test</h2>
+</section>
+<section id="section-26" class="level2" data-number="12.22">
+<h2 data-number="12.22" class="anchored" data-anchor-id="section-26"><span class="header-section-number">12.22</span> </h2>
+</section>
+<section id="data-ehat" class="level2" data-number="12.23">
+<h2 data-number="12.23" class="anchored" data-anchor-id="data-ehat"><span class="header-section-number">12.23</span> data: ehat</h2>
+</section>
+<section id="x-squared-0.06334-df-2-p-value-0.969" class="level2" data-number="12.24">
+<h2 data-number="12.24" class="anchored" data-anchor-id="x-squared-0.06334-df-2-p-value-0.969"><span class="header-section-number">12.24</span> X-squared = 0.06334, df = 2, p-value = 0.969</h2>
+<p>While the histogram in Figure 4.7 may not strongly support one conclusion or another about the normlity of ehat, the Jarque-Bera test is unambiguous: there is no evidence against the normality hypothesis.</p>
+<p>4.5. POLYNOMIAL MODELS</p>
+<p>Figure 4.7: Histogram of residuals from the food linear model</p>
+<p>Lab 5- Polynomial Models</p>
+<p>Regression models may include quadratic or cubic terms to better describe the nature of the dadta. The following is an example of quadratic and cubic model for the wa_wheat dataset, which gives annual wheat yield in tonnes per hectare in</p>
+<p>Greenough Shire in Western Australia over a period of 48 years. The linear model is given in Equation 4.13, where the subscript t indicates the observation period.</p>
+<p>yieldt = β1 + β2timet + et (4.13)</p>
+<p>Figure 4.8 shows a pattern in the residuals generated by the linear model, which may inspire us to think of a more appropriate functional form, such as the one in Equation 4.14.</p>
+<p>yieldt = β1 + β2time3t + et (4.14)</p>
+<p>Figure 4.8: Residuals from the linear wheatyield model</p>
+<p>Please note in the following code sequence the use of the function I(), which is needed in R when an independent variable is transformed by mathematical operators. You do not need the operator I() when an independent variable is transformed through a function such as log(x). In our example, the transformation requiring the use of I() is raising time to the power of 3. Of course, you can create a new variable, x3=xˆ3 if you wish to avoid the use of I() in a regression equation.</p>
+<p>mod2 &lt;- lm(wa_wheat$greenough~I(time^3), data=wa_wheat)</p>
+<p>ehat &lt;- resid(mod2) plot(wa_wheat$time, ehat, xlab=“time”, ylab=“residuals”)</p>
+<p>Figure 4.9 displays a much better image of the residuals than Figure 4.8, since the residuals are more evenly spread about the zero line.</p>
+<p>4.6 Log-Linear Models</p>
+<p>Transforming the dependent variable with the log() function is useful when the variable has a skewed distribution, which is in general the case with amounts that cannot be negative. The log() transformation often makes the distribution closer to normal. The general log-linear model is given in Equation 4.15.</p>
+<p>4.6. LOG-LINEAR MODELS</p>
+<p>Figure 4.9: Residuals from the cubic wheatyield model</p>
+<p>log(yi) = β1 + β2xi + ei (4.15)</p>
+<p>The following formulas are easily derived from the log-linear Equation 4.15. The semi-elasticity has here a different interpretation than the one in the linear-log model: here, an increase in x by one unit (of x) produces a change of 100b2 percent in y. For small changes in x, the amount 100b2 in the log-linear model can also be interpreted as the growth rate in y (corresponding to a unit increase in x). For instance, if x is time, then 100b2 is the growth rate in y per unit of time.</p>
+<p>Prediction: yˆn = exp(b1 + b2x), or yˆc = exp(b1 + b2x + σˆ22), with the “natural” predictor yˆn to be used in small samples and the “corrected” predictor, yˆc, in large samples</p>
+<p>Marginal effect (slope): dxdy = b2y</p>
+<p>Semi-elasticity: %∆y = 100b2∆x</p>
+<p>Let us do these calculations first for the yield equation using the wa_wheat dataset.</p>
+<p>Table 4.3 gives b2 = 0.017844, which indicates that the rate of growth in wheat Table 4.3: Log-linear model for the <em>yield</em> equation</p>
+<p>Table 4.4: Log-linear ’wage’ regression output</p>
+<p>production has increased at an average rate of approximately 1.78 percent per year.</p>
+<p>The wage log-linear equation provides another example of calculating a growth rate, but this time the independent variable is not time, but education. The predictions and the slope are calculated for educ = 12 years.</p>
+<p>Here are the results of these calculations: “natural” prediction yˆn = 14.796; corrected prediction, yˆc = 16.996; growth rate g = 9.041; and marginal effect dxdy = 1.34. The growth rate indicates that an increase in education by one unit (see the data description using ?cps4_small) increases hourly wage by 9.041 percent.</p>
+<p>Figure 4.10 presents the “natural” and the “corrected” regression lines for the wage equation, together with the actual data points.</p>
+<p>education=seq(0,22,2) yn &lt;- exp(b1+b2<em>education) yc &lt;- exp(b1+b2</em>education+sighat2/2)</p>
+<p>4.6. LOG-LINEAR MODELS</p>
+<p>Figure 4.10: The ’normal’ and ’corrected’ regression lines in the log-linear wage equation</p>
+<p>plot(cps4_small<span class="math inline">\(educ, cps4_small\)</span>wage, xlab=“education”, ylab=“wage”, col=“grey”) lines(yn~education, lty=2, col=“black”) lines(yc~education, lty=1, col=“blue”) legend(“topleft”, legend=c(“yc”,“yn”), lty=c(1,2), col=c(“blue”,“black”))</p>
+<p>The regular R2 cannot be used to compare two regression models having different dependent variables such as a linear-log and a log-linear models; when such a comparison is needed, one can use the general R2, which is Rg2 = [corr(y,yˆ]2. Let us calculate the generalized R2 for the quadratic and the log-linear wage models.</p>
+<p>rg5 &lt;- cor(cps4_small$wage,yhat5)^2</p>
+<p>The quadratic model yields Rg2 = 0.188, and the log-linear model yields Rg2 = 0.186; since the former is higher, we conclude that the quadratic model is a better fit to the data than the log-linear one. (However, other tests of how the two models meet the assumptions of linear refgression may reach a different conclusion; R2 is only one of the model selection criteria.)</p>
+<p>To determne a forecast interval estimate in the log-linear model, we first construct the interval in logs using the natural predictor yˆn, then take antilogs of the interval limits. The forecasting error is the same as before, given in Equation 4.4. The following calculations use an education level equal to 12 and α = 0.05.</p>
+<p>The result is the confidence interval (5.26, 41.62). Figure 4.11 shows a 95% confidence band for the log-linear wage model.</p>
+<p>4.7. THE LOG-LOG MODEL</p>
+<p>Figure 4.11: Confidence band for the log-linear wage equation</p>
+<p>4.7 The Log-Log Model</p>
+<p>The log-log model has the desirable property that the coefficient of the independent variable is equal to the (constant) elasticity of y with respect to x. Therefore, this model is often used to estimate supply and demand equations. Its standard form is given in Equation 4.16, where y, x, and e are N × 1 vectors.</p>
+<p>log(y) = β1 + β2log(x) + e (4.16)</p>
+<p>Table 4.5: The log-log poultry regression equation</p>
+<p>Table 4.5 gives the log-log regression output. The coefficient on p indicates that an increase in price by 1% changes the quantity demanded by −1.121%.</p>
+</section>
+</section>
+<section id="the-generalized-r-squared-rgsq---cornewbroilerq-yhatc2" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> The generalized R-squared: rgsq &lt;- cor(newbroiler$q, yhatc)^2</h1>
+<p>The generalized R2, wich uses the corrected fitted values, is equal to 0.8818.</p>
+<p>4.7. THE LOG-LOG MODEL</p>
+<p>Figure 4.12: Log-log demand for chicken</p>
+<p>Lab 6 – Hands-on on your assignment</p>
+<p>References</p>
+<p>Adkins, Lee. 2014. Using Gretl for Principles of Econometrics, 4th Edition. Economics Working Paper Series. 1412. Oklahoma State University, Department of Economics; Legal Studies in Business.</p>
+<p>Allaire, JJ, Joe Cheng, Yihui Xie, Jonathan McPherson, Winston Chang, Jeff Allen, Hadley Wickham, Aron Atkins, and Rob Hyndman. 2016. Rmarkdown: Dynamic Documents for R.</p>
+<p>Colonescu, Constantin. 2016. PoEdata: PoE Data for R.</p>
+<p>Croissant, Yves, and Giovanni Millo. 2015. Plm: Linear Models for Panel Data.</p>
+<p>Dahl, David B. 2016. Xtable: Export Tables to Latex or Html.</p>
+<p>Fox, John, and Sanford Weisberg. 2016. Car: Companion to Applied Regression.</p>
+<p>Fox, John, Sanford Weisberg, Michael Friendly, and Jangman Hong. 2016. Effects:</p>
+<p>Effect Displays for Linear, Generalized Linear, and Other Models.</p>
+<p>Ghalanos, Alexios. 2015. Rugarch: Univariate Garch Models.</p>
+<p>Graves, Spencer. 2014. FinTS: Companion to Tsay (2005) Analysis of Financial Time Series.</p>
+<p>Grolemund, Garrett, and Hadley Wickham. 2016. R for Data Science. Online book.</p>
+<p>Henningsen, Arne, and Jeff D. Hamann. 2015. Systemfit: Estimating Systems of Simultaneous Equations.</p>
+<p>Hill, R.C., W.E. Griffiths, and G.C. Lim. 2011. Principles of Econometrics. Wiley.</p>
+<p>251</p>
+<p>252 CHAPTER 16. QUALITATIVE AND LDV MODELS</p>
+<p>Hlavac, Marek. 2015. Stargazer: Well-Formatted Regression and Summary Statistics Tables.</p>
+<p>Hothorn, Torsten, Achim Zeileis, Richard W. Farebrother, and Clint Cummins. 2015. Lmtest: Testing Linear Regression Models.</p>
+<p>Hyndman, Rob. 2016. Forecast: Forecasting Functions for Time Series and Linear Models.</p>
+<p>Kleiber, Christian, and Achim Zeileis. 2015. AER: Applied Econometrics with R.</p>
+<p>Komashko, Oleh. 2016. NlWaldTest: Wald Test of Nonlinear Restrictions and Nonlinear Ci.</p>
+<p>Lander, Jared P. 2013. R for Everyone: Advanced Analytics and Graphics. 1st ed.&nbsp;Addison-Wesley Professional.</p>
+<p>Lumley, Thomas, and Achim Zeileis. 2015. Sandwich: Robust Covariance Matrix Estimators.</p>
+<p>Pfaff, Bernhard. 2013. Vars: VAR Modelling.</p>
+<p>R Development Core Team. 2008. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing.</p>
+<p>Reinhart, Abiel. 2015. Pdfetch: Fetch Economic and Financial Time Series Data from Public Sources.</p>
+<p>Robinson, David. 2016. Broom: Convert Statistical Analysis Objects into Tidy Data Frames.</p>
+<p>RStudio Team. 2015. RStudio: Integrated Development Environment for R. Boston, MA: RStudio, Inc.</p>
+<p>Spada, Stefano, Matteo Quartagno, and Marco Tamburini. 2012. Orcutt: Estimate Procedure in Case of First Order Autocorrelation.</p>
+<p>Trapletti, Adrian, and Kurt Hornik. 2016. Tseries: Time Series Analysis and Computational Finance.</p>
+<p>Wickham, Hadley, and Winston Chang. 2016. Devtools: Tools to Make Developing</p>
+<p>16.10. THE HECKIT, OR SAMPLE SELECTION MODEL 253</p>
+<p>R Packages Easier.</p>
+<p>Xie, Yihui. 2014. Printr: Automatically Print R Objects According to Knitr Output Format.</p>
+<p>———. 2016a. Bookdown: Authoring Books with R Markdown.</p>
+<p>———. 2016b. Knitr: A General-Purpose Package for Dynamic Report Generation in R.</p>
+<p>Zeileis, Achim. 2016. Dynlm: Dynamic Linear Regression.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../labs/part003.html" class="pagination-link" aria-label="Lab Part">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lab Part</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../labs/part005.html" class="pagination-link" aria-label="Lab Part">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lab Part</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
