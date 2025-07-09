@@ -1,24 +1,41 @@
 project:
-  type: book
+  type: website
   output-dir: docs
 
-book:
+website:
   title: "Econometrics and Analytics"
-  author: "Camilo Calderon"
-  chapters:
-    - index.qmd
-    - part: "Labs"
-      chapters:
-        - labs/part001.qmd
-        - labs/part002.qmd
-        - labs/part003.qmd
-        - labs/part004.qmd
-        - labs/part005.qmd
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Labs"
+        menu:
+          - text: "Part 1"
+            href: labs/part001.qmd
+          - text: "Part 2"
+            href: labs/part002.qmd
+          - text: "Part 3"
+            href: labs/part003.qmd
+          - text: "Part 4"
+            href: labs/part004.qmd
+          - text: "Part 5"
+            href: labs/part005.qmd
+  sidebar:
+    style: "floating"
+    contents:
+      - index.qmd
+      - section: "Labs"
+        contents:
+          - labs/part001.qmd
+          - labs/part002.qmd
+          - labs/part003.qmd
+          - labs/part004.qmd
+          - labs/part005.qmd
+    tools:
+      - html: _includes/assistant.html
 
 format:
   html:
-    toc: true
     theme: cosmo
-    embed-resources: false
+    toc: true
     page-layout: full
-    include-before-body: assistant.html

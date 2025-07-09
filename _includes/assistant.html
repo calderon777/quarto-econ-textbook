@@ -1,0 +1,28 @@
+<!-- assistant.html -->
+<div id="chat-container" style="padding: 10px; margin-top: auto;">
+  <strong>Ask Me Anything 📚</strong>
+  <div id="chat-box" style="height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 5px; margin-top: 5px;"></div>
+  <input id="user-input" type="text" placeholder="Ask something..." style="width: 100%; margin-top: 5px;" />
+  <button onclick="sendMessage()" style="margin-top: 5px;">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    const userInput = document.getElementById("user-input");
+    const message = userInput.value;
+    const chatBox = document.getElementById("chat-box");
+
+    if (!message.trim()) return;
+
+    chatBox.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+    userInput.value = "";
+
+    // Temporary dummy response
+    setTimeout(() => {
+      chatBox.innerHTML += `<div><strong>Bot:</strong> I'm thinking... 🤖</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }, 300);
+  }
+</script>
+
+
