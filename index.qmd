@@ -1,0 +1,89 @@
+---
+title: "Econometrics and Analytics"
+subtitle: "A Lab Handbook in R"
+author: "Camilo Calderon"
+format: html
+execute: 
+  eval: false
+---
+
+![I am Camilo Calderon, call me Cam!](/images/image1.png)
+
+| 👤 **Author**          | 📧 **Email**                    | 🗓️ **Version**  |
+|------------------------|----------------------------------|-----------------|
+| Dr Camilo Calderon     | cam.calderon@dmu.ac.uk           | 03 July 2025    |
+
+ 
+> **Contact hours:**
+
+> **Office:**   
+
+
+# Welcome
+
+Welcome to *Econometrics and Analytics*! This textbook guides students through applied lab sessions using R, combining data science, econometrics, and visual learning.
+
+📘 Navigate using the table of contents on the left.
+
+🔍 Each lab includes:
+- Practical exercises  
+- R code  
+- Embedded videos  
+- Interactive charts (coming soon)  
+
+> “The best way to learn econometrics is to do it.” – You, probably
+
+Econometrics introduces quantitative methods for both qualitative and quantitative data analysis. The focus includes a variety of estimation methods for economic data with diverse structures and uses applied applications of these econometric methods to estimate empirical models.  These techniques provide a foundation for the final-year dissertation project.
+
+ 
+
+Data Analytics provides an applied framework for economists to understand economic decision-making and the formation of expectations and forecasting. Analytics follows a topic-based approach to forecasting techniques and automatisation to areas of study such as Economics, Environmental Economics, Capital Markets, and Financial Economics. The content also covers an introduction to the Trading room, this will allow the techniques to be contextualised to applied problems. 
+
+This handbook has been produced to provide students with specific information and guidance about their labs. The contents of this handbook are indicative, this means they can be updated or modified upon the review of the module leader (Cam).
+
+An electronic version of this handbook (which is continuously updated) is available on the VLE system, which you should consult regularly as the main reference point throughout your studies.
+
+The handbook is organised in 50 minutes chunks, sometimes active lectures, othertimes practical labs.
+
+# App and Website Disclaimer
+From time to time this website may include links to other third party websites. These links are used to provide further information and do not mean that DMU endorses those websites and/or their content. DMU takes no responsibility for any loss or damage suffered as a result of using any information published on any of the pages on the linked third party websites.
+
+Teaching staff may recommend the use of a particular technology when they feel that it is necessary and beneficial to students’ learning.  Please note:  Technology of this nature often includes the option to install an App and as with all technology there is a risk of malware.  The university does not warrant the quality of any third party Apps or that there is no risk of malware.  The university will where possible provide alternatives to installing an App either through direct internet access using the student’s operating systems internet browser or provide alternative methods to formative learning.
+
+In opting to install any App or accessing any website using the student’s device, the university does not make or give, any representation, warranty or commitment as to:
+
+> **its quality, viability and operation;**
+
+> **its description, its fitness for any particular or general use;**
+
+> **the absence of any latent or other defect, discoverable or otherwise.**
+
+The student agrees that the use and download of the App or access of the website is at his/her sole discretion and risk.  In downloading of materials it is the student’s responsibility to ensure that material is virus checked by up to date virus software.
+
+It is the student’s responsibility to back-up all data and will be solely responsible for any damage to her/his computer/mobile device or loss, alteration or corruption of data or files that results from the download of the App or access of the website. 
+
+# General Disclaimer
+
+The University expressly excludes liability for loss or damage arising from your use of this site or of any App (except in the case of death or personal injury arising from our negligence).
+
+# Indicative Contents
+
+Lab 1: 📄 Introduction &  📋 Assignment Brief
+
+Lab 2: Approaching Forecasting & Data Collection
+
+Lab 3: Videos about R (Linked with MCQs assessment)
+
+Lab 4: A Quick Intro to R
+
+Lab 5: R certification & Package swirl
+
+Lab 6: Uploading Excel Files to R
+
+Lab 7: Data Visualisation
+
+Lab 8: Mock/Practice test & AI AND R
+
+Lab 9: – Intro to Refinitiv
+
+Lab 10: Refinitiv: News, forecasts, Macrox

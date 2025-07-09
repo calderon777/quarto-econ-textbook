@@ -1,0 +1,2049 @@
+
+
+
+
+	
+
+School of Accounting, Finance and Economics
+
+BECS2002 / Econometrics and Data Analytics
+
+
+     
+ Lab Handbook
+ Week 11
+    
+
+   Module coordinator: 	Dr Camilo Calderon
+       
+   Email: 	cam.calderon@dmu.ac.uk
+       
+       
+       
+
+
+
+
+
+
+
+
+
+This version: 05/07/2025
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This handbook has been produced to provide students with specific information and guidance about their labs. The contents of this handbook are indicative, this means they can be updated or modified upon the review of the module leader (Cam).
+	
+An electronic version of this handbook (which is continuously updated) is available on the VLE system, Blackboard, which you should consult regularly as the main reference point throughout your studies.
+
+
+Indicative Contents
+Lecture 1 – Regression Models I: trend and seasonality,	4
+Lecture 2 – Regression models II: trend and seasonality, CH6	9
+Video 1: Lab 14 – Inflation and Models with Trend and Seasonality	13
+Video 2: Lab 17 Confusion Matrix, Melbourne rainfall forecast, what are odds of an event happening?	21
+Lab 12: Linear Regression and autocorrelation	23
+Lab 13: Linear regression and evaluating predictability	30
+Lab 14: Regression and external information	41
+Lab 15: Binary forecast and logistic regression	45
+Lab 16: Neural Networks I	50
+Lab 17: neural Networks II	58
+PRACTICE LABS	59
+Lab 13 – models with trend and seasonality	59
+Lab 15- Foreign Exchange Rate Market	61
+Lab 16 – Money Market and Bond Yield Polls <MBYP>; Why inverted yield curves are important?	66
+Lab 18 – Neural Networks	70
+Supplementary Lab 1	74
+Supplementary Lab – Social, Macro Overview and Signal	76
+Supplementary Lab – Alternative investing and CBA	80
+Supplementary Lab - Willingness to pay	86
+Supplementary Lab – R Shiny	89
+
+
+
+
+
+
+Lecture 1 – Regression Models I: trend and seasonality,
+Chap 6 Linear Regression 1.pptx
+
+
+
+
+Example used in this lab
+Cam Calderon
+2023-12-09
+R Markdown
+# REGRESSION MODELS - TREND AND SEASONALITY - 09-12-2023
+
+# Required libraries
+library(readxl)
+# Uncomment the line below to install the 'forecast' package if it's not already installed
+# install.packages("forecast") 
+library(forecast)
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+# Loading FDI data from the Office for National Statistics (ONS)
+ONS_fdi <- read_excel("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/fdi.xls", 
+                      skip = 7)
+View(ONS_fdi)
+
+# Converting the data into a time series object
+fdi.ts <- ts(ONS_fdi$fdi, start = c(1987,1), end = c(2023, 2), freq = 4)
+
+# Plotting the time series data
+plot(fdi.ts, xlab = "Year", ylab = "FDI Inward", main = "FDI Inward Flow")
+
+# Partitioning the dataset into training and validation sets
+stepsAhead <- 40
+nTrain <- length(fdi.ts) - stepsAhead
+train.ts <- window(fdi.ts, start = c(1987, 1), end = c(1987,nTrain)) 
+valid.ts <- window(fdi.ts, start = c(1987, nTrain + 1), end = c(1987, nTrain + stepsAhead))
+
+# Fitting a linear model with additive seasonality
+train.lm.trend.season <- tslm(train.ts ~ trend + I(trend^2) + season)
+summary(train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -69865 -16822   6605  18803  42921 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 86271.361   9776.832   8.824 3.72e-14 ***
+## trend       -2840.422    371.997  -7.636 1.37e-11 ***
+## I(trend^2)     84.977      3.368  25.228  < 2e-16 ***
+## season2       197.592   7896.358   0.025    0.980    
+## season3      3015.444   7974.934   0.378    0.706    
+## season4      2322.794   7975.466   0.291    0.771    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 29010 on 100 degrees of freedom
+## Multiple R-squared:  0.9813, Adjusted R-squared:  0.9804 
+## F-statistic:  1049 on 5 and 100 DF,  p-value: < 2.2e-16
+# Forecasting using the linear model
+train.lm.t.s.pred <- forecast(train.lm.trend.season, h = stepsAhead) 
+
+# Plotting the forecast results
+plot(train.ts, ylim = c(0, 2000000), ylab = "FDI Inward (millions of pounds)", xlab = "Year", bty = "l", 
+     xaxt = "n", xlim = c(1987,2024), main ="Total FDI, Equity Capital & Reinvested Earnings", lty = 1) 
+axis(1, at = seq(1987, 2024, 2), labels = format(seq(1987, 2024, 2))) 
+lines(valid.ts, lty=2, lwd=2)
+lines(train.lm.t.s.pred$mean, lty=2, lwd=2, col="blue")
+
+# Assessing forecast accuracy
+fcast <- forecast(train.lm.trend.season, h=40)
+accuracy(fcast$mean, valid.ts)
+##                ME     RMSE      MAE      MPE     MAPE      ACF1 Theil's U
+## Test set 258355.9 356540.8 267170.7 14.88078 15.92279 0.9231679  4.896507
+# Naive forecast for the training period
+snaive4cast <- snaive(train.ts, h= 40) 
+naive <- forecast(snaive4cast, h=40) 
+accuracy(snaive4cast, valid.ts)
+##                     ME      RMSE       MAE      MPE     MAPE     MASE      ACF1
+## Training set  28033.81  44826.92  30468.36 10.31471 11.32815  1.00000 0.8273804
+## Test set     601469.28 755172.46 601525.57 37.40444 37.41183 19.74263 0.9297684
+##              Theil's U
+## Training set        NA
+## Test set      10.77091
+# Plotting the naive forecast
+lines(naive$mean, lty = 2, lwd = 2, col = "red")
+
+# Using ETS models for forecasting
+fdi.ets.aan <- ets(train.ts, model="AAN")
+fdi.ets.ann <- ets(train.ts, model="ANN", damped=FALSE)
+fdi.ets.zzz <- ets(train.ts, model="ZZZ", damped=TRUE)
+
+fdi.ets.aan.pred <- forecast(fdi.ets.aan, h=40, level= c(0.2,0.4, 0.6, 0.8) )
+fdi.ets.ann.pred <- forecast(fdi.ets.ann, h=40, level= c(0.2,0.4, 0.6, 0.8) )
+fdi.ets.zzz.pred <- forecast(fdi.ets.zzz, h=40, level= c(0.2,0.4, 0.6, 0.8) )
+
+# Plotting ETS model forecasts
+lines(fdi.ets.aan.pred$mean, lty=2, col="grey", lwd=2)
+lines(fdi.ets.ann.pred$mean, lty=2, col="green", lwd=2)
+lines(fdi.ets.zzz.pred$mean, lty=2, col="orange", lwd=2)
+
+# Evaluating ETS model accuracy
+accuracy(fdi.ets.aan.pred$mean,valid.ts)
+##                ME     RMSE      MAE      MPE     MAPE      ACF1 Theil's U
+## Test set 289297.9 413346.4 308538.1 16.11673 18.44179 0.9251353  5.634319
+accuracy(fdi.ets.ann.pred$mean,valid.ts)
+##                ME     RMSE      MAE      MPE     MAPE     ACF1 Theil's U
+## Test set 584104.6 742120.7 585794.8 35.93561 36.15939 0.927391  10.52316
+accuracy(fdi.ets.zzz.pred$mean,valid.ts)
+##                ME     RMSE    MAE     MPE     MAPE      ACF1 Theil's U
+## Test set 340110.2 483237.1 357825 19.0682 21.23053 0.9260083  6.566403
+# Adding a legend
+legend("topleft", # position of the legend
+       legend = c("Validation", "Linear Model", "Naive Forecast", "ETS AAN", "ETS ANN", "ETS ZZZ"), # text in the legend
+       col = c("black","blue", "red", "grey", "green", "orange"), # colors of the lines
+       lty = 2, # line types
+       lwd = 2) # line widths
+
+
+
+
+
+Lecture 2 – Regression models II: trend and seasonality, CH6
+Chap 6 Linear Regression II.pptx
+
+
+
+
+
+
+Example used in this lab
+Cam Calderon
+2023-12-09
+R Markdown
+# REGRESSION MODELS - TREND AND SEASONALITY - 09-12-2023
+
+# Load necessary libraries
+library(readxl)
+# Uncomment the next line to install the 'forecast' package if not already installed
+# install.packages("forecast") 
+library(forecast)
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+# Load retail sales index data from ONS
+ONS_retail <- read_excel("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/rsi 2023.xlsx", 
+                         skip = 10)
+#View(ONS_retail)
+
+# Convert retail sales data into a time series object
+retail.ts <- ts(ONS_retail$rsi, start = c(1996,1), end = c(2023, 10), freq = 12)
+
+# Initial time series plot for retail sales index
+plot(retail.ts, xlab = "Year", ylab = "Retail Sales Index - J5AH", 
+     main = "Value of Retail Sales at Current Prices Non-SA")
+
+# Split the dataset into training and validation sets
+stepsAhead <- 12
+nTrain <- length(retail.ts) - stepsAhead
+train.ts <- window(retail.ts, start = c(1996, 1), end = c(1996,nTrain)) 
+valid.ts <- window(retail.ts, start = c(1996, nTrain + 1), end = c(1996, nTrain + stepsAhead))
+
+# Fit a time series linear model with trend and seasonality
+train.lm.trend.season <- tslm(train.ts ~ trend + I(trend^2) + season)
+summary(train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.9822  -1.0645   0.0657   1.3221  10.6067 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 3.962e+01  7.251e-01  54.649  < 2e-16 ***
+## trend       1.250e-01  7.034e-03  17.768  < 2e-16 ***
+## I(trend^2)  2.078e-04  2.109e-05   9.853  < 2e-16 ***
+## season2     1.139e+00  7.956e-01   1.432    0.153    
+## season3     3.248e+00  7.956e-01   4.083 5.67e-05 ***
+## season4     4.450e+00  7.956e-01   5.593 4.93e-08 ***
+## season5     5.321e+00  7.956e-01   6.688 1.06e-10 ***
+## season6     5.866e+00  7.956e-01   7.373 1.55e-12 ***
+## season7     6.718e+00  7.956e-01   8.444 1.23e-15 ***
+## season8     4.521e+00  7.957e-01   5.682 3.08e-08 ***
+## season9     4.476e+00  7.957e-01   5.625 4.16e-08 ***
+## season10    7.593e+00  7.957e-01   9.543  < 2e-16 ***
+## season11    1.431e+01  8.033e-01  17.808  < 2e-16 ***
+## season12    2.508e+01  8.033e-01  31.223  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.923 on 308 degrees of freedom
+## Multiple R-squared:  0.978,  Adjusted R-squared:  0.9771 
+## F-statistic:  1054 on 13 and 308 DF,  p-value: < 2.2e-16
+# Forecast future values using the fitted model
+train.lm.t.s.pred <- forecast(train.lm.trend.season, h = stepsAhead) 
+
+# Plot the forecast and compare with actual values
+plot(train.lm.t.s.pred, ylim = c(40, 130), ylab = "Retail Sales Index - J5AH", 
+     xlab = "Year", bty = "l", xaxt = "n", xlim = c(1996,2024), 
+     main ="Forecast vs Actual: Retail Sales Index", 
+     lty = 2) 
+
+# Customizing the x-axis with labels at two-year intervals
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+
+# Adding the fitted values from the model to the plot
+lines(train.lm.t.s.pred$fitted, lwd = 1, col = "blue") 
+
+# Adding the validation set to the plot for comparison
+lines(valid.ts)
+
+# Evaluate the forecast's accuracy against the validation set
+accuracy(train.lm.t.s.pred$mean, as.numeric(valid.ts))
+##                ME     RMSE      MAE      MPE     MAPE
+## Test set 5.237359 5.945129 5.237359
+
+
+
+Video 1: Lab 14 – Inflation and Models with Trend and Seasonality
+Cam Calderon
+2023-12-11
+Activity 1
+Why Printing Trillions of Dollars May Not Cause Inflation? Task 1. Review the following video and answer the Question: https://youtu.be/3-dvi1f_2vA
+Activity 2 
+Forecast inflation. Would inflation increase beyond the target? ; if so, for how long time?
+Task 1. Download a dataset for inflation and run the code line by line, you can always ask your tutor if you do not understand something.
+
+#install.packages("devtools")
+library(devtools)
+## Loading required package: usethis
+#install_github("ahmedmohamedali/eikonapir", force=TRUE)
+library(eikonapir) #opens the package to connect to Refinitiv
+eikonapir::set_proxy_port(9000L) #opens a port to Refinitiv
+eikonapir::set_app_id('use APPKEY in Refinitiv and paste the API key here')
+# Remember to keep your Refinitiv APP running before using your API key.
+
+# GBHICM=ECI is the name of the inflation time series.
+inflation <- get_timeseries("GBHICM=ECI",
+                      start_date = "2009-01-01T01:00:00", 
+                      end_date= paste0(Sys.Date(), "T01:00:00"), 
+                      raw_output = FALSE, interval = "monthly")
+# str function shows the characteristics and format of ‘inflation’
+str(inflation)
+## 'data.frame':    178 obs. of  3 variables:
+##  $ TIMESTAMP: chr  "2009-01-31T00:00:00Z" "2009-02-28T00:00:00Z" "2009-03-31T00:00:00Z" "2009-04-30T00:00:00Z" ...
+##  $ VALUE    : chr  "-0.7" "0.9" "0.2" "0.2" ...
+##  $ NA       : chr  "GBHICM=ECI" "GBHICM=ECI" "GBHICM=ECI" "GBHICM=ECI" ...
+inflation.n <- as.numeric(inflation$'VALUE') # convert the data to numeric
+inflation.df <-as.data.frame(inflation.n) # makes a data frame
+View(inflation) 
+
+Task 2. Open the appropriate libraries to forecast and declare the data a time series.
+#install.packages("forecast") 
+library(forecast)
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+#install.packages("zoo")
+library(zoo)
+## 
+## Attaching package: 'zoo'
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+# set as a time series and plot the data
+inflation.ts <- ts(inflation.df, start = c(2009,1), end = c(2023, 10), freq = 12)
+plot(inflation.ts)
+
+Task 3. Create the appropriate training and validation partitions to forecast out-of-sample (OOS)
+# This section contains the partition of the dataset into training and validation period.
+stepsAhead <- 12
+nTrain <- length(inflation.ts) - stepsAhead
+train.ts <- window(inflation.ts, start = c(2009, 1), end = c(2009,nTrain)) 
+valid.ts <- window(inflation.ts, start = c(2009, nTrain + 1), end = c(2009, nTrain + stepsAhead))
+Task 4. Fit a model with trend quadratic trend and seasonality; afterwards, predict 12 months using the fitted model, and plot your results
+train.lm.trend.season <- tslm(train.ts ~ trend  + I(trend^2) + season)
+summary (train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.9395 -0.1636  0.0185  0.1481  1.6026 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -2.215e-01  1.032e-01  -2.147   0.0334 *  
+## trend       -1.098e-02  1.958e-03  -5.608 9.41e-08 ***
+## I(trend^2)   7.281e-05  1.136e-05   6.411 1.73e-09 ***
+## season2      9.780e-01  1.134e-01   8.625 7.90e-15 ***
+## season3      7.915e-01  1.134e-01   6.980 8.55e-11 ***
+## season4      1.012e+00  1.134e-01   8.925 1.35e-15 ***
+## season5      7.253e-01  1.134e-01   6.396 1.87e-09 ***
+## season6      5.670e-01  1.134e-01   4.999 1.57e-06 ***
+## season7      4.728e-01  1.134e-01   4.168 5.13e-05 ***
+## season8      8.713e-01  1.134e-01   7.681 1.80e-12 ***
+## season9      6.840e-01  1.135e-01   6.029 1.20e-08 ***
+## season10     7.823e-01  1.135e-01   6.894 1.36e-10 ***
+## season11     6.692e-01  1.156e-01   5.788 3.95e-08 ***
+## season12     8.604e-01  1.156e-01   7.440 6.91e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3 on 152 degrees of freedom
+## Multiple R-squared:  0.5306, Adjusted R-squared:  0.4905 
+## F-statistic: 13.22 on 13 and 152 DF,  p-value: < 2.2e-16
+train.lm.t.s.pred <- forecast(train.lm.trend.season, h = stepsAhead, level = 0) 
+
+plot(train.lm.t.s.pred , ylab = "inflation Sales", xlab = "Year", bty = "l", 
+     ylim = c(-0.9,3), xaxt = "n", xlim = c(2009,2024), 
+     main ="Monthly growth for the quantity bought for all inflationing sales", 
+     flty = 2) 
+
+axis(1, at = seq(2009, 2024, 1), labels = format(seq(2009, 2024, 1))) 
+#lines(train.lm.t.s.pred$fitted, lwd = 2, col = "blue") 
+lines(valid.ts)
+
+#lines(train.ts)
+Task 5. Compute a measure of predictive accuracy.
+accuracy(train.lm.t.s.pred$mean, as.numeric(valid.ts))
+##                 ME      RMSE       MAE  MPE MAPE
+## Test set -0.377735 0.5203881 0.4194823 -Inf  Inf
+Task 6. Calculate the inflation for 2 year ahead after the end of the time series, and plot the results.
+inflation.lm.trend.season <- tslm(inflation.ts ~ trend  + I(trend^2) + season)
+summary (inflation.lm.trend.season)
+## 
+## Call:
+## tslm(formula = inflation.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.8591 -0.1448  0.0089  0.1545  1.6979 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -3.029e-01  1.038e-01  -2.919 0.004004 ** 
+## trend       -8.086e-03  1.834e-03  -4.409 1.88e-05 ***
+## I(trend^2)   5.215e-05  9.925e-06   5.254 4.57e-07 ***
+## season2      1.026e+00  1.140e-01   8.998 5.49e-16 ***
+## season3      8.316e-01  1.140e-01   7.294 1.22e-11 ***
+## season4      1.064e+00  1.140e-01   9.331  < 2e-16 ***
+## season5      7.627e-01  1.140e-01   6.689 3.37e-10 ***
+## season6      5.748e-01  1.140e-01   5.041 1.22e-06 ***
+## season7      4.535e-01  1.140e-01   3.976 0.000105 ***
+## season8      8.720e-01  1.141e-01   7.646 1.66e-12 ***
+## season9      7.104e-01  1.141e-01   6.228 3.81e-09 ***
+## season10     7.688e-01  1.141e-01   6.739 2.58e-10 ***
+## season11     6.875e-01  1.161e-01   5.922 1.81e-08 ***
+## season12     8.649e-01  1.161e-01   7.449 5.09e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3122 on 164 degrees of freedom
+## Multiple R-squared:  0.5102, Adjusted R-squared:  0.4714 
+## F-statistic: 13.14 on 13 and 164 DF,  p-value: < 2.2e-16
+inflation.lm.t.s.pred <- forecast(inflation.lm.trend.season, h = stepsAhead*2, level = 0) 
+
+
+plot(inflation.lm.t.s.pred , ylab = "inflation Sales", xlab = "Year", bty = "l", 
+     ylim = c(-0.9,3), xaxt = "n", xlim = c(2009,2024), 
+     main ="Monthly growth for the quantity bought for all inflationing sales", 
+     flty = 2) 
+axis(1, at = seq(2009, 2024, 1), labels = format(seq(2009, 2024, 1)))  
+
+Task 7. Calculate an additional 10 years of inflation and forecast the year when inflation will be above 2%. Plot your results.
+inflation.lm.t.s.pred$mean 
+##              Jan         Feb         Mar         Apr         May         Jun
+## 2023                                                                        
+## 2024 -0.05816355  0.97851512  0.79519379  1.03853913  0.74855113  0.57189647
+## 2025  0.07883470  1.11676487  0.93469504  1.17929188  0.89055539  0.71515222
+##              Jul         Aug         Sep         Oct         Nov         Dec
+## 2023                                                  0.60799418  0.79595186
+## 2024  0.46190847  0.89192047  0.74193248  0.81194448  0.74248943  0.93169861
+## 2025  0.60641573  1.03767923  0.88894274  0.96020624
+ma.trailing <- rollsum(inflation.lm.t.s.pred$mean, k = 12, align = "right")
+plot(ma.trailing)
+
+ma.trailing
+##            Jan       Feb       Mar       Apr       May       Jun       Jul
+## 2024                                                                      
+## 2025  8.793424  8.931674  9.071175  9.211928  9.353932  9.497188  9.641695
+##            Aug       Sep       Oct       Nov       Dec
+## 2024                      8.386184  8.520679  8.656426
+## 2025  9.787454  9.934464 10.082726
+# 10 year prediction
+ma.trailing.10year <- tslm(ma.trailing ~ trend  + I(trend^2) + season)
+summary (ma.trailing.10year)
+## 
+## Call:
+## tslm(formula = ma.trailing ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+## ALL 13 residuals are 0: no residual degrees of freedom!
+## 
+## Coefficients: (1 not defined because of singularities)
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  8.253e+00        NaN     NaN      NaN
+## trend        1.326e-01        NaN     NaN      NaN
+## I(trend^2)   6.258e-04        NaN     NaN      NaN
+## season2     -1.595e-15        NaN     NaN      NaN
+## season3     -1.140e-15        NaN     NaN      NaN
+## season4     -2.230e-15        NaN     NaN      NaN
+## season5     -3.046e-15        NaN     NaN      NaN
+## season6     -3.667e-15        NaN     NaN      NaN
+## season7     -3.988e-15        NaN     NaN      NaN
+## season8     -4.062e-15        NaN     NaN      NaN
+## season9     -2.229e-15        NaN     NaN      NaN
+## season10    -1.815e-15        NaN     NaN      NaN
+## season11     2.475e-15        NaN     NaN      NaN
+## season12            NA         NA      NA       NA
+## 
+## Residual standard error: NaN on 0 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:    NaN 
+## F-statistic:   NaN on 12 and 0 DF,  p-value: NA
+ma.trailing.10year.pred <- forecast(ma.trailing.10year, h = 120, level = 0)
+## Warning in predict.lm(predict_object, newdata = newdata, se.fit = TRUE, :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+## Warning in qt((1 - level)/2, df): NaNs produced
+plot(ma.trailing.10year.pred)
+abline(h =2, col="red", )
+
+##ACTIVITY 3. You have learnt how to forecast the future with Linear regression; now use the dataset for your assessment (presentation).
+
+
+Video 2: Lab 17 Confusion Matrix, Melbourne rainfall forecast, what are odds of an event happening? 
+This week we covered during the lecture binary forecasts using logistic regression. This technique will help you to forecast binary events, e.g. is your team going to win or not, is there going to be a recession again this year or not, is certain share going to increase greatly its price or not, etc. The basic idea is to forecast the probability of certain event happening. We will use 0 when the event occurs and 1 when it does not occur.
+
+Activity 1. Confusion Matrix
+ 
+Task1. The following table shows the typical outcome of a confusion matrix using R. Suppose a 2x2 table with the notation ‘Reference’ for your binary dependent variable (e.g. recession or not recession), and the notation ‘Predicted’ for your forecast. The confusion matrix shows how many times the estimated model perform well in the green sections of the table; contrary, the red sections are the number of mistakes of your prediction model/forecasts. 
+ReferencePredictedEvent (recession)No Event (no recession)Event (recession)ABNo Event
+(no recession)CD
+Read the documentation about confusionatrix for R. Find and read the section ‘Details’ in the following link: https://rdrr.io/cran/caret/man/confusionMatrix.html. The link will explain the outcome of the confusion matrix in R.
+
+
+ Task 2. Download in your appropriate datasets folder the file ‘MelbourneRainfall.xls’ from the folder “Data Sets” in bb. Afterwards, run the following code:
+# Loading the 'caret' package for modeling and evaluation
+library(caret)
+
+# Reading the dataset and formatting the date
+rain.df <- read.csv("MelbourneRainfall.csv")
+rain.df$Date <- as.Date(rain.df$Date, format="%d/%m/%Y")
+
+# Creating a binary variable 'Rainy' based on the rainfall amount
+rain.df$Rainy <- ifelse(rain.df$Rainfall > 0, 1, 0) 
+
+# Preparing variables for logistic regression
+nPeriods <- length(rain.df$Rainy) 
+rain.df$Lag1 <- c(NA, rain.df$Rainfall[1:(nPeriods-1)]) # Lagged variable
+rain.df$t <- seq(1, nPeriods, 1) 
+rain.df$Seasonal_sine = sin(2 * pi * rain.df$t/ 365.25) # Seasonal sine component
+rain.df$Seasonal_cosine = cos(2 * pi * rain.df$t/ 365.25) # Seasonal cosine component
+
+# Splitting the dataset into training and validation sets
+train.df <- rain.df[rain.df$Date <= as.Date("31/12/2009", format="%d/%m/%Y"),]
+train.df <- train.df[-1,] # Removing the first row due to NA in Lag1
+valid.df <- rain.df[rain.df$Date > as.Date("31/12/2009", format="%d/%m/%Y"),] 
+xvalid <- valid.df[, c(4,6,7)] # Validation predictors
+
+# Building the logistic regression model
+rainy.lr <- glm(Rainy ~ Lag1 + Seasonal_sine + Seasonal_cosine, data = train.df, family = "binomial")
+summary(rainy.lr) # Model summary
+
+# Prediction and evaluation using the confusion matrix
+rainy.lr.pred <- predict(rainy.lr, xvalid, type = "response") 
+confusionMatrix(table(ifelse(rainy.lr$fitted > 0.5, 1, 0), train.df$Rainy)) # Training set
+confusionMatrix(table(ifelse(rainy.lr.pred > 0.5, 1, 0), valid.df$Rainy)) # Validation set
+
+Task 3. Review the confusion matrix and explain what is accuracy, sensitivity, and prevalence in the R outcome. 
+
+
+Call:
+glm(formula = Rainy ~ Lag1 + Seasonal_sine + Seasonal_cosine, 
+    family = "binomial", data = train.df)
+
+Coefficients:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)     -0.76888    0.03858 -19.927  < 2e-16 ***
+Lag1             0.11187    0.01137   9.843  < 2e-16 ***
+Seasonal_sine   -0.26885    0.05049  -5.324 1.01e-07 ***
+Seasonal_cosine -0.37134    0.05067  -7.328 2.33e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4751.8  on 3651  degrees of freedom
+Residual deviance: 4533.7  on 3648  degrees of freedom
+AIC: 4541.7
+
+Number of Fisher Scoring iterations: 4
+
+> rainy.lr.pred <- predict(rainy.lr, xvalid, type = "response") 
+> confusionMatrix(table(ifelse(rainy.lr$fitted > 0.5, 1, 0), train.df$Rainy))
+Confusion Matrix and Statistics
+
+   
+       0    1
+  0 2251 1115
+  1  104  182
+                                          
+               Accuracy : 0.6662          
+                 95% CI : (0.6507, 0.6815)
+    No Information Rate : 0.6449          
+    P-Value [Acc > NIR] : 0.003566        
+                                          
+                  Kappa : 0.1166          
+                                          
+ Mcnemar's Test P-Value : < 2.2e-16       
+                                          
+            Sensitivity : 0.9558          
+            Specificity : 0.1403          
+         Pos Pred Value : 0.6687          
+         Neg Pred Value : 0.6364          
+             Prevalence : 0.6449          
+         Detection Rate : 0.6164          
+   Detection Prevalence : 0.9217          
+      Balanced Accuracy : 0.5481          
+                                          
+       'Positive' Class : 0               
+                                          
+> confusionMatrix(table(ifelse(rainy.lr.pred > 0.5, 1, 0), valid.df$Rainy))
+Confusion Matrix and Statistics
+
+   
+      0   1
+  0 373 220
+  1  21  55
+                                          
+               Accuracy : 0.6398          
+                 95% CI : (0.6021, 0.6762)
+    No Information Rate : 0.5889          
+    P-Value [Acc > NIR] : 0.004043        
+                                          
+                  Kappa : 0.1647          
+                                          
+ Mcnemar's Test P-Value : < 2.2e-16       
+                                          
+            Sensitivity : 0.9467          
+            Specificity : 0.2000          
+         Pos Pred Value : 0.6290          
+         Neg Pred Value : 0.7237          
+             Prevalence : 0.5889          
+         Detection Rate : 0.5575          
+   Detection Prevalence : 0.8864          
+      Balanced Accuracy : 0.5734          
+                                          
+       'Positive' Class : 0    
+
+
+Confusion Matrix and Statistics Explanation
+
+Confusion Matrix Structure
+A (True Negative): Predicted no event, and no event occurred.
+B (False Positive): Predicted an event, but no event occurred.
+C (False Negative): Predicted no event, but the event occurred.
+D (True Positive): Predicted an event, and the event occurred.
+
+Key Statistics
+Accuracy: Proportion of true results (both true positives and true negatives) among the total number of cases examined.
+
+Formula: (A+D)/(A+B+C+D)
+Indicates overall correctness of the model.
+Sensitivity (Recall or True Positive Rate): Proportion of actual positives that are correctly identified.
+
+Formula: D/(C+D)
+Indicates the model's ability to correctly predict positive events.
+Specificity (True Negative Rate): Proportion of actual negatives that are correctly identified.
+
+Formula: A/(A+B)
+Indicates the model's ability to correctly predict negative events.
+Positive Predictive Value (Precision): Proportion of positive identifications that were actually correct.
+
+Formula: D/(B+D)
+Negative Predictive Value: Proportion of negative identifications that were actually correct.
+
+Formula: A/(A+C)
+Prevalence: Proportion of actual positives in the dataset.
+
+Formula: (C+D)/(A+B+C+D)
+Detection Rate: Proportion of the total sample that are true positives.
+
+Formula: D/(A+B+C+D)
+Detection Prevalence: Proportion of the total sample that are predicted positives.
+
+Formula: (B+D)/(A+B+C+D)
+Balanced Accuracy: Average of sensitivity and specificity.
+
+Formula: (Sensitivity + Specificity) / 2
+Useful in imbalanced datasets.
+Kappa: Agreement between observed accuracy and expected accuracy (chance agreement).
+
+Interpretation of the Output
+Training Set Confusion Matrix:
+
+Accuracy: 66.62%
+Sensitivity: 95.58%
+Specificity: 14.03%
+The model is better at predicting non-rainy days than rainy days.
+Validation Set Confusion Matrix:
+
+Accuracy: 63.98%
+Sensitivity: 94.67%
+Specificity: 20.00%
+Similar performance as the training set, indicating consistency.
+Conclusion
+The model has high sensitivity but low specificity, indicating it's more effective at predicting non-events (no rain) than events (rain). The accuracy is moderate, suggesting room for improvement, possibly by including more predictors or using different modeling techniques.
+
+
+
+Lab 12: Linear Regression and autocorrelation
+Chap 7 Linear Regression - Autocorrelation I .pptx
+
+
+
+
+Example used in this lab
+Cam Calderon
+2023-12-09
+R Markdown
+# Regression Models - Trend and Seasonality Analysis - 09-12-2023
+
+# Load necessary libraries
+library(readxl)
+# Uncomment the next line to install the 'forecast' package if not already installed
+# install.packages("forecast") 
+library(forecast)
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+# Load the retail sales index data from the Office for National Statistics (ONS)
+ONS_retail <- read_excel("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/rsi 2023.xlsx", 
+                         skip = 10)
+# Uncomment the next line to view the loaded data
+#View(ONS_retail)
+
+# Convert the retail sales data into a time series object
+retail.ts <- ts(ONS_retail$rsi, start = c(1996,1), end = c(2023, 10), freq = 12)
+
+# Plot the initial time series for the retail sales index
+plot(retail.ts, xlab = "Year", ylab = "Retail Sales Index - J5AH", 
+     main = "Value of Retail Sales at Current Prices Non-SA")
+
+# Split the data into training and validation sets
+stepsAhead <- 12
+nTrain <- length(retail.ts) - stepsAhead
+train.ts <- window(retail.ts, start = c(1996, 1), end = c(1996,nTrain)) 
+valid.ts <- window(retail.ts, start = c(1996, nTrain + 1), end = c(1996, nTrain + stepsAhead))
+
+# Fit a linear model to the training set with trend and seasonal components
+train.lm.trend.season <- tslm(train.ts ~ trend + I(trend^2) + season)
+summary(train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.9822  -1.0645   0.0657   1.3221  10.6067 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 3.962e+01  7.251e-01  54.649  < 2e-16 ***
+## trend       1.250e-01  7.034e-03  17.768  < 2e-16 ***
+## I(trend^2)  2.078e-04  2.109e-05   9.853  < 2e-16 ***
+## season2     1.139e+00  7.956e-01   1.432    0.153    
+## season3     3.248e+00  7.956e-01   4.083 5.67e-05 ***
+## season4     4.450e+00  7.956e-01   5.593 4.93e-08 ***
+## season5     5.321e+00  7.956e-01   6.688 1.06e-10 ***
+## season6     5.866e+00  7.956e-01   7.373 1.55e-12 ***
+## season7     6.718e+00  7.956e-01   8.444 1.23e-15 ***
+## season8     4.521e+00  7.957e-01   5.682 3.08e-08 ***
+## season9     4.476e+00  7.957e-01   5.625 4.16e-08 ***
+## season10    7.593e+00  7.957e-01   9.543  < 2e-16 ***
+## season11    1.431e+01  8.033e-01  17.808  < 2e-16 ***
+## season12    2.508e+01  8.033e-01  31.223  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.923 on 308 degrees of freedom
+## Multiple R-squared:  0.978,  Adjusted R-squared:  0.9771 
+## F-statistic:  1054 on 13 and 308 DF,  p-value: < 2.2e-16
+# Forecast future values using the fitted linear model
+train.lm.t.s.pred <- forecast(train.lm.trend.season, h = stepsAhead) 
+
+# Plot the forecast and compare with actual values
+plot(train.lm.t.s.pred, ylim = c(40, 130), ylab = "Retail Sales Index - J5AH", 
+     xlab = "Year", bty = "l", xaxt = "n", xlim = c(1996,2024), 
+     main ="Forecast vs Actual: Retail Sales Index", 
+     lty = 2) 
+
+# Customize the x-axis with labels at two-year intervals
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+
+# Add the fitted values from the model to the plot
+lines(train.lm.t.s.pred$fitted, lwd = 1, col = "blue") 
+
+# Add the validation set to the plot for comparison
+lines(valid.ts)
+
+# Evaluate the accuracy of the forecast against the validation set
+accuracy(train.lm.t.s.pred$mean, as.numeric(valid.ts))
+##                ME     RMSE      MAE      MPE     MAPE
+## Test set 5.237359 5.945129 5.237359 4.419619 4.419619
+# Analyze autocorrelation in the series
+Acf(retail.ts, lag.max=12, 
+    main ="Retail Sales - Autocorrelations at Lags 1-12")
+
+# Analyze autocorrelation in the residuals of the linear model
+Acf(train.lm.trend.season$residuals, lag.max=12, 
+    main ="Retail Sales - Errors & Autocorrelation")
+
+# Fit an ARIMA model to the residuals of the linear model as a second layer
+train.res.arima <- Arima(train.lm.trend.season$residuals, order = c(1,0,0))
+train.res.arima.pred <- forecast(train.res.arima, h=stepsAhead)
+
+# Plot the new residuals
+plot(train.lm.trend.season$residuals, ylim = c(-7, 7), ylab = "Residuals", xlab = "Year", bty = "l", 
+     xaxt = "n", xlim = c(1996,2024), main ="Residuals after ARIMA Model") 
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+lines(train.res.arima.pred$fitted, lwd = 2, col = "blue") 
+
+# Analyze the autocorrelation in the residuals of the ARIMA model
+Acf(train.res.arima$residuals, lag.max=12, main ="Autocorrelation in Residuals of the ARIMA Model")
+
+# Final plot showing the residuals of the ARIMA model
+plot(train.res.arima$residuals, ylim = c(-7, 7), ylab = "Residuals", xlab = "Year", bty = "l", 
+     xaxt = "n", xlim = c(1996,2024), main ="") 
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+
+#lines(train.res.arima.pred$fitted, lwd = 2, col = "blue")
+
+Lab 13: Linear regression and evaluating predictability
+Chap 7 Linear Regression - Evaluating predictability .pptx
+
+
+
+
+
+
+
+
+
+
+Example used in this lab
+Cam Calderon
+2023-12-10
+R
+For a detailed description of ARIMA models see classic time series textbooks such as Chapter 4 in C. Chatfield. The Analysis of Time Series: An Introduction. Chapman & Hall/CRC, 6th edition, 2003
+An Autoregressive Integrated Moving Average Model (ARIMA) is one that directly models the autocorrelation of the series values as well as the autocorrelations of the forecast errors.
+To see the three components of an ARIMA model (AR, I, and MA), let’s start with the equations on the slides.
+An AR(p) model captures the autocorrelations of the series values at lags 1, 2,…, p. 
+Next, we add autocorrelation terms for the forecast errors (called “Moving Average”) up to lag q to get an ARMA(p, q) model
+AR and ARMA models can only be fitted to data without trend or seasonality. Therefore, an ARIMA model incorporates a preliminary step of differencing, which removes trend. This differencing operation is the “I” (Integrated) in ARIMA. The order of differencing, denoted by parameter d, indicates how many rounds of lag-1 differencing are performed: d = 0 means no differencing, which is suitable if the series lacks a trend; d = 1 means differencing the series once (at lag-1), which can remove a linear trend; d = 2 means differencing the series twice, which can remove a quadratic trend.
+Similarly, a seasonal-ARIMA model incorporates a step of differencing to remove seasonality and/or autocorrelation terms for capturing remaining seasonal effects. 6 6 See e.g., people.duke.edu/ ~rnau/seasarim.htm ARIMA models require the user to set the values of p, d, q and then the software estimates the ? and ? parameters. Shmueli, Galit; Lichtendahl Jr, Kenneth C.. Practical Time Series Forecasting with R: A Hands-On Guide [2nd Edition] (Practical Analytics) (p. 152). Axelrod Schnall Publishers. Kindle Edition.
+# Regression Models - Trend and Seasonality Analysis - 09-12-2023
+
+# Loading necessary libraries
+library(readxl)  # For reading Excel files
+# Uncomment below to install 'forecast' package if it's not already installed
+# install.packages("forecast") 
+library(forecast)  # For time series forecasting
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+# Loading the retail sales index data from the Office for National Statistics (ONS)
+# Make sure the file path is correct and accessible
+ONS_retail <- read_excel("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/rsi 2023.xlsx", skip = 10)
+# Uncomment below to view the loaded data
+# View(ONS_retail)
+
+# Converting the retail sales data into a time series object
+# Ensure that the start and end dates are correctly set
+retail.ts <- ts(ONS_retail$rsi, start = c(1996,1), end = c(2023, 10), freq = 12)
+
+# Plotting the initial time series for the retail sales index
+# Provides a visual understanding of the data trends and seasonality
+plot(retail.ts, xlab = "Year", ylab = "Retail Sales Index - J5AH", main = "Value of Retail Sales at Current Prices Non-SA")
+
+# Splitting the data into training and validation sets
+# This step is crucial for model validation and avoiding overfitting
+stepsAhead <- 12  # Number of steps to forecast
+nTrain <- length(retail.ts) - stepsAhead  # Training set length
+train.ts <- window(retail.ts, start = c(1996, 1), end = c(1996, nTrain))  # Training set
+valid.ts <- window(retail.ts, start = c(1996, nTrain + 1), end = c(1996, nTrain + stepsAhead))  # Validation set
+
+# Fitting a linear model to the training set with trend and seasonal components
+# A linear model is a good starting point for time series with trend and seasonality
+train.lm.trend.season <- tslm(train.ts ~ trend + I(trend^2) + season)
+summary(train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.9822  -1.0645   0.0657   1.3221  10.6067 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 3.962e+01  7.251e-01  54.649  < 2e-16 ***
+## trend       1.250e-01  7.034e-03  17.768  < 2e-16 ***
+## I(trend^2)  2.078e-04  2.109e-05   9.853  < 2e-16 ***
+## season2     1.139e+00  7.956e-01   1.432    0.153    
+## season3     3.248e+00  7.956e-01   4.083 5.67e-05 ***
+## season4     4.450e+00  7.956e-01   5.593 4.93e-08 ***
+## season5     5.321e+00  7.956e-01   6.688 1.06e-10 ***
+## season6     5.866e+00  7.956e-01   7.373 1.55e-12 ***
+## season7     6.718e+00  7.956e-01   8.444 1.23e-15 ***
+## season8     4.521e+00  7.957e-01   5.682 3.08e-08 ***
+## season9     4.476e+00  7.957e-01   5.625 4.16e-08 ***
+## season10    7.593e+00  7.957e-01   9.543  < 2e-16 ***
+## season11    1.431e+01  8.033e-01  17.808  < 2e-16 ***
+## season12    2.508e+01  8.033e-01  31.223  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.923 on 308 degrees of freedom
+## Multiple R-squared:  0.978,  Adjusted R-squared:  0.9771 
+## F-statistic:  1054 on 13 and 308 DF,  p-value: < 2.2e-16
+# Forecasting future values using the fitted linear model
+# This step helps in predicting future values based on historical data
+train.lm.t.s.pred <- forecast(train.lm.trend.season, h = stepsAhead) 
+
+# Plotting the forecast and comparing it with actual values
+# Visual comparison helps in assessing the model's performance
+plot(train.lm.t.s.pred, ylim = c(40, 130), ylab = "Retail Sales Index - J5AH", xlab = "Year", main ="Forecast vs Actual: Retail Sales Index", lty = 2) 
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+lines(train.lm.t.s.pred$fitted, lwd = 1, col = "blue")  # Adding fitted values to the plot
+lines(valid.ts)  # Adding validation set for comparison
+
+# Evaluating the accuracy of the forecast against the validation set
+# Accuracy metrics provide quantitative measures of the forecast's performance
+accuracy(train.lm.t.s.pred$mean, as.numeric(valid.ts))
+##                ME     RMSE      MAE      MPE     MAPE
+## Test set 5.237359 5.945129 5.237359 4.419619 4.419619
+# Analyzing autocorrelation in the series and in the residuals of the linear model
+# Autocorrelation checks help in identifying any lingering patterns in the data
+Acf(retail.ts, lag.max=12, main ="Retail Sales - Autocorrelations at Lags 1-12")
+
+Acf(train.lm.trend.season$residuals, lag.max=12, main ="Retail Sales - Errors & Autocorrelation")
+
+# Fitting an AR model to the residuals as a second layer of analysis
+# This step is to model any autocorrelation not captured by the linear model
+train.res.arima <- Arima(train.lm.trend.season$residuals, order = c(1,0,0))
+train.res.arima.pred <- forecast(train.res.arima, h=stepsAhead)
+
+# Plotting and analyzing the residuals and autocorrelation of the ARIMA model
+# Helps in understanding the model's effectiveness in handling autocorrelation
+plot(train.lm.trend.season$residuals, ylim = c(-7, 7), main ="Residuals after ARIMA Model", xlab = "Year", ylab = "Residuals")
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+lines(train.res.arima.pred$fitted, lwd = 2, col = "blue") 
+
+Acf(train.res.arima$residuals, lag.max=12, main ="Autocorrelation in Residuals of the ARIMA Model")
+
+# Using auto.arima to automatically find the best ARIMA model specification
+# This function helps in simplifying the model selection process
+train.arima <- auto.arima(train.ts)
+summary(train.arima)
+## Series: train.ts 
+## ARIMA(2,1,2)(0,1,2)[12] 
+## 
+## Coefficients:
+##           ar1     ar2      ma1      ma2     sma1    sma2
+##       -0.1844  0.4917  -0.0388  -0.8752  -0.8100  0.1608
+## s.e.   0.0919  0.0915   0.0657   0.0702   0.0793  0.0696
+## 
+## sigma^2 = 3.865:  log likelihood = -650.06
+## AIC=1314.12   AICc=1314.5   BIC=1340.26
+## 
+## Training set error measures:
+##                     ME     RMSE      MAE        MPE     MAPE      MASE
+## Training set 0.1157932 1.907105 1.117698 0.03713381 1.414958 0.3776832
+##                    ACF1
+## Training set 0.02814524
+# Forecasting and plotting using the auto.arima model
+# Provides a comparative view of the forecast vs actual values
+train.arima.pred <- forecast(train.arima, h=stepsAhead)
+plot(train.arima.pred, ylim = c(40, 130), main ="Forecast vs Actual: Retail Sales Index", xlab = "Year", ylab = "Retail Sales Index - J5AH")
+axis(1, at = seq(1996, 2024, 2), labels = format(seq(1996, 2024, 2))) 
+lines(train.arima.pred$fitted, lwd = 1, col = "blue") 
+lines(valid.ts)
+
+# Evaluating accuracy and analyzing autocorrelation in the residuals of the auto.arima model
+# Final step to assess the overall performance of the chosen ARIMA model
+accuracy(train.arima.pred$mean, as.numeric(valid.ts))
+##                ME     RMSE      MAE     MPE    MAPE
+## Test set 2.704173 3.481628 2.704173 2.37663 2.37663
+Acf(train.arima$residuals, lag.max=12, main ="Retail Sales - Errors & Autocorrelation")
+
+
+
+
+
+Lab 14: Regression and external information
+018 Chap 7 Linear Regression 2 - external info III.pptx
+
+
+
+Example used in this lab
+Cam Calderon
+2023-12-10
+External Information - GDP~Investment+Consumption
+1. Package Installation and Library Loading
+# Install 'forecast' package for time series analysis and forecasting techniques
+#install.packages("forecast")
+# Load the 'forecast' library to access its functions
+library(forecast)
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+# Install 'lubridate' package for easier date-time manipulation
+#install.packages("lubridate")
+# Load the 'lubridate' library for working with dates
+library(lubridate) 
+## 
+## Attaching package: 'lubridate'
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+# Load the 'readr' library for data import and processing
+library(readr)
+2. Reading and Preparing the Data
+# Read the GDP data from a CSV file
+gdp.df <- read_csv("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/gdp external info 3.csv")
+## Rows: 87 Columns: 4
+## ?? Column specification ????????????????????????????????????????????????????????
+## Delimiter: ","
+## chr (1): date
+## dbl (3): gdp, invest, consu
+## 
+## ? Use `spec()` to retrieve the full column specification for this data.
+## ? Specify the column types or set `show_col_types = FALSE` to quiet this message.
+# Convert the 'date' column to Date format for time series analysis
+gdp.df$Date <- as.Date(gdp.df$date, format = "%d/%m/%Y") 
+
+# Combine 'invest' and 'consu' columns as a data frame for modeling
+x <- as.data.frame(cbind(gdp.df$invest, gdp.df$consu))
+
+# Assign GDP values to 'y'
+y <- gdp.df$gdp 
+3. Setting Up Training and Validation Sets
+# Determine the number of total and validation observations
+nTotal <- length(y) 
+nValid <- 20 
+nTrain <- nTotal - nValid 
+
+# Split the data into training and validation sets
+xTrain <- x[1:nTrain,] 
+yTrain <- y[1:nTrain] 
+xValid <- x[(nTrain + 1):nTotal,] 
+yValid <- y[(nTrain + 1):nTotal] 
+4. Time Series Model and Forecasting
+# Convert the training set 'yTrain' into a time series object
+yTrain.ts <- ts(yTrain)
+
+# Create a formula for the linear model (including trends and predictors)
+formula <- as.formula(paste("yTrain.ts", paste(c("trend", colnames(xTrain)), collapse = "+"), sep = "~"))
+
+# Fit a time series linear model (tslm) to the training data
+gdp.tslm <- tslm(formula, data = xTrain, lambda = 1) 
+
+# Forecast GDP using the fitted model and validation predictors
+gdp.tslm.pred <- forecast(gdp.tslm, newdata = xValid) 
+
+# Plot the forecast with actual data for comparison
+plot(gdp.tslm.pred, ylim = c(300000, 590000), xlab = "quarters", ylab = "gdp")
+lines(y)
+
+# Set options for numeric display
+options(scipen = 999, digits=6)
+
+# Display a summary of the fitted time series linear model
+summary(gdp.tslm)
+## 
+## Call:
+## tslm(formula = formula, data = xTrain, lambda = 1)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -11899  -2788    686   2740   8312 
+## 
+## Coefficients:
+##             Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept) 35376.01   17571.13    2.01                0.048 *  
+## trend       -2949.99     213.33  -13.83 < 0.0000000000000002 ***
+## V1             -8.37       1.01   -8.31        0.00000000001 ***
+## V2           2438.62     111.14   21.94 < 0.0000000000000002 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4350 on 63 degrees of freedom
+## Multiple R-squared:  0.988,  Adjusted R-squared:  0.987 
+## F-statistic: 1.68e+03 on 3 and 63 DF,  p-value: <0.0000000000000002
+# Evaluate the accuracy of the forecast
+accuracy(yValid, gdp.tslm.pred$mean)
+##               ME    RMSE     MAE     MPE   MAPE     ACF1 Theil's U
+## Test set 7372.67 13573.3 10878.3 1.38981 2.1273 0.847148   2.55948
+
+
+
+Lab 15: Binary forecast and logistic regression
+Chap 8 Binary Forecast and Logistic Reg.pptx
+
+
+
+
+
+Example – Binary Regression
+Cam Calderon
+2023-12-12
+
+# Install and load necessary packages
+#install.packages("caret") # Uncomment this line to install the caret package if not already installed
+library(caret) # Load the caret package for advanced data analysis
+## Warning: package 'caret' was built under R version 4.3.2
+## Loading required package: ggplot2
+## Loading required package: lattice
+# Read and preprocess the data
+rain.df <- read.csv("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/MelbourneRainfall.csv") # Read the rainfall data from a CSV file
+rain.df$Date <- as.Date(rain.df$Date, format="%d/%m/%Y") # Convert the Date column to Date format
+rain.df$Rainy <- ifelse(rain.df$Rainfall > 0, 1, 0) # Create a binary Rainy variable: 1 if Rainfall > 0, otherwise 0
+
+# Create lagged and seasonal features
+nPeriods <- length(rain.df$Rainy) # Calculate the number of time periods in the dataset
+rain.df$Lag1 <- c(NA, rain.df$Rainfall[1:(nPeriods-1)]) # Create a Lag1 feature representing the previous day's rainfall
+rain.df$t <- seq(1, nPeriods, 1) # Create a time index t
+rain.df$Seasonal_sine = sin(2 * pi * rain.df$t / 365.25) # Create a seasonal sine feature
+rain.df$Seasonal_cosine = cos(2 * pi * rain.df$t / 365.25) # Create a seasonal cosine feature
+
+# Split the data into training and validation sets
+train.df <- rain.df[rain.df$Date <= as.Date("31/12/2009", format="%d/%m/%Y"),] # Define the training set as data up to the end of 2009
+train.df <- train.df[-1,] # Remove the first row to avoid NA in Lag1
+valid.df <- rain.df[rain.df$Date > as.Date("31/12/2009", format="%d/%m/%Y"),] # Define the validation set as data from 2010 onwards
+xvalid <- valid.df[, c(4,6,7)] # Select relevant columns for the validation set
+
+# Build and summarize the logistic regression model
+rainy.lr <- glm(Rainy ~ Lag1 + Seasonal_sine + Seasonal_cosine, data = train.df, family = "binomial") # Fit a logistic regression model
+summary(rainy.lr) # Display a summary of the model
+## 
+## Call:
+## glm(formula = Rainy ~ Lag1 + Seasonal_sine + Seasonal_cosine, 
+##     family = "binomial", data = train.df)
+## 
+## Coefficients:
+##                 Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)     -0.76888    0.03858 -19.927  < 2e-16 ***
+## Lag1             0.11187    0.01137   9.843  < 2e-16 ***
+## Seasonal_sine   -0.26885    0.05049  -5.324 1.01e-07 ***
+## Seasonal_cosine -0.37134    0.05067  -7.328 2.33e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 4751.8  on 3651  degrees of freedom
+## Residual deviance: 4533.7  on 3648  degrees of freedom
+## AIC: 4541.7
+## 
+## Number of Fisher Scoring iterations: 4
+# Make predictions and evaluate the model
+rainy.lr.pred <- predict(rainy.lr, xvalid, type = "response") # Make predictions on the validation set
+confusionMatrix(table(ifelse(rainy.lr$fitted > 0.5, 1, 0), train.df$Rainy)) # Confusion matrix for the training set
+## Confusion Matrix and Statistics
+## 
+##    
+##        0    1
+##   0 2251 1115
+##   1  104  182
+##                                           
+##                Accuracy : 0.6662          
+##                  95% CI : (0.6507, 0.6815)
+##     No Information Rate : 0.6449          
+##     P-Value [Acc > NIR] : 0.003566        
+##                                           
+##                   Kappa : 0.1166          
+##                                           
+##  Mcnemar's Test P-Value : < 2.2e-16       
+##                                           
+##             Sensitivity : 0.9558          
+##             Specificity : 0.1403          
+##          Pos Pred Value : 0.6687          
+##          Neg Pred Value : 0.6364          
+##              Prevalence : 0.6449          
+##          Detection Rate : 0.6164          
+##    Detection Prevalence : 0.9217          
+##       Balanced Accuracy : 0.5481          
+##                                           
+##        'Positive' Class : 0               
+## 
+confusionMatrix(table(ifelse(rainy.lr.pred > 0.5, 1, 0), valid.df$Rainy)) # Confusion matrix for the validation set
+## Confusion Matrix and Statistics
+## 
+##    
+##       0   1
+##   0 373 220
+##   1  21  55
+##                                           
+##                Accuracy : 0.6398          
+##                  95% CI : (0.6021, 0.6762)
+##     No Information Rate : 0.5889          
+##     P-Value [Acc > NIR] : 0.004043        
+##                                           
+##                   Kappa : 0.1647          
+##                                           
+##  Mcnemar's Test P-Value : < 2.2e-16       
+##                                           
+##             Sensitivity : 0.9467          
+##             Specificity : 0.2000          
+##          Pos Pred Value : 0.6290          
+##          Neg Pred Value : 0.7237          
+##              Prevalence : 0.5889          
+##          Detection Rate : 0.5575          
+##    Detection Prevalence : 0.8864          
+##       Balanced Accuracy : 0.5734          
+##                                           
+##        'Positive' Class : 0               
+## 
+
+Understanding the Confusion Matrix
+A confusion matrix is a table used to evaluate the performance of a classification model. It summarizes the number of correct and incorrect predictions, comparing the actual values with the model's predictions. It's particularly useful for understanding the performance of a model in binary classification tasks.
+
+The key terms in a confusion matrix are:
+
+True Positives (TP): Correctly predicted positive observations.
+True Negatives (TN): Correctly predicted negative observations.
+False Positives (FP): Incorrectly predicted positive observations (Type I error).
+False Negatives (FN): Incorrectly predicted negative observations (Type II error).
+
+Key Points to Discuss
+Accuracy: This is the proportion of total correct predictions (both true positives and true negatives) out of all predictions. It's a good measure when the classes are balanced but can be misleading when dealing with imbalanced classes.
+
+Sensitivity (Recall): This indicates how well the model is at predicting positive class. High sensitivity means the model is good at catching positives but might also have more false positives.
+
+Specificity: This is about identifying negatives. A high specificity means the model is good at avoiding false positives but might miss some positives (false negatives).
+
+Precision (Positive Predictive Value): This tells you how many of the positive predictions were actually positive.
+
+Negative Predictive Value: This is about the proportion of negatives that were correctly identified.
+
+Balance Between Sensitivity and Specificity: Ideally, a model should have a good balance between sensitivity and specificity. However, depending on the application, you might prefer one over the other (e.g., in medical diagnostics, high sensitivity might be preferred).
+
+Differences Between Training and Validation Results: It's essential to compare the performance on the training set and the validation set to check for overfitting. If a model performs significantly better on the training set than on the validation set, it might be overfitted.
+
+
+
+
+
+
+
+Lab 16: Neural Networks I
+Chap 9 Neural Networks I.pptx
+
+Cam Calderon
+2023-12-12
+NEURAL NETS
+# Load the 'readxl' library for reading Excel files
+library(readxl)
+
+# Read the GBP/USD exchange rate data from an Excel file
+GBPUSD <- read_excel("C:/Users/Cam/OneDrive - De Montfort University/a- BECS2002 2023-24 - PUBLIC/002 Datasets/GBBUSD.xlsx")
+
+# Convert the data to a time series object starting from Dec 2003 to Dec 2023 with monthly frequency
+GBPUSD.ts <- ts(GBPUSD$gbpusd, start = c(2003,12), end = c(2023, 12), freq = 12)
+
+# Load the 'forecast' library for time series forecasting
+library(forecast)
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+# Plot the time series data
+plot(GBPUSD.ts, xlab = "Year", ylab = "Exchange rate", main = "GBP/USD")
+
+# Set the number of steps to forecast ahead
+stepsAhead <- 12
+
+# Calculate the length of the training dataset
+nTrain <- length(GBPUSD.ts) - stepsAhead
+
+# Create a training time series dataset
+train.ts <- window(GBPUSD.ts, start = c(2003, 12), end = c(2003,nTrain+11))
+
+# Create a validation time series dataset
+valid.ts <- window(GBPUSD.ts, start = c(2003, nTrain + 12), end = c(2003, nTrain + stepsAhead+11))
+
+# Build a linear model with trend and seasonality for the training dataset
+train.lm.trend.season <- tslm(train.ts ~ trend + I(trend^2) + season)
+
+# Display summary statistics of the model
+summary(train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend + I(trend^2) + season)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.28243 -0.07537 -0.01590  0.06872  0.30900 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.937e+00  3.433e-02  56.428  < 2e-16 ***
+## trend       -3.660e-03  4.667e-04  -7.842 2.04e-13 ***
+## I(trend^2)   2.217e-06  1.965e-06   1.128    0.261    
+## season2     -1.862e-03  3.769e-02  -0.049    0.961    
+## season3     -7.891e-03  3.769e-02  -0.209    0.834    
+## season4      1.260e-02  3.769e-02   0.334    0.739    
+## season5      5.390e-03  3.769e-02   0.143    0.886    
+## season6      5.085e-03  3.769e-02   0.135    0.893    
+## season7      1.468e-02  3.770e-02   0.389    0.697    
+## season8      1.776e-03  3.770e-02   0.047    0.962    
+## season9     -3.495e-03  3.770e-02  -0.093    0.926    
+## season10     2.450e-03  3.770e-02   0.065    0.948    
+## season11     3.764e-03  3.771e-02   0.100    0.921    
+## season12    -6.615e-03  3.723e-02  -0.178    0.859    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1162 on 215 degrees of freedom
+## Multiple R-squared:  0.7743, Adjusted R-squared:  0.7606 
+## F-statistic: 56.73 on 13 and 215 DF,  p-value: < 2.2e-16
+# Build a simpler linear model with only trend for the training dataset
+train.lm.trend.season <- tslm(train.ts ~ trend)
+
+# Display summary statistics of the simpler model
+summary(train.lm.trend.season)
+## 
+## Call:
+## tslm(formula = train.ts ~ trend)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.29007 -0.07364 -0.01599  0.05980  0.30994 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.9193772  0.0150599  127.45   <2e-16 ***
+## trend       -0.0031494  0.0001135  -27.74   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1136 on 227 degrees of freedom
+## Multiple R-squared:  0.7722, Adjusted R-squared:  0.7712 
+## F-statistic: 769.5 on 1 and 227 DF,  p-value: < 2.2e-16
+# Predict future values using the simpler model
+train.lm.t.s.pred <- forecast(train.lm.trend.season, h = stepsAhead, level = 0)
+
+# Plot the forecasted values
+plot(train.lm.t.s.pred, ylim = c(1,2.2), ylab = "GBP/USD", xlab = "Year", bty = "l", xaxt = "n", xlim = c(2003,2025), main ="Quarterly value change", flty = 2)
+
+# Add custom year axis
+axis(1, at = seq(2003, 2025, 1), labels = format(seq(2003, 2025, 1)))
+
+# Add lines to the plot for the fitted and actual values
+lines(train.lm.t.s.pred$fitted, lwd = 2, col = "blue")
+lines(valid.ts)
+
+# Forecast the next 12 time points and calculate accuracy
+fcast <- forecast(train.lm.trend.season, h=12)
+accuracy(fcast$mean, valid.ts)
+##                 ME       RMSE       MAE     MPE    MAPE      ACF1 Theil's U
+## Test set 0.0675716 0.07356447 0.0675716 5.38607 5.38607 0.4909296  2.734794
+# Set a random seed for reproducibility
+set.seed(201)
+
+# Build a neural network model for time series forecasting
+GBPUSD.nnetar <- nnetar(train.ts, repeats = 20, p = 11, P = 1, size = 7)
+
+# Display summary of the neural network model
+summary(GBPUSD.nnetar$model[[1]])
+## a 12-7-1 network with 99 weights
+## options were - linear output units 
+##   b->h1  i1->h1  i2->h1  i3->h1  i4->h1  i5->h1  i6->h1  i7->h1  i8->h1  i9->h1 
+##   -0.20   -0.21   -1.60    0.43    0.53    0.31   -0.81   -0.86   -1.79   -0.34 
+## i10->h1 i11->h1 i12->h1 
+##    2.56    1.38    0.82 
+##   b->h2  i1->h2  i2->h2  i3->h2  i4->h2  i5->h2  i6->h2  i7->h2  i8->h2  i9->h2 
+##   -2.55   -2.86   -3.25    0.16   -4.35    5.22    3.62    1.75    0.42   -4.16 
+## i10->h2 i11->h2 i12->h2 
+##    0.31   -1.71    1.05 
+##   b->h3  i1->h3  i2->h3  i3->h3  i4->h3  i5->h3  i6->h3  i7->h3  i8->h3  i9->h3 
+##    0.39   -0.33    0.72   -0.95    0.67   -1.03   -0.41    0.02    0.38   -0.35 
+## i10->h3 i11->h3 i12->h3 
+##    0.48   -0.58   -0.71 
+##   b->h4  i1->h4  i2->h4  i3->h4  i4->h4  i5->h4  i6->h4  i7->h4  i8->h4  i9->h4 
+##    0.61    0.24    2.34   -0.75   -3.61    2.74    2.16   -3.91   -1.23    0.60 
+## i10->h4 i11->h4 i12->h4 
+##    0.65    1.43    2.42 
+##   b->h5  i1->h5  i2->h5  i3->h5  i4->h5  i5->h5  i6->h5  i7->h5  i8->h5  i9->h5 
+##   -0.51   -1.65   -1.27    0.91   -1.55    1.61    0.79    2.00    0.63   -0.91 
+## i10->h5 i11->h5 i12->h5 
+##   -1.46    0.40   -0.58 
+##   b->h6  i1->h6  i2->h6  i3->h6  i4->h6  i5->h6  i6->h6  i7->h6  i8->h6  i9->h6 
+##    0.28   -0.55    4.71   -1.40   -0.90   -0.95    2.54   -0.73    4.05    0.77 
+## i10->h6 i11->h6 i12->h6 
+##   -5.06   -3.66   -0.12 
+##   b->h7  i1->h7  i2->h7  i3->h7  i4->h7  i5->h7  i6->h7  i7->h7  i8->h7  i9->h7 
+##    3.25   -3.75    4.04   -0.45   -4.41   -1.99    2.81   -5.32    7.86   -6.64 
+## i10->h7 i11->h7 i12->h7 
+##    2.48   -4.27   -0.53 
+##  b->o h1->o h2->o h3->o h4->o h5->o h6->o h7->o 
+##  4.37 -2.82  0.67 -3.29 -0.38 -2.34 -1.36  0.72
+# Predict future values using the neural network model
+GBPUSD.nnetar.pred <- forecast(GBPUSD.nnetar, h = stepsAhead)
+
+# Calculate accuracy of the neural network predictions
+accuracy(GBPUSD.nnetar.pred, valid.ts)
+##                         ME       RMSE       MAE          MPE      MAPE
+## Training set  0.0001190531 0.02059234 0.0153757  -0.01928677  1.026308
+## Test set     -0.1579077603 0.19391569 0.1580158 -12.68557381 12.694344
+##                   MASE       ACF1 Theil's U
+## Training set 0.1371076 0.01308142        NA
+## Test set     1.4090524 0.76056006  7.320825
+# Plot the training time series with predictions
+plot(train.ts, ylim = c(1, 2.2), ylab = "GBP/USD", xlab = "Time", bty = "l", xaxt = "n", xlim = c(2003,2025), lty = 1)
+axis(1, at = seq(2003, 2025, 1), labels = format(seq(2003, 2025, 1)))
+lines(GBPUSD.nnetar.pred$fitted, lwd = 2, col = "blue")
+lines(GBPUSD.nnetar.pred$mean, lwd = 2, col = "blue", lty = 2)
+lines(valid.ts)
+
+# Forecast the next 12 time points using the neural network model
+fcast <- forecast(GBPUSD.nnetar, h=12)
+
+# Calculate accuracy of the neural network model's forecast
+accuracy(fcast$mean, valid.ts)
+##                  ME      RMSE       MAE       MPE     MAPE      ACF1 Theil's U
+## Test set -0.1579078 0.1939157 0.1580158 -12.68557 12.69434 0.7605601  7.320825
+# Reinitialize the random seed
+set.seed(201)
+
+# Rebuild the neural network model using the entire dataset
+GBPUSD.nnetar <- nnetar(GBPUSD.ts, repeats = 20, p = 11, P = 1, size = 7)
+
+# Display summary of the neural network model
+summary(GBPUSD.nnetar$model[[1]])
+## a 12-7-1 network with 99 weights
+## options were - linear output units 
+##   b->h1  i1->h1  i2->h1  i3->h1  i4->h1  i5->h1  i6->h1  i7->h1  i8->h1  i9->h1 
+##   -2.20   -0.55   -2.93    2.61   -0.83    2.81    0.94    0.96   -4.78    1.08 
+## i10->h1 i11->h1 i12->h1 
+##   -0.49    0.81    0.74 
+##   b->h2  i1->h2  i2->h2  i3->h2  i4->h2  i5->h2  i6->h2  i7->h2  i8->h2  i9->h2 
+##    0.34   -1.04    2.02   -1.51   -2.22   -3.26   -1.41    1.46    2.97   -1.69 
+## i10->h2 i11->h2 i12->h2 
+##   -4.14   -3.26    2.62 
+##   b->h3  i1->h3  i2->h3  i3->h3  i4->h3  i5->h3  i6->h3  i7->h3  i8->h3  i9->h3 
+##    0.23   -0.93    1.62   -2.05    2.24   -2.08   -0.01   -0.17   -0.58    0.70 
+## i10->h3 i11->h3 i12->h3 
+##    2.29   -1.60   -0.03 
+##   b->h4  i1->h4  i2->h4  i3->h4  i4->h4  i5->h4  i6->h4  i7->h4  i8->h4  i9->h4 
+##   -1.46   -1.41    0.88   -1.37    3.24    0.77    2.16   -0.62   -1.63   -0.22 
+## i10->h4 i11->h4 i12->h4 
+##    3.79   -3.03    6.84 
+##   b->h5  i1->h5  i2->h5  i3->h5  i4->h5  i5->h5  i6->h5  i7->h5  i8->h5  i9->h5 
+##   -0.04   -0.39   -1.46    2.05   -2.50    1.99   -0.12    0.03    1.47   -1.07 
+## i10->h5 i11->h5 i12->h5 
+##   -2.61    1.94   -0.02 
+##   b->h6  i1->h6  i2->h6  i3->h6  i4->h6  i5->h6  i6->h6  i7->h6  i8->h6  i9->h6 
+##    2.15    0.48    1.11   -1.17   -2.56    1.90   -5.83    3.64    2.07   -4.07 
+## i10->h6 i11->h6 i12->h6 
+##    0.23    2.87   -3.71 
+##   b->h7  i1->h7  i2->h7  i3->h7  i4->h7  i5->h7  i6->h7  i7->h7  i8->h7  i9->h7 
+##    1.44   -2.31    2.05   -0.34   -4.69   -0.22   -5.12    2.20    5.54   -6.61 
+## i10->h7 i11->h7 i12->h7 
+##   -1.72   -3.78    5.35 
+##  b->o h1->o h2->o h3->o h4->o h5->o h6->o h7->o 
+##  4.21 -1.12 -1.14 -3.19 -0.64 -2.77 -1.06  1.07
+# Forecast the next 60 time points using the neural network model
+GBPUSD.nnetar.pred <- forecast(GBPUSD.nnetar, h = 60)
+
+# Plot the entire time series with the neural network model's predictions
+plot(GBPUSD.ts, ylim = c(1, 2.2), ylab = "GBP/USD (%)", xlab = "Time", bty = "l", xaxt = "n", xlim = c(2003,2030), lty = 1)
+axis(1, at = seq(2003, 2030, 1), labels = format(seq(2003, 2030, 1)))
+lines(GBPUSD.nnetar.pred$fitted, lwd = 2, col = "blue")
+lines(GBPUSD.nnetar.pred$mean, lwd = 2, col = "blue", lty = 2)
+
+# Forecast the next 60 time points using the neural network model and calculate accuracy
+fcast <- forecast(GBPUSD.nnetar, h=60)
+accuracy(GBPUSD.nnetar.pred$fitted, GBPUSD.ts)
+##                     ME      RMSE        MAE         MPE     MAPE         ACF1
+## Test set -7.349151e-06 0.0210837 0.01593545 -0.02976382 1.082309 -0.006698643
+##          Theil's U
+## Test set  0.560275
+
+
+
+
+Lab 17: neural Networks II 
+
+Chap 9 Neural Networks II.pptx (there is a R script on the notes in the slides)
+
+This is the last session about analytics and Q&A session about your projects. 
+
+
+PRACTICE LABS
+
+Lab 13 – models with trend and seasonality
+
+As in the previous labs, this week, we will cover a practical example linked to the immediate last lecture. In my youtube channel, I produced one example using European GDP; for future reference, you can review https://youtu.be/fjizOd0Uv6k. 
+
+ACTIVITY ONE – Retail Sales
+Task1. The retail sector is without doubts one of the most affected sectors during the pandemic; your first task is to read the latest report from ONS, https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/november2020
+ 
+ 
+Task 2. Go to the folder ‘R Code’ in bb and download and open the file ‘Models with trend and seasonality. I wrote this R code for the excel file ‘ONS retail.xls’, the excel file is available in the folder ‘Data sets’ in bb, you shall also download the excel file and place the file any folder such as ‘Documents’; note we created a default working directory for econ2545 on a previous lab.
+
+
+
+
+Run the entire code and check line by line to understand what you are doing, if you have questions about any line in the code, ask your lecturer during the session.
+
+Task 2. The excel file Retails sales is outdated, and it would be fantastic to analyse the retail sales as this sector is very important for the UK economy. You must update the excel file using the ONS website or Refinitiv. Section 7, on the ONS link above, contains data for non seasonally adjusted retail sales, which could be better as we would like to forecast with seasonality.
+
+Task 3. Know that you know how to adapt the R code to new data, its time to use the dataset you will use for your first assessment (presentation 40%). Adapt the code and ask questions to your lecturer if needed.  
+
+
+
+Lab 15- Foreign Exchange Rate Market
+
+Activity 1. FX Top of Book
+Task 1. In the Eikon Toolbar, search <TOB>.
+Task 2. Press the icon settings in order to add new profiles (groups of currencies) or different currencies into a group.
+
+
+Activity 2. Currency Performance/ Value Tracker
+Using the Currency Performance/ Value Tracker application, users can compare how a specific currency performed historically and currently. While the 3 months implied volatility implies the market’s sentiments on the currency pair currently, the 3 months realised volatility is the traded volatility 3 months ago. Hence, comparing the two figures could be beneficial to an options buyer as to whether they should buy or sell an option right now.
+
+Task 1. In the Eikon Toolbar, search <FXPT>
+
+
+
+For example, Here, the 3M implied volatility for USDCAD is 6.75 while the 3M realised volatility is 6.57. Hence the currency pair USDCAD is currently more volatile as compared to 3M ago.
+
+Have a look at the current volatiliries, what is the most volatile currency pair using both implied and realised volatility?
+
+ACTIVITY 3. FX Polls / FX forecast
+Task1. Type FX Polls or FX Forecast in the application Search box located on the top left of your screen.
+
+
+You can also access FX Polls by going to Refinitiv Icon next to the search box and Click  > Markets > FX Overview Guide, and clicking the FX Polls link available in the MARKET TOOLS area.
+
+Task 2. Choose one of the forecast contributors and check the box ‘Show Historical Poll Data’. In your opinion, what is the best forecaster for EURUSD?
+
+
+Activity 4. Calculating GBPUSD autocorrelation
+
+Task 1. Get the time series in R. 
+
+#### API
+#install.packages("devtools")
+library(devtools)
+#install_github("ahmedmohamedali/eikonapir", force=TRUE)
+library(eikonapir)
+eikonapir::set_proxy_port(9000L)
+eikonapir::set_app_id('your Refinitiv Key - APPKEY')
+
+gbp <- get_timeseries("GBP=",
+                      start_date = "2013-01-01T01:00:00", 
+                      end_date= paste0(Sys.Date(), "T01:00:00"), 
+                      raw_output = FALSE, interval = "monthly")
+
+str(gbp)
+gbp.n <- as.numeric(gbp$'CLOSE')
+gbp.df <-as.data.frame(gbp.n)
+View(gbp.df)
+
+
+Task 2.    Declare the dataset  as a time series and run an ACF plot to check the autocorrelation.
+
+#install.packages("forecast") 
+library(forecast)
+#install.packages("zoo")
+library(zoo)
+
+# set as a time series and plot the data
+gbp.ts <- ts(gbp.df, start = c(2013,1), end = c(2020, 12), freq = 12)
+plot(gbp.ts)
+
+#Autocorrelation ACF
+Acf(gbp.ts, lag.max = 24, main = "ACF GBPUSD")
+
+
+
+
+Task 3. Generate partitions of the data 
+
+
+stepsAhead <- 12
+nTrain <- length(gbp.ts) - stepsAhead
+train.ts <- window(gbp.ts, start = c(2013, 1), end = c(2013,nTrain)) 
+valid.ts <- window(gbp.ts, start = c(2013, nTrain + 1), end = c(2013, nTrain + stepsAhead))
+
+
+Task 4. Estimate the training period using linear regression
+
+# summary of output from fitting additive seasonality 
+# note: cuadratic trend and seasonality removed as no significant
+train.lm.trend.season <- tslm(train.ts ~ trend )
+summary (train.lm.trend.season)
+
+Task 5. Is there autocorrelation in the errors?
+
+# is there autocorrelation?
+Acf(train.lm.trend.season$residuals, lag.max = 24, main = "Linear regression errors - ACF GBPUSD")
+
+
+
+Task 6. Fit an AR(1) model with the errors to improve.
+
+train.res.arima <- Arima(train.lm.trend.season$residuals, order = c(1,0,0))
+summary(train.res.arima)
+
+Acf(train.res.arima$residuals, lag.max = 24, main = "ACF GBPUSD")
+
+
+It’s better, but we can carry on using AR (2) to improve.
+
+
+
+Lab 16 – Money Market and Bond Yield Polls <MBYP>; Why inverted yield curves are important?
+Activity 1. Find in Refinitiv news the concepts of inverted yield curves, and operation’ twist’. 
+Activity 2. Using linear regression Forecast the short run yields and compare your forecast with the best contributors forecast.
+
+Task 1. Use the command <MBYP> to open a window with Money Market and Bond Yield polls. Choose as country ‘United States’, and in poll type select ‘Bond Yields’.
+
+
+Task 2. Select two specific contributors; a line representing their forecast could be added by clicking the box next to their name. Try to choose two good contributors by visualising their past forecasting performance. 
+
+
+Task 3. If you have technical problems with Mac and Refinitiv, you can download the file ‘yields.xlsx’ from bb folder datasets. Click on the excel icon and download 5-years data for your selected contributors. You must clean the file as in the picture below.  
+
+
+
+
+
+
+
+
+
+Task 4. Find a better forecast than the ones performed by the contributors. Following your forecast, recommend whether operation’ twist’ will be needed in the US.
+
+#install.packages("forecast")
+library(forecast)
+#install.packages("lubridate")
+library(lubridate) 
+library(readxl)
+library(zoo)
+yields <- read_excel("~/econ2545/datasets/yields.xlsx", 
+                     skip = 6)
+#View(yields)
+
+yields$date <- as.Date(yields$date, format = "%d/%m/%Y") 
+
+x <- as.data.frame(cbind(c(NA,head(yields$y2actual,-1)), yields$y2bbva))
+x
+#View(x)
+y <- yields$y2actual
+#View(y)
+
+nTotal <- length(y)-4
+nValid <- 4 
+nTrain <- nTotal - nValid 
+xTrain <- x[1:nTrain,] 
+yTrain <- y[1:nTrain] 
+#View(xTrain)
+xValid <- x[(nTrain + 1):nTotal,] 
+yValid <- y[(nTrain + 1):nTotal] 
+
+yTrain.ts <- ts(yTrain)
+(formula <- as.formula(paste("yTrain.ts", paste(c("", colnames(xTrain)), collapse = "+"), sep = "~")))
+
+yields.tslm <- tslm(formula, data = xTrain) 
+yields.tslm.pred <- forecast(yields.tslm, newdata = xValid) 
+plot(y, ylim = c(-1, 6), xlab = "Quarters", ylab = "Quarterly Yields", xaxt="n")
+axis(1, at = seq(1, 20, 4), labels = format(seq(2017, 2021, 1))) 
+
+
+options(scipen = 999, digits=6)
+summary(yields.tslm)
+
+#lines(y)
+lines(yields$y2aeconomics, col="blue")
+lines(yields$y2amundi, col="orange")
+lines(yields$y2bbva, col="red")
+lines(yields.tslm.pred$mean, col="black", type = "l", lwd=5)
+lines(yields.tslm.pred$fitted)
+xValid2 <- x[(nTrain + 1):(nTotal+4),]
+yields.tslm2 <- tslm(formula, data = xTrain, lambda = 1) 
+yields.tslm.pred2 <- forecast(yields.tslm2, newdata = xValid2) 
+lines(yields.tslm.pred2$mean)
+xValid2 
+
+
+
+
+
+
+
+
+Lab 18 – Neural Networks
+
+Forecasting Australian Wine Sales: The figure shows time plots of monthly sales of six types of Australian wines (red, rose, sweet white, dry white, sparkling, and fortified) for
+1980-1994. Data available in AustralianWines.xls. The units are thousands of liters. 
+
+
+
+You are hired to obtain short-term forecasts (2-3 months ahead) for each of the six series, and this task will be repeated every month.
+
+1. Would you consider neural networks for this task? Explain why.
+
+No: these series are not high frequency; they exhibit seasonality and/or trend, which should be possible to model with linear regression and/or smoothing.
+
+
+
+
+
+2. Use neural networks to forecast fortified wine sales, as follows:
+
+? Partition the data using the period until December 1993 as the training period.
+? Run a neural network using R’s nnetar with 11 non-seasonal lags (i.e., p = 11). Leave all other arguments at their default
+
+dat = read.csv("AustralianWines.csv") require(forecast)
+require(zoo) require(caret)
+# Just fortified wine dat <- dat[,1:2]
+# Create ts object
+dat.ts <- ts(dat$Fortified, start = c(1980,1), end = c(1994,12), freq = 12)
+# Slice the sets
+train.ts <- window(dat.ts, start = c(1980,1), end = c(1993,12)) valid.ts <- window(dat.ts, start = c(1994,1), end = c(1994,12))
+# Train the neural net
+train.nnetar <- nnetar(train.ts,p = 11) summary(train.nnetar$model[[1]]) train.ts.pred <- forecast(train.nnetar,h = 12) accuracy(train.ts.pred, valid.ts)
+
+(a) Create a time plot for the actual and forecasted series over the training period. Create also a time plot of the forecast errors for the training period. Interpret what you see in the plots.
+# plot results
+plot(train.ts, ylim = c(-200,5500), ylab = "Fortified", xlab = "Time", bty = "l", xlim = c(1980,1994), lty = 1)
+lines(train.ts.pred$fitted, lwd = 1, col = "blue") lines(train.ts.pred$residuals, col = "red") lines(train.ts.pred$mean, lwd = 1, col = "blue", lty = 2) lines(valid.ts)
+
+The fit is too good (indicating overfitting)
+
+
+(b) Use the neural net to forecast sales in January and February 1994.
+Jan 1994: 1,426.92
+Feb 1994: 1,254.17
+
+3. Compare your neural net to an exponential smoothing model used to forecast fortified wine sales.
+(a) Use R’s ets function to automatically select and fit an exponential smoothing model to the training period until December 1993. Which model did ets fit?
+The model is M,A,M: Multiplicative Error, Additive trend, Multiplicative Seasonality with alpha =
+0.055 and beta and gamma set to near zero:
+
+train.ets <- ets(train.ts)
+> summary(train.ets) ETS(M,A,M)
+Call:
+ets(y = train.ts) Smoothing parameters: alpha = 0.0555
+beta = 9e-04 gamma = 1e-04 Initial states:
+l = 4040.0811
+b = -6.7983
+s=1.1316 1.0399 0.8877 0.9505 1.2722 1.3862 1.1463 1.1097 0.9345 0.8513 0.6996 0.5903
+sigma: 0.0859 AIC AICc BIC
+2755.038 2759.118 2808.145
+Training set error measures:
+ME RMSE MAE MPE MAPE MASE ACF1
+Training set -25.32466 287.8687 224.6507 -1.317643 7.229271 0.8073515 0.05168201
+
+(b) Use this exponential smoothing model to forecast sales in January and February 1994.
+train.ets.pred <- forecast(train.ets, h = 2) Jan 1994: 1289.829164
+Feb 1994: 1521.475001
+
+(c) How does this setting compare to the lagged-series setting in terms of predictive performance?
+accuracy(train.ts.pred, valid.ts)
+accuracy(train.ets.pred, valid.ts)
+
+Accuracy of NN Model:
+ME RMSE MAE MPE MAPE MASE ACF1 Theil's U
+Training set -0.18756 77.39955 59.99268 -0.22975 2.174161 0.215602 -0.07679 NA
+Test set 200.3241 348.627 312.5818 7.559032 14.33551 1.123359 -0.25296 0.812298
+
+Accuracy of ETS Model:
+ME RMSE MAE MPE MAPE MASE ACF1 Theil's U
+Training set -25.3247 287.8687 224.6507 -1.31764 7.229271 0.807351 0.051682 NA
+Test set 125.5691 328.9246 256.394 4.443793 10.85886 0.921431 -0.01106 0.714046
+
+
+
+
+Supplementary Lab 1
+Refinitiv training
+
+Click on the question mark icon.
+
+
+Then click on training.
+
+
+
+
+Click on ‘Live Training’.
+
+Schedule one of the courses at Refinitiv.
+
+
+
+
+
+
+
+
+
+Supplementary Lab – Social, Macro Overview and Signal
+Activity 1 - <social>
+Social Media Monitor The Social Media Monitor uses text mining to view trends in the markets from a social perspective over the last few days. Eikon users can choose different instruments by searching in the in-app search bar and selecting a sentiment line or bar chart to visually view a particular company’s positivity or negativity in the social media network. “social” would give you an idea about the market sentiment regarding a specific company and help predict possible stock price movements.
+
+1. In the Eikon Toolbar, search to open the social monitor application 
+2. Select the different instruments and click on the symbol to display it on the sentiment line or bar chart. 
+3. The leftmost column would display the latest tweets and posts about the company of interest.
+
+
+
+
+
+Activity 2 – Macroeconomic Overview
+
+The economic overview page allows to download historical data for each country. 
+
+1. Look at the ‘Economic Overview’ of Mexico.
+2. Review GDP per capita constant prices
+3. Select the maximum number of years for the historical data.
+
+
+
+4. Review and follow the training video about ‘Macroeconomic Overview’. Training videos can be found in the icon “?” at the top of your Refinitiv workspace.
+ 
+
+
+Supplementary Activity 3 - <signal>
+Signal monitors a list of securities real-time against one or more technical criteria. It immediately alerts you in the signal panel when a security meets one or more of the conditions. In the Eikon toolbar, search to open the application.
+
+
+
+
+1. Click the icon next to the “Add symbol or portfolio” option to customise which Portfolios, Chain RICs or Individual RICs you are interested in. 
+2. Click the icon next to the “Add signal” option to customise the type of signal you want to monitor.
+
+
+
+
+
+Supplementary Activity
+1. Questions about students’ projects.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Supplementary Lab – Alternative investing and CBA
+ACTIVITY 1 – Alternative investing
+There are alternative investments to stocks, bonds and forex (foreign exchange rate market). One example is yieldstreet.com, a company that provides access to alternative investments previously reserved only for institutions and the ultra-wealthy. This company generates financial products more inclusive by creating a modern investment portfolio. We will review their site for educative purposes only as some of their projects and investments are a good example of cost-benefit analysis in the real life.
+Go to https://www.yieldstreet.com/
+
+Click on the label ‘product’ and then ‘Real estate investing’.
+
+
+Click on ‘view open offerings’ and then 
+
+
+
+Click on ‘Dallas-Fort Worth Multi-Family Equity I’, read to the proposal and identify the costs and benefits from the investor perspective.
+
+Create or use a gmail account and click on ‘log in’
+
+
+
+
+After log in, read the investment memorandum for more details about the investment.
+
+
+
+
+ACTIVITY 2 – Cost Benefit questions
+1. Requiring bicycle riders to wear helmets, Boardman et al.(2014), CH1, exercise 1, p23 
+2. Building a public swimming pool, Boardman et al.(2014), CH1, exercise 3, p24
+3. VHS vs Beatamax, , Boardman et al.(2014), CH1, exercise 1, p48
+
+
+1. Requiring bicycle riders to wear helmets, Boardman et al.(2014), CH1, exercise 1, p23 
+
+Imagine that you live in a city that currently does not require bicycle riders to wear helmets. Furthermore, imagine that you enjoy riding your bicycle without wearing a helmet.
+a. From your perspective, what are the major costs and benefits of a proposed city ordinance that would require all bicycle riders to wear helmets?
+	b. What are the categories of costs and benefits from society’s perspective?
+
+	1.a. The most significant categories of costs to you as an individual are probably:  the purchase price of a helmet, the reduced pleasure of riding your bicycle while wearing a helmet, diminished appearance when you take the helmet off (bad hair), and the inconvenience of keeping the helmet available. The most significant categories of benefits are probably:  reduced risk of serious head injury (morbidity) and reduced risk of death (mortality).
+		
+	1.b. There are a number of categories of costs and benefits that do not affect you (directly or are insignificant), but which are important in aggregate. These are:
+* program enforcement (a cost)
+* reduced health care costs (a benefit), although this may not be as high as one might expect if bicyclists ride more aggressively because they feel safer (this is called off-setting behaviour)
+* increased pollution, due to cyclists switching to cars (a cost)
+
+      A social cost-benefit analysis would take account of these costs and benefits in addition to your costs.
+
+
+2. Building a public swimming pool, Boardman et al.(2014), CH1, exercise 3, p24
+(Instructor-provided spreadsheet recommended) Your county is considering building a public swimming pool. Analysts have estimated the present values of the following effects over the expected useful life of the pool:
+
+					    	     		PV
+						      (million dollars)		
+		
+	State grant:						     2.2	
+	Construction and maintenance costs:		   12.5			
+	Personnel costs:					     8.2		
+	Revenue from county residents:			     8.6			
+	Revenue from non-residents:		    	     2.2		
+	Use value benefit to county residents:		   16.6			
+            Use value benefit to non-residents:	    		     3.1		
+	Scrap value:					     	     0.8	
+
+The state grant is only available for this purpose. Also, the construction and maintenance will have to be done by an out-of-county firm.
+a. Assuming national-level standing, what are the social net benefits of the project?
+b. Assuming county-level standing, what are the social net benefits of the project? 
+c. How would a guardian in the county budget office calculate net benefits?
+	d. How would a spender in the county recreation department calculate net benefits?
+
+      3. The spreadsheet available from the instructor web page facilitates the following estimates of net benefits (millions of dollars):
+
+Social CBASocial CBACounty CountyNational StandingCounty StandingGuardiansSpenders-0.21.1-6.98.9
+      We recommend that instructors delete the cell entries under these columns and distribute the spreadsheet to students. As this is a very simple use of a spreadsheet, it makes a good introduction for students who have not used them before.
+      
+As an alternative, instructors can distribute the spreadsheet as provided and give the students a different set of costs and benefits.
+
+
+
+
+
+
+3. VHS vs Beatamax, , Boardman et al.(2014), CH1, exercise 1, p48
+Many experts claim that, although VHS came to dominate the video recorder market, Betamax was a superior technology. Assume that these experts are correct, so that, all other things equal, a world in which all video recorders were Betamax technology would be Pareto superior to a world in which all video recorders were VHS technology. Yet it seems implausible that a policy that forced a switch in technologies would be even potentially Pareto improving Explain.
+
+	1. Obviously, the switch itself from Betamax to VHS would be costly: the stocks of existing VHS tapes and equipment would lose their value and equipment for producing them would have to be retired earlier than would otherwise be the case. As the replacement would almost certainly occur gradually, there would be a transition period during which positive “network” externalities, the benefits from having compatible systems, would be reduced.
+	
+	More generally, it is important to keep in mind the distinction between Pareto efficient outcomes and Pareto efficient moves. If everyone were at least as well off, and some were better off, in some alternative to the status quo, then the alternative would be considered Pareto superior. Yet, if the move to the alternative were sufficiently costly, then it would not be Pareto improving. Only if the move were costless, the common assumption in the comparison of alternative equilibria in economic theory, would the Pareto efficiency of outcomes correspond to the Pareto efficiency of moves. In the real world, moves are rarely costless so that policy alternatives are best thought of as moves rather then as outcomes. 
+
+
+
+Supplementary Lab - Willingness to pay
+2. Let’s explore the concept of willingness to pay with a thought experiment. Imagine a specific sporting, entertainment, or cultural event that you would very much like to attend-perhaps a World Cup match, the seventh game of the World Series, a Garth Brooks concert, or Kathleen Battle performance.
+	a. What is the most you would be willing to pay for a ticket to the event?
+b. Imagine that you won a ticket to the event in a lottery. What is the minimum amount of money that you would be willing to accept to give up the ticket?
+c. Imagine that you had an income 50 percent higher than it is now, but that you didn’t win a ticket to the event. What is the most you would be willing to pay for a ticket?
+d. Do you know anyone who would sufficiently dislike the event that they would not use a free ticket unless they were paid to do so?
+	e. Do your answers suggest any possible generalizations about willingness to pay?
+   
+	2.a. Students’ answers will vary (they should be > or = 0).
+
+	2.b. Most people would be willing to pay less to obtain something than the amount of compensation they would require to give the same thing up willingly if they already owned it. This difference has been frequently observed and economists refer to it as “the difference between willingness to pay and willingness to accept.” Though some of the difference may be attributable to the lower wealth level of the individual in the first case than in the second case, it almost certainly also reflects the way people perceive gains and losses.  
+
+	2.c. Willingness to pay depends on people’s wealth. If a person’s income rises, then the person is wealthier and is likely to be willing to pay more for goods such as tickets to recreational events. (Recreational events are normal goods.)
+
+	2.d. Different people can have very different willingness-to-pay amounts for the same good. Indeed, it is quite likely that some people would have a negative willingness to pay for a recreational event that others would be willing to pay large positive amounts to attend -- tastes differ. In CBA, it is important to keep in mind that a project effect may simultaneously be viewed by some as a benefit and by others as a cost.
+
+ 3. How closely do government expenditures measure opportunity cost for each of the following program inputs?
+	a. Time of jurors in a criminal justice program that requires more trials.
+b. Land to be used for a nuclear waste storage facility, which is owned by the government and located on a military base.
+c. Labor for a reforestation program in a small rural community with high unemployment.
+d. Labor of current government employees who are required to administer a new program.
+	e. Concrete that was previously poured as part of a bridge foundation.
+   
+	3.a. Most jurisdictions pay jurors a small per diem and reimburse them for commuting and meal expenses. For most jurors, these payments fall short of the opportunity costs of their time. For employed workers, a more reasonable estimate of the opportunity cost of their time would be their wage rates. Note that, from the social perspective, it makes no difference whether or not workers continue to receive their wages while on jury duty. Society is forgoing their labor, which the market values at their wage rates. For those not employed, the opportunity cost is the value they place on their forgone leisure. 
+
+	3.b. Assume that the government does not charge itself for the use of land that it owns. As long as the land could be used for something other than a nuclear waste facility, the government’s accounting would underestimate the opportunity cost of the land. If the land could be sold to private developers, for example, then its market price would be a better reflection of its opportunity cost. If the fact that the land is on a military base precludes its sale to private developers, then the opportunity cost of the land would depend on the other uses to which it could be put by the government.
+
+	3.c. Government expenditures on wages would overestimate the opportunity cost if the workers would have otherwise been unemployed. The opportunity cost of the workers is the value they place on the leisure time that they are giving up. 
+ 
+	3.d. As the employees are already on the government payroll, the diversion of their time to the program would not involve additional expenditures. The opportunity cost of their time depends on how they would have been using it in the absence of the program. If the government efficiently used labor, then the opportunity cost of their time would be measured by their wage rates. If the government inefficiently used labor, so that the value of output given up per hour diverted is less than their wage rate, then the opportunity cost would be less than the wage rate.  
+
+	3.e. Once it is in place, the concrete has zero opportunity cost if it cannot be salvaged and reused, regardless of whether or not the government has yet paid the bill for it. This is the classic case of a “sunk cost.” Indeed, imagine that if the bridge project were to be cancelled. Then, for safety reasons, the concrete would have to be removed, requiring the use labor and equipment. Consequently, with respect to the bridge project, the opportunity cost of the concrete is negative -- not having to remove it is a benefit of continuing the project! 
+
+4. Three mutually exclusive projects are being considered for a remote river valley: Project R, a recreational facility, has estimated benefits of $10 million and costs of $8 million; project F, a forest preserve with some recreational facilities, has estimated benefits of $13 million and costs of $10 million; project W, a wilderness area with restricted public access, has estimated benefits of $5 million and costs of $1 million. In addition, a road could be built for a cost of $4 million that would increase the benefits of project R by $8 million, increase the benefits of project F by $5 million, and reduce the benefits of project W by $1 million. Even in the absence of any of the other projects, the road has estimated benefits of $2 million.
+a. Calculate the benefit-cost ratio and net benefits for each possible alternative to the status quo. Note that there are seven possible alternatives to the status quo: R, F, and W, both with and without the road, and the road alone.
+b. If only one of the seven alternatives can be selected, which should be selected according to the CBA decision rule?
+
+	4.a. The seven possible alternatives to the status quo have the following costs (millions), benefits (millions), benefit/cost ratios, and net benefits (millions):
+
+Alternative                  				B    	C     B/C Ratio   	NB 
+
+Project R without road      	    	$10	$8        1.25   		$2 
+Project R with road          		  18    	12        1.50    	 	  6
+Project F without road       		  13  	10        1.30    	  	  3 
+Project F with road          		  18  	14        1.38   	  	  4  
+Project W without road        	 	    5   	  1        5.00   	  	  4
+Project W with road           	 	    4     	  5        0.80  	  	 -1
+Road alone                    		    2   	  4        0.50   	  	 -2 
+
+	4.b. Even though Project W without the road has the largest benefit/cost ratio, Project R with the road offers the largest net benefits among the possible projects and therefore would be selected by the CBA decision rule.
+
+
+Supplementary Lab – R Shiny
+What is a Shiny App? R Shiny is a web application framework for R that allows you to create interactive web apps for data visualization and analysis without needing to know HTML, CSS, or JavaScript. It enables users to turn their R code into interactive dashboards, reports, or tools.
+
+Let’s review an example. The idea is to look at what the package Shiny can do rather than the details of the coding. Go to the public directory for BECS 2002, open the folder R Shiny Tutorial, there is a subfolder ’01-01’, you will find there the R project ’01-01’ which is an example of what R shiny does. Double click to open the R project ’01-01’ in RStudio.
+
+
+
+Double-click on server.R, ui.R and data-processing.R . Check the created tabs and install packages if necessary, look an example below, I installed the package shinycustomloader.
+
+
+Go to the tab server.R and click on ‘Run App’.
+
+
+Select any continent, country, indicator and click on update chart. This is an interactive web application! And it has been built entirely with R.
+
+
+Concepts:
+- Shiny is a self contained web framework for building interactive web apps with R code.
+- An individual Shiny app in an interactive web app viewed in a web browser.
+- Shiny runs the R code on the ‘server’ not in the web browser.
+- You can deploy apps to the fully hosted shinyapps.io or self host using Shiny Server.
+
+
+
+
+ 
+
+ 
+
+1  
+
+1  
+
+ 
+
+1  
+

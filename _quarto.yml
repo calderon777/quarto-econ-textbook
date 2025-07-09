@@ -1,0 +1,24 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Econometrics and Analytics"
+  author: "Camilo Calderon"
+  chapters:
+    - index.qmd
+    - part: "Labs"
+      chapters:
+        - labs/part001.qmd
+        - labs/part002.qmd
+        - labs/part003.qmd
+        - labs/part004.qmd
+        - labs/part005.qmd
+
+format:
+  html:
+    toc: true
+    theme: cosmo
+    embed-resources: false
+    page-layout: full
+    include-before-body: assistant.html
