@@ -103,6 +103,10 @@ Example AI statement:
 - See [DMU Referencing Guide](https://library.dmu.ac.uk/refguide) for help.
 - Seek academic or wellbeing support via the Student Gateway or your personal tutor.
 
+### Practice Lab – Interactive Version
+
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="600px"></iframe>
+
 
 
 ## Lab 2: Approaching Forecasting & Data Collection
