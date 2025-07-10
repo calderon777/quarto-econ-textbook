@@ -4,6 +4,7 @@ project:
 
 resources:
   - labs/*.txt
+  - images/
 website:
   title: "Econometrics and Analytics"
   navbar:
