@@ -43,4 +43,6 @@ format:
     theme: cosmo
     toc: true
     page-layout: full
-    include-after-body: _includes/assistant.html
+    include-after-body: 
+      - _includes/assistant.html
+      - _includes/suggestion-box.html

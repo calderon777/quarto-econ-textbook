@@ -3463,6 +3463,42 @@ window.Quarto = {
 
 </script>
 
+<script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const toc = document.querySelector(".sidebar-right"); // right-hand TOC panel
+
+    if (toc) {
+
+      const container = document.createElement("div");
+
+      container.style.marginTop = "2em";
+
+      container.style.borderTop = "1px solid #ddd";
+
+      container.style.paddingTop = "1em";
+
+      container.innerHTML = `
+
+        <strong>💡 Suggestion Box</strong><br>
+
+        <a href="https://forms.office.com/e/9SShcF2B24" target="_blank">Submit ideas or feedback</a>
+
+        <br><br>
+
+        <img src="images/suggestion.png" alt="Suggestion QR Code" width="120">
+
+      `;
+
+      toc.appendChild(container);
+
+    }
+
+  });
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
