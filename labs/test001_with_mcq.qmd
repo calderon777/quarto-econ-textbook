@@ -1,0 +1,848 @@
+---
+title: "Fundamentals"
+format: html
+---
+
+
+## Lab 1: 📄 Introduction &  📋 Assignment Brief
+
+
+
+- **Faculty of Business and Law**
+- **Module Title**: *Econometrics & Data Analytics*
+- **Module Code**: *BECS2002*
+- **Assignment Title**: *Portfolio*
+- **Assignment Number**: 2
+- **Module Leader**: Dr Cam Calderon
+- **Assignment Weighting**: 100%
+
+**Assignment Release Date**: *TBC*  
+**Submission Date/Time**: *TBC*  
+
+---
+
+### 🎯 Assessment Information
+
+This is an **individual** assignment. You must record a **presentation about commodity forecasting**. See "Assessment Details" below for eligible commodities.
+
+This task will assess your skills in research, analysis, communication, time management, and organisation. If in doubt, contact your Module Leader **Cam Calderon**.
+
+---
+
+### 📝 Marking Criteria
+
+| Criteria                                      | Weight |
+|----------------------------------------------|--------|
+| Effective introduction                        | 10%    |
+| Key literature, citations, and referencing    | 10%    |
+| Appropriate use of Refinitiv software         | 10%    |
+| Appropriate use of RStudio software           | 10%    |
+| Subject knowledge of forecasting methods      | 20%    |
+| Recommendations, policy alternatives, plans   | 20%    |
+| Appropriate conclusions                       | 10%    |
+| Professional presentation                     | 10%    |
+
+Descriptions for each criterion and expectations are explained in the original brief.
+
+---
+
+### 🎓 Learning Objectives
+
+1. Critically analyse econometrics and business methods, including alternative approaches.
+2. Apply forecasting techniques to predictive economic problems.
+3. Communicate forecasting techniques clearly through diverse media.
+4. Apply theory in specialised economic domains using statistical tools.
+
+---
+
+### 📋 Assessment Details
+
+- Record a **10–15 min** individual video presentation with **your face, voice, and slides**.
+- Submit via **Turnitin**.
+- You may use **Panopto**, PowerPoint, or other tools.
+- Keep file sizes low using online compression tools.
+- Only submit **ONE** of the following topics:
+
+  - **Topic 1**: Gold  
+  - **Topic 2**: Copper  
+  - **Topic 3**: 2-Year Treasury Bond  
+  - **Topic 4**: Oil  
+  - **Topic 5**: Wheat
+
+---
+
+### 📤 Submission Instructions
+
+- Submit by **12:00 noon (GMT/BST)** on *TBC*
+- Submission is via **Turnitin** only.
+- Use Microsoft Office or PDF format.
+- Late submissions are capped or marked as zero based on lateness.
+- You may apply for an **extension or deferral** if needed.
+- Keep backups of all work.
+
+---
+
+### 🔍 Return of Marks
+
+- Feedback will be available by **TBC**.
+- All marks are **provisional** until reviewed by External Examiners.
+
+---
+
+### 🤖 Academic Integrity & AI Use
+
+You **must not** use generative AI to write this assignment. The only exception is using AI to assist with your **R script creation**, with clear **acknowledgment**.
+
+Example AI statement:
+> I used ChatGPT to help structure R code related to plotting forecasts. Prompt: "Create an R function to forecast wheat prices using exponential smoothing."
+
+---
+
+### 🎓 Support & Referencing
+- Use correct referencing throughout (Harvard or OSCOLA as applicable).
+- See [DMU Referencing Guide](https://library.dmu.ac.uk/refguide) for help.
+- Seek academic or wellbeing support via the Student Gateway or your personal tutor.
+
+
+
+## Lab 2: Approaching Forecasting & Data Collection
+Slide 1
+Slide 2
+
+## Lab 3: Videos about R (Linked with MCQs assessment)
+
+### 🎥 Introduction: How to Download and Install R & RStudio, Step-by-Step Guide ✨  
+[![EP: Install R & RStudio](https://img.youtube.com/vi/XvBel00McqM/hqdefault.jpg)](https://youtu.be/XvBel00McqM){target="_blank"}
+
+---
+
+### 🎥 Setting a Working Directory and Subfolders 🧙‍♂️  
+[![EP: Working Directory](https://img.youtube.com/vi/62zHF8fZrFk/hqdefault.jpg)](https://youtu.be/62zHF8fZrFk){target="_blank"}
+
+---
+
+### 🎥 Using RStudio or R for the first time 👑  
+[![EP: First Time in R](https://img.youtube.com/vi/yNNrt_vSndA/hqdefault.jpg)](https://youtu.be/yNNrt_vSndA){target="_blank"}
+
+---
+
+### 🎥 Packages, Vocabulary 🐣, Structure and Commenting in R or RStudio for Beginners  
+[![EP: Packages & Structure](https://img.youtube.com/vi/owIvCe6jO5I/hqdefault.jpg)](https://youtu.be/owIvCe6jO5I){target="_blank"}
+
+---
+
+### 🎥 Functions 📊, Vectors 📈 and Other Structures in R or RStudio for Beginners  
+[![EP: Functions & Vectors](https://img.youtube.com/vi/rngrLdQcu-o/hqdefault.jpg)](https://youtu.be/rngrLdQcu-o){target="_blank"}
+
+
+## Lab 4: Performance and Evaluation I
+
+![Image 2](/images/image5.png)
+
+
+![Image 3](/images/image6.png)
+
+## Lab 5: Prerequisite - A Quick intro to R
+
+
+### 1. Install R and RStudio on your laptops/gadgets
+
+RStudio is a wrapper for R; we are using RStudio because it makes looks R more organised and straightforward. Follow the following instructions:
+
+- go to www.r-project.com
+
+- click on 'CRAN mirror'
+
+- choose one of the two UK mirrors - https://www.stats.bris.ac.uk/R/ or https://cran.ma.imperial.ac.uk/
+
+- Click on 'Download R for Windows' or 'Download R for macOS'
+
+- Click on 'install R for the first time
+
+- Click on 'Download R-... for Windows', the current version is R-4..5.1. Or alternatively, download the executable file for macOS. 
+
+- double-click the downloaded file, then click on 'Run', 'language:English', 'OK', and read and follow the instructions of installation until you click on 'Next' for installing and 'Finish'
+
+Then proceed to Installing RStudio.
+
+- Go to rstudio.com
+
+- click on 'download'
+
+- download the Free version, download RStudio for Windows or macOS
+
+- Click on 'Next' if you agree and on 'Install' and 'Finish' to complete the process.
+
+
+
+### Introduction to R
+
+**Long Tutorial**
+
+We would cover a brief introduction on this labs, students would like to cover a longer tutorial to get use to R quickly. Click on this link: https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+
+
+**Quick tutorial - RStudio Screen**
+
+You need to have installed R and RStudio to continue with this lab. 
+
+- Open Rstudio in your computer.
+
+![On this picture, there are three panels 'the Console', 'The Environment', and 'The Plots, Help and Files' panel.](/images/image7a.png)
+
+- Let's choose a better appeareance for our RStudio. Click on "Tools" and then "Global Options."
+
+![Image 5](/images/image8.png)
+
+- Afterwards, in the window "Options", click on "Appearance", RStudio theme: "Modern", Editor font: "Courier", Editor theme: Cobalt. Finally, click on "Apply"
+
+![Image 6](/images/image9.png)
+
+- Now, we want to open a file to save the code that we are learning during this session. Click on 'File', 'New File', and 'R Script'; or simply press Ctrl+Shift+N; this will open a new panel called 'Script' where we are going to write the commands for R. The name of the script is Untitled 1. At the end of this session save the script in a folder for this module.
+
+![Image 7](/images/image10.png)
+
+Let's learn how to write our own comments in our R code/ script. 
+
+- On the script panel, type the caracter # and then write 'LAB ONE – ECON2545 – AND THE DATE TODAY'. 
+
+R will ignore any line of command starting with #. You can use # to add comments, titles, reminders within your R code/ R Script.
+
+![Image 8](/images/image11.png)
+
+The Rstudio screen has four windows or panels: 1. Console. 2. Environment and history. 3. Files, plots, packages and help. 4. The R script(s) and data view. The R script is where you keep a record of your work or commands - in a line by line basis. For Stata users this would be like the do-file, for SPSS users is like the syntax and for SAS users the SAS program.
+
+- Let's type 'getwd()' in line number '2' and hit the keys 'ctrl+enter' in your keyboard at the same time. If you did this correctly you will see in the console panel the folder or working directory that R is using to download and upload data.
+
+![Image 9](/images/image12.png)
+
+Let's create a folder in Windows for your course using File Explorer. I called my folder 'R code – LABs'. Afterwards, in RStudio' go to 'Session', 'Set Working Directory', and 'Choose Directory', afterwards, select the folder 'R code – LABs' or the name you used.
+
+![Image 10](/images/image13.png)
+
+The above will result in code within the 'Console', the code is setwd(and a path/directory to the folder in your computer). Copy and paste that in your R code; next time you will only need to hit 'ctrl+enter' to set the directory or folder where you are going to work in R.
+
+![Image 11](/images/image14.png)
+
+- Copy and paste the outcome of you console in your R code; next time you will only need to hit 'ctrl' and 'enter' to set working directory.
+
+![Image 12](/images/image15.png)
+
+- In line number 4, type 5*5 and hit 'ctrl' and 'enter', the console will show the code and the result, 25.
+
+- Let's create a matrix; use the lines 5 and 6 in your script and hit 'ctrl' & 'enter' to line 5 and then 6.
+
+![Image 13](/images/image16.png)
+
+If you did it correctly, the outcome in the console will be as follows:
+
+![Image 14](/images/image17.png)
+
+- In the line 5, you asked R to create a matrix called 'A', with numbers from 1 to 8, with four rows and two columns.
+
+Have a look at the 'Environment' panel, you can see in there all active objects(e.g. matrix A), and the panel 'History' shows a list of commands used do far.
+
+![Image 15](/images/image18.png)
+
+- To see the matrix A in a new window, type the command View(A) in line 7 and hit the keys 'ctrl+ enter' to run line 7. Afterwards, come back to your R script 'Untitled 1'.
+
+![Image 16](/images/image19.png)
+
+**Packages tab**
+
+The package tab shows the list of add-ons included in the installation of RStudio. If checked, the package is loaded into R, if not, any command related to that package won't work, you will need select it. You can also install other add-ons by clicking on the 'Install Packages' icon.
+
+Another way to install add-ons is to type the command install.packages("name of the package"), and then you will be able to open the library of commands of that package.
+
+- In line 8, to install the package forecast, type install.packages(“forecast”) and hit ctrl+enter. In the next window, you can hit yes to restart RStudio. See the picture below, you shall not get errors in the console, and at the end, the sign '>' will let you know the instalation run OK.
+
+![Image 17](/images/image20.png)
+
+### You must activate the package by typing, for example, library(forecast). This will automatically check the 'forecast' package.
+
+![Image 18](/images/image25.jpg)
+
+![Image 19](/images/image26.jpg)
+
+### We will use the package forecast in this course to analyse and predict economic time series.
+
+### Do not forget to save your R script in your own course folder! Use the icon to save, I called my file "lab001" and now is available , folder 'R code – LABs'
+
+![Image 20](/images/image27.jpg)
+
+## Lab 1 – R certification & Package swirl
+**Access LinkedIn Learning – First time logging in **
+*****Adapted from the library resources
+Open any web browser and navigate to
+
+![Image 21](/images/image28.jpg)
+
+Enter your DMU email address:
+For students – your login credentials will be your DMU email address in the format Pnumber@my365.dmu.ac.uk
+For DMU staff this is your Outlook full email address.
+**Select Continue**
+Select the 'Sign in with Single Sign On' blue button.
+
+![Image 22](/images/image29.jpg)
+
+You will be taken to DMU's Single Sign in screen. Sign in with your login details.
+**DMU Students**:
+Username:  Pnumber,
+Password: <your password>
+(Same login details that you use for MyDMU or LearningZone)
+**DMU Staff: **Username/Password – same for Single-sign.
+(Same login details that you use for Staff Portal or LearningZone
+
+![Image 23](/images/image3.emf)
+
+You will be presented with a LinkedIn learnings welcome screen.
+You are given two options, select the one that applies:
+If you do have an existing LinkedIn profile account you can select '**Connect my LinkedIn account**.
+OR select the option '**Continue without LinkedIn**'.
+
+![Image 24](/images/image30.jpg)
+
+*Figure 4 Option to connect LinkedIn Account *
+If you selected '**Continue without LinkedIn****'**, you will be prompted to ensure you don't want to connect with LinkedIn - a social professional network – which allows you to build your professional profile and connect with other professionals.
+Select the option '**Don’t connect my account’**.
+
+![Image 25](/images/image31.jpg)
+
+*Figure 5 Confirm connecting to LinkedIn Learning account*
+Next you will be prompted to further personalise your learning experience. This can be helpful so that relevant content is accessible to you. Note that you can always add further course, skills from LinkedIn Learnings home page. **Select the ‘Sounds good’ blue button**.
+
+![Image 26](/images/image32.jpg)
+
+*Figure 6 Welcome to LinkedIn Learning *
+
+![Image 27](/images/image33.jpg)
+
+*Figure 7 Set Goals Screen** *
+
+![Image 28](/images/image34.jpg)
+
+*Figure 8 Set some Skills** *
+
+![Image 29](/images/image35.jpg)
+
+*Figure 9 Set Weekly Viewing Goals** *
+
+![Image 30](/images/image36.png)
+
+*Figure 10 Courses or Video Recommendations** *
+In your LinkedIn Learning personalised dashboard, the top main navigation bar will remain throughout as you watch video resources and resume videos when needed. The home icon appear will take you to your main LinkedIn Learning home page, where you can view recommended content, search resources.
+** **
+**Now that your account is activated – just bookmark this direct URL link** **to login to LinkedIn Learning**
+To find out more about using LinkedIn Learning, please refer to the and the help provided.
+
+![Image 31](/images/image37.png)
+
+13 Best + Free R Programming Certification, Tutorial, Course and Training Online [2023 SEPTEMBER][UPDATED]
+
+### ** **
+
+### Script/Data View Window:
+Begin scripts with a comment for title and description using the hash character (#). Anything after the hash on the same line is considered a comment and is ignored by R.
+Code can continue to the next line without a special character, but only if the previous line ends in a way that suggests continuation (e.g., a comma or unclosed brackets).
+To run a line of code, position the cursor on the line and press Ctrl+Enter. For multiple lines, select them and press Ctrl+Enter.
+
+### Console/Output Window:
+It's recommended to work in script mode for reusability.
+Commands outside the script context can be typed at the bottom of the console, indicated by the ">" sign.
+Press Enter to execute a command.
+Use the up and down arrows to revisit and edit older lines of code previously typed into the console.
+
+### YOU MUST PUT A SCREENSHOT OF THE CERTIFICATION YOU RECEIVED ON THIS PAGE
+
+### Package Swirl
+‘swirl’ is an R package designed to teach you R programming and data science interactively. Here's a step-by-step guide on how to use swirl:
+
+## Step 1: Install and Load the swirl Package
+💡 If you don't have the swirl package installed, you can install it using the following command:
+
+> ```r
+> install.packages("swirl")
+> ```
+Once installed, load the ‘swirl’ package with the following command:
+
+```{r}
+library(swirl)
+```
+
+## Step 2: Start swirl and Follow the Prompts
+To start swirl, enter the following command:
+After entering this command, you will be prompted to enter your name. Type your name and press enter.
+
+```{r, eval=FALSE}
+swirl()
+```
+
+## Step 3: Choose a Course
+Next, you'll be prompted to choose a course. If this is your first time using swirl, you'll need to install a course. To install a course, type:
+Replace "Course Name" with the name of the course you want to install. A list of available courses can be found on the swirl website.
+You will need to install the R Programming course. Type:
+After the course is installed, start swirl again:
+You will be prompted to select a course. Choose "R Programming" from the list.
+
+> install_from_swirl("Course Name")
+
+```{r, eval=FALSE}
+install_from_swirl("R Programming")
+swirl()
+```
+
+## Step 4: Complete Lessons
+You will now be prompted to select a lesson. Choose the first lesson and follow the instructions to complete it. The lesson will consist of interactive exercises that will introduce you to the basics of R programming.
+As you progress, swirl will guide you through different lessons to gradually build up your R programming skills.
+
+## Step 5: Progress Tracking
+swirl keeps track of your progress. You can check your progress at any time by running:
+swirl::progress()
+This will show you which lessons you've completed and which ones you still need to work on.
+And that's it! By following these steps, you'll be well on your way to learning R programming with swirl. Happy learning!
+
+## Lab 2 – Uploading Excel Files to R
+
+### Introduction to R - uploading Data from Excel and CSV files
+
+### Introduction to R making basic plots in R
+
+### Introduction to R - uploading Data from Excel and CSV files
+
+### Go to ONS.gov.uk
+
+### Click on ‘data’ In the GDP quarter-on-quarter section.
+
+### Click on Download full-time series as .xls
+
+### Go to your folder ‘downloads’
+
+### Rename the file as “gdp qoq”
+
+### Save the file in your subfolder’ data’ on your folder “econ2545”. We created this folder during the previous lab.
+
+### Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file.
+
+![Image 32](/images/image38.jpeg)
+
+### Open Rstudio (do not open R) and click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.
+
+![Image 33](/images/image38.png)
+
+### On the box ‘Skip’ type the number 7. We do not want to import rows 1 to 7.
+
+### Copy the R code by clicking on the ‘copy’ icon.
+
+![Image 34](/images/image39.jpeg)
+
+### Click on import.
+
+### Go to your R script and paste (ctrl + v) the copied R code. You shall have the following code:
+
+![Image 35](/images/image39.png)
+
+### Plot the time series. Use the command plot.
+
+![Image 36](/images/image4.emf)
+
+### Find the unemployment dataset in ONS, but this time download the full-time series as ‘.csv’ file, can you paste the appropriate code for csv files in your R script?
+
+### Type ‘?plot’ and click on ‘Generic X-Y’ Plotting on the console to review more arguments you can use.
+
+### Opening files from the book Principles of Econometrics with R
+*This section is adapted from Hill, Griffiths, and Lim 2011
+To open a data file for the Principles of Econometrics textbook, (Hill, Griffiths, and Lim 2011):
+remotes::install_github("ccolonescu/PoEdata")
+**library**(PoEdata)
+**data**("andy") *# makes the dataset "**andy**" ready to use *?andy	*# shows information about the dataset*
+*# Show head of dataset, with variables as column names: ***head**(andy)
+*# Show a few rows in dataset: ***some**(andy)
+
+> 📦 **Installing packages**
+>
+> Run the following code *once* in your R console to install needed packages:
+
+```{r, eval=FALSE}
+rm(list=ls()) # Caution: this clears the Environment
+install.packages("devtools")
+install.packages("remotes")
+```
+
+### Creating Graphs in R
+R provides a suite of functions to create and customize graphs. Here's a brief overview:
+
+### Basic Plotting:
+Function: plot()
+Usage: To plot data points and lines.
+Arguments:
+x, y: Variables to be plotted.
+xlab, ylab: Labels for x and y-axis.
+type: Determines the style of the plot. Options include:
+"p": Points only
+"l": Lines only
+"b": Both points and lines
+"n": No plot, creates an empty graph. Useful as a foundation for other plot elements.
+
+
+### Plotting Mathematical Curves:
+Function: curve()
+Usage: To plot a curve based on a mathematical function over a specified range.
+Example:
+Key Argument:
+“add”: If set to TRUE, the curve is added to an existing graph.
+
+```{r}
+curve(x^1, from=-2, to=2, xlab="x", ylab="y = x" ) # Add another curve to the existing graph:*
+curve(x^2, add = TRUE) #plot(1:100, type='n')*
+curve(sqrt(x), from=0, to=100, xlab="x", ylab="y")
+```
+
+### Adding Lines:
+Function: abline()
+Usage: To add lines defined by specific parameters to a graph.
+Arguments:
+a, b: Defines a line based on its intercept (a) and slope (b).
+h: Specifies the y-value for drawing a horizontal line.
+v: the x-value for drawing a vertical line. *x*-value for a vertical line; coef, the name of a simple linear regression object, which includes the intercept and slope of a regression line.
+
+```{r}
+plot(1:10, type="n") # creates an empty graph
+abline(a=8, b=-0.5, h=3.5, v=4) # Add straight lines to graph 
+curve(x^2, from=0, to=20) 
+abline(v=10)
+```
+
+![Examples of using the function abline()](/images/image40.png)
+
+## Lab 3 – Data Visualisation
+Adapted from:
+Link to  files:
+
+### See the code below. Load the built-in dataset into R and type the following command in the console:
+
+### data()  #Explore the built-in datasets
+
+### data(airquality)
+
+### Data exploration:
+
+### str(airquality) #It displays the internal structure of an R object
+
+### Exploring the beginning of the data or the end of the data
+
+### head(airquality, 7)
+
+### tail(airquality,5)
+
+![Image 38](/images/image41.jpg)
+
+**Descriptive statistics**
+
+```{r}
+summary(airquality)
+```
+
+![Image 39](/images/image42.jpg)
+
+**Use the ‘Graphics’ package for plotting basic graphs**
+**Plot the ozone column from ****airquality**
+**Plot a graph between ozone and wind to visuali****s****e a possible relation. Is there a negative correlation**** between ozone and air speed****?**
+
+```{r}
+library(help = "graphics")
+plot(airquality$Ozone)
+plot(airquality$Ozone, airquality$Wind)
+```
+
+![Image 40](/images/image43.png)
+
+**Plot the entire dataset****. Is there a positive correlation between temperature and ozone level?**
+
+```{r}
+plot(airquality)
+```
+
+![Image 41](/images/image44.png)
+
+**points and lines **
+**high density lines**
+
+```{r}
+plot(airquality$Ozone, type= "b")
+plot(airquality$Ozone, type= "h")
+```
+
+**type ?plot()**
+
+**labels and titles**
+```{r}
+plot(airquality$Ozone, xlab = 'ozone Concentration', ylab = 'No of Instances', main = 'Ozone levels in NY city', col = 'green')
+```
+
+![Image 42](/images/image45.png)
+
+**horizontal bar plots**
+**vertical bar plots**
+**Create a histogram of the column solar radiation and explain the output.**
+hist(airquality$Solar.R)
+**Generate a boxplot of solar radiation. Explain the output.**
+
+```{r}
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col= 'green',horiz = TRUE)
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col='red',horiz = FALSE)
+hist(airquality$Solar.R, main = 'Solar Radiation values in air',xlab = 'Solar rad.', col='red')
+```
+
+![Image 43](/images/image46.png)
+
+**Generate multiple box plots**
+
+```{r}
+boxplot(airquality[,0:4], main='Multiple Box plots')
+```
+
+![Image 44](/images/image47.png)
+
+**Generate a grid charts **
+hist(airquality$Solar.R)
+
+```{r}
+par(mfrow=c(3,3), mar=c(2,5,2,1), las=1, bty="n")
+plot(airquality$Ozone)
+plot(airquality$Ozone, airquality$Wind)
+plot(airquality$Ozone, type= "c")
+plot(airquality$Ozone, type= "s")
+plot(airquality$Ozone, type= "h")
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col='green',horiz = TRUE)
+boxplot(airquality$Solar.R)
+boxplot(airquality[,0:4], main='Multiple Box plots')
+```
+
+![Image 45](/images/image48.png)
+
+Other visualisation packages include lattice (good for kernel density plots) , ggplot2, plotty, maps (to plot country maps). Explore more on the link:
+
+## Lab 4 - Mock/Practice test & AI AND R
+
+### MOCK/PRACTICE TEST
+Go to the module site in the LZ. Go to the tile ‘Assessments’ and click on “Mock/Practice MCQs”. Students can take the test as many times they want. Each time, students will receive many new questions.
+
+### Using ChatGPT to Write and Debug Simple R Scripts
+
+### Introduction
+This lab will guide students through the process of writing and debugging simple R scripts with the assistance of ChatGPT. Whether you're a beginner or an experienced R user, ChatGPT can provide valuable insights and help streamline your coding process.
+
+## Prerequisites
+Basic understanding of R syntax and programming concepts.
+R and RStudio installed on your computer.
+
+### Writing R Scripts with ChatGPT
+
+## Step 1: Define Your Objective
+Start by clearly stating what you want to achieve with your R script. For example:
+"I want to calculate the mean of a numeric vector."
+"I need to create a histogram of a dataset."
+
+## Step 2: Ask ChatGPT for Code Snippets
+Once your objective is clear, ask ChatGPT for a code snippet that accomplishes your task. For instance:
+"Can you provide an R script to calculate the mean of a vector?"
+"Show me how to create a histogram in R."
+Ask ChatGPT: "Can you provide an R script to calculate the mean of a numeric vector?"
+ChatGPT might provide a snippet like this:
+
+![Image 46](/images/image49.png)
+
+## Step 3: Analyze the Provided Code
+ChatGPT will give you a code snippet. Read through it carefully and make sure you understand each part. You can ask ChatGPT to explain any lines or functions that are unclear.
+
+## Step 4: Run the Code in RStudio
+Copy the code snippet into RStudio (use an script) and run it. Observe the output to see if it meets your expectations.
+
+### Debugging R Scripts with ChatGPT
+
+## Step 1: Identify the Problem
+If the code doesn't work as expected, identify the error message or the unexpected output. For example:
+Error messages in the console.
+Results that don’t match your expectations.
+You run the script, but you receive an error: Error in mean(height): object 'height' not found.
+
+## Step 2: Ask ChatGPT for Help
+Describe the problem to ChatGPT. Be specific about the error or the issue. For example:
+"I received an error message that says 'object not found'. What does this mean?"
+"The histogram is not displaying any data. Can you help me fix it?"
+"I tried to calculate the mean of a vector, but I got an error saying 'object not found'. Here's my code..."
+
+## Step 3: Implement the Suggested Solutions
+ChatGPT will suggest solutions or ask further questions to clarify the issue. Follow the suggestions step by step, adjusting your code as needed.
+ChatGPT might respond with: "It looks like there's a typo in your code. The object you're trying to calculate the mean for is 'heights', not 'height'."
+
+## Step 4: Test the Adjusted Code
+After implementing the changes, rerun your script. If issues persist, describe the new output to ChatGPT, and continue the debugging process.
+
+![Image 47](/images/image5.png)
+
+### Best Practices for Using ChatGPT with R
+Incremental Development: Write and test your code in small chunks to catch errors early.
+Clear Communication: When asking for help, provide clear and detailed information about your code and the issues you're facing.
+Understanding Over Copy-Pasting: Try to understand the code snippets provided rather than just copying and pasting them. This will improve your R programming skills over time.
+
+## Conclusion
+With the above steps, you can effectively use ChatGPT to write and debug simple R scripts. Remember, practice is key to becoming proficient in R, and using ChatGPT can accelerate your learning by providing instant assistance and feedback.
+Additional Resources
+Happy coding!
+
+## Lab 5 – Intro to Refinitiv
+**Workshop – Introduction to Refinitiv Eikon**
+Adapted from Darren Sparkes and Tom Webster’s ACFI3307
+Complete the following activities to set up your Refinitiv Workspace account and learn the software's features.
+**Activity 1.**
+As a registered student on the ECON2545 module you should have received an email from Refinitiv that gives you your user ID (should be your DMU email address) and a link for you to access Refinitiv workspace as in Figure 1 below (Fig. 1). If you do not seem to have received this email then please check your junk and/or spam folders. If you still think that you have not received the email then please contact me by email to let me know
+Please be aware that ‘Refinitiv Workspace’ is compatible with Google Chrome and Apple Safari. If you are on a Microsoft Windows computer please download Chrome to your device if you do not use it already. You may need to make it your default browser for the purposes of setting up Refinitiv Eikon after which you can reset back to your usual default browser, remembering that you will need to use Chrome whenever using Refinitv Eikon.
+
+![Image 48](/images/image50.png)
+
+![Image 49](/images/image51.png)
+
+****
+**Activity 2.**
+You will be taken to Chrome to set up a password to use with your ID as in Fig. 2 below. Please ensure that you choose a password that you can remember and/or write it down somewhere (perhaps on your phone) so that you will be able to access Eikon in the future.
+
+![Image 50](/images/image52.png)
+
+**Activity 3.**
+
+![Image 51](/images/image53.png)
+
+![Image 52](/images/image54.png)
+
+**Activity 4.**
+
+![Image 53](/images/image55.png)
+
+![Image 54](/images/image56.png)
+
+**Activity 5.**
+
+![Image 55](/images/image57.png)
+
+![Image 56](/images/image58.png)
+
+Fig. 6
+
+![Image 57](/images/image59.png)
+
+Fig. 7
+
+![Image 58](/images/image6.png)
+
+****
+**Activity 6.**
+
+![Image 59](/images/image60.png)
+
+![Image 60](/images/image61.png)
+
+Fig. 9
+
+![Image 61](/images/image62.png)
+
+****
+**Activity 7.**
+You should be presented with your home screen as in Fig. 10. If your screen does not look exactly the same as Fig. 10, there is no need to worry. You will have the chance to set your homescreen to what you want in the future.
+Fig. 10
+
+![Image 62](/images/image63.png)
+
+**Activity 8.****	****	**
+Fig 11.
+
+![Image 63](/images/image64.png)
+
+![Image 64](/images/image65.png)
+
+![Image 65](/images/image66.png)
+
+![Image 66](/images/image67.png)
+
+![Image 67](/images/image68.png)
+
+![Image 68](/images/image69.png)
+
+****
+
+![Image 69](/images/image7.png)
+
+Fig. 14
+
+![Image 70](/images/image70.png)
+
+**Activity 10.**
+
+![Image 71](/images/image71.png)
+
+![Image 72](/images/image72.png)
+
+As sown in Fig. 16, Refinitiv have a series of training videos for you to watch that will cover how to use the Refinitiv software. Most of these are only a couple of minutes long. The first time that you click on a video you will be asked to sign in with your **DMU EMAIL ADDRESS**.
+The training videos will enhance your ability to use the software and will, therefore, **directly impact upon your ability to manage your ****presentation**** assignment**** and final examination**. However, I recommend that once you have signed in, you go to Activity 11 to view the videos as part of the user ‘Certification’ process rather than doing them as a standalone exercise.
+Fig. 16
+
+![Image 73](/images/image73.png)
+
+**Activity 11.**
+Refinitiv also has a user ‘Certification’ qualification. This can be accessed from the menu bar as shown in Fig.18.
+Fig. 18
+
+![Image 74](/images/image74.png)
+
+Fig. 19
+
+![Image 75](/images/image8.png)
+
+The ‘Certification’ screen, as shown in Fig.19, gives details on how to complete the certificate. In brief, to obtain certification status, you must complete training videos and e-learning modules and then pass a 60-minute test including 30 multiple-choice questions. You will need to select the Eikon Product Certification (Fig 19.) and this will take you to the required Learning Materials.
+Students must begin to complete the Refinitiv Workspace certification during the lab. Not only will this help students for their assessment, but it will also **enhance ****their**** CV****s**** for presentation to potential employers**.
+Fig.19
+**Activity 12.**
+Continue to work through the Refinitv Eikon training materials and explore the software as part of your self-study. The quicker you become familiar with using the software, the easier you will find our labs throughout the academic year.
+**Activity 13.**
+
+![Image 76](/images/image9.png)
+
+**Workshop – ****Terminal Access**** to Bloomberg**
+This is an OPTIONAL material; students can download the lab for Access to Bloomberg Terminals access in bb, folder ‘LABs’ Handbook’. The lab can also be downloaded from the shared folder for  on .
+
+## Lab 6 – Refinitiv :News, forecasts, Macrox
+Open the user manual on bb, module site, find the folder ‘Labs’. Students must cover pages 9 to 13; “Setting up Thomson Reuters Eikon”.
+
+## Activity 1 – Read the news for the UK.
+In the search box, type ‘TOPNEWS’ and also ‘TOPNWS’. Within ‘TOPNEWS’, discuss the news you are following with your colleagues and review’ trending topics’. Explore further the labels of this app. Search ‘IFR Markets’  in google; what it is? Click under the label ‘Markets’ and click on IFR and review the ‘Refinitiv NEWSCASTS’ for interesting international financing review briefings. Finally, create your own new Refinitiv Digest.
+
+## Activity 2 – Find upcoming forecasts for the upcoming and highly important US economic events for w/c 1 Nov.
+Explore economic news from specific groups of markets or countries. Use the Economic Monitor by typing ‘EM’. Apply filters to perform this activity.
+
+## Activity 3 – Discuss with your peers: in what country would you invest your savings today?
+Explore the Economics Application’ EC’. Investors usually use this top-down approach to choose whether to invest in a specific market. In what country would you invest your savings?
+
+## Activity 4 – Interesting shares to invest
+The application ‘MACROX’ provides outstanding visual elements. In the tab ‘REGION’ and ‘countries and regions in Universe’ choose Europe; then go to the tab ‘SECTOR’ and select ‘Internet and Catalog Retail’; afterwards, click on the tab ‘SECURITY’ and sort the companies by ‘COMPANY MARKET CAP (USD)’. Browse for some attractive shares to invest in.
+
+## Activity 5 – Are we going to get negative interest rates in the UK? I thought so one year ago; however, after recent developments in the supply side, it would look more appropriate a hawkish stance. Are we going to get higher interest rates next year in the UK?
+Review forecasts of Centrals Bank’s interest rates. Use the application Central Bank Poll ’CBP.’
+‘US FED INTEREST’ provides more detailed information relevant to Central Banks.
+
+## Test Your Understanding
+
+::: {.quiz name="lab1-intro-mcq"}
+Which of the following best describes the final assignment for this module?
+
+1. A traditional exam covering all weekly labs  
+2. A group presentation on economic theory  
+3. A research project involving data analysis and a short written report  
+4. Weekly quizzes submitted via RStudio Cloud  
+
+> [x] 3. A research project involving data analysis and a short written report  
+> [ ] 1. A traditional exam covering all weekly labs  
+> [ ] 2. A group presentation on economic theory  
+> [ ] 4. Weekly quizzes submitted via RStudio Cloud  
+
+Explanation: The final assessment is a research project that includes data analysis and a short report, as outlined in the Assignment Brief.
+:::
