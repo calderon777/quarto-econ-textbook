@@ -23,7 +23,7 @@ website:
           - text: "Part 5"
             href: labs/part005.qmd
           - text: "Part 6"
-            href: labs/test001_with_mcq.qmd
+  
   sidebar:
     style: "floating"
     contents:
@@ -35,7 +35,7 @@ website:
           - labs/part003.qmd
           - labs/part004.qmd
           - labs/part005.qmd
-          - labs/test001_with_mcq.qmd
+        
 
 format:
   html:
