@@ -35,6 +35,7 @@ website:
           - labs/part003.qmd
           - labs/part004.qmd
           - labs/part005.qmd
+          - labs/test001_with_mcq.qmd
 
 format:
   html:
