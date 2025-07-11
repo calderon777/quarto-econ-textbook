@@ -1,5 +1,5 @@
 ---
-title: "Fundamentals"
+title: "Introduction and Course Overview"
 format: html
 ---
 

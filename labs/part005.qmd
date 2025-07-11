@@ -1,5 +1,5 @@
 ---
-title: 'Lab Part'
+title: 'Visualizing and Interpreting Regression Effects'
 format: html
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Lab Part'
+title: 'Trend, Seasonality, and Forecasting Models'
 format: html
 ---
 

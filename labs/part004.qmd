@@ -1,5 +1,5 @@
 ---
-title: 'Lab Part'
+title: 'Linear Models in Applied Contexts'
 format: html
 ---
 
