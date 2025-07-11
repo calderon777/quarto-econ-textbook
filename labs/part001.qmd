@@ -108,6 +108,13 @@ Example AI statement:
 <iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="600px"></iframe>
 
 
+<hr style="margin: 3em 0; border: none; border-top: 2px dashed #999;" />
+<div style="text-align: center; font-size: 1.1em; color: #555; margin-bottom: 2em;">
+  🔄 End of Lab — Continue to the next section below
+</div>
+<hr style="margin: 2em 0; border: none; border-top: 1px solid #ddd;" />
+
+
 
 ## Lab 2: Approaching Forecasting & Data Collection
 Slide 1
