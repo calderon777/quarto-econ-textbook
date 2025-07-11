@@ -117,8 +117,22 @@ Example AI statement:
 
 
 ## Lab 2: Approaching Forecasting & Data Collection
-Slide 1
-Slide 2
+
+**Forecast?** Predicting the future value of a time series - data with time
+
+This lab reviews how forecasting is use by economists in the real life.
+
+Perform the following activities:
+
+```{r}
+learnr::question_text(
+  "1. Browse on internet the Office for budget responsibility.Then click on the tab publications and then click on Working Papers. Find the PDF file 'Working paper No.19: The OBR's forecast performance' and read its abstract. Is the OBR forecast performance better than the forecasts produced by the Trasury?",
+  correct = "Yes, both real GDP growth and borrowing forecasts are more accurate and less biased than the previous UK official forecasts produced by the Treasury",
+  incorrect = "No, the OBR forecasts are less accurate and more biased.",
+  allow_retry = TRUE
+)
+
+
 
 
 <hr style="margin: 3em 0; border: none; border-top: 2px dashed #999;" />
