@@ -91,4 +91,4 @@ Lab 10: Refinitiv: News, forecasts, Macrox
 
 ---
 
-[Next ➡️](docs/labs/part001.html)
+[Next ➡️](labs/part001.html)
