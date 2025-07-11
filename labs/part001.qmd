@@ -832,3 +832,8 @@ The application ‘MACROX’ provides outstanding visual elements. In the tab �
 ## Activity 5 – Are we going to get negative interest rates in the UK? I thought so one year ago; however, after recent developments in the supply side, it would look more appropriate a hawkish stance. Are we going to get higher interest rates next year in the UK?
 Review forecasts of Centrals Bank’s interest rates. Use the application Central Bank Poll ’CBP.’
 ‘US FED INTEREST’ provides more detailed information relevant to Central Banks.
+
+
+---
+
+[⬅️ Previous](index.html) | [Next ➡️](part002.html)
