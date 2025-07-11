@@ -122,16 +122,11 @@ Example AI statement:
 
 This lab reviews how forecasting is use by economists in the real life.
 
-Perform the following activities:
+Here’s your interactive tutorial. Submit your answers and get feedback instantly!
 
-```{r}
-learnr::question_text(
-  "1. Browse on internet the Office for budget responsibility.Then click on the tab publications and then click on Working Papers. Find the PDF file 'Working paper No.19: The OBR's forecast performance' and read its abstract. Is the OBR forecast performance better than the forecasts produced by the Trasury?",
-  correct = "Yes, both real GDP growth and borrowing forecasts are more accurate and less biased than the previous UK official forecasts produced by the Treasury",
-  incorrect = "No, the OBR forecasts are less accurate and more biased.",
-  allow_retry = TRUE
-)
-```
+<iframe src="https://calderon777.shinyapps.io/lab2_open_questions/"
+        width="100%" height="700px" frameborder="0">
+</iframe>
 
 
 
