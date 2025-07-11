@@ -836,4 +836,4 @@ Review forecasts of Centrals Bank’s interest rates. Use the application Centra
 
 ---
 
-[⬅️ Previous](index.html) | [Next ➡️](part002.html)
+[⬅️ Previous](../index.html) | [Next ➡️](part002.html)
