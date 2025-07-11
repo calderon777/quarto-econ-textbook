@@ -1317,3 +1317,7 @@ This example demonstrates how to introduce robust standards errors in a linearHy
 
 Just for completeness, I should mention that a similar function, with similar uses is the function vcov, which can be found in the package sandwich.
 
+
+---
+
+[⬅️ Previous](part004.html) | [Next ➡️](part006.html)

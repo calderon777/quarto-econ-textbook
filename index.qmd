@@ -87,3 +87,8 @@ Lab 8: Mock/Practice test & AI AND R
 Lab 9: – Intro to Refinitiv
 
 Lab 10: Refinitiv: News, forecasts, Macrox
+
+
+---
+
+[Next ➡️](part001.html)

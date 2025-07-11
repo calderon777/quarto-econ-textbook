@@ -628,3 +628,6 @@ Lab 11 – MCQs assessment
 
 MCQs, weight 20%,  deadline Dec 6, 2023 during the Lab sessions. Group 1: 11-12 noon, Group 2: 2-3 PM. The assessment for group 2 is from 2-3 PM to accomodate a guest speaking session.
 
+---
+
+[⬅️ Previous](part001.html) | [Next ➡️](part003.html)

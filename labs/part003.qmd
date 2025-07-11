@@ -2223,3 +2223,7 @@ Shiny runs the R code on the ‘server’ not in the web browser.
 
 You can deploy apps to the fully hosted shinyapps.io or self host using Shiny Server.
 
+
+
+[⬅️ Previous](part002.html) | [Next ➡️](part004.html)
+

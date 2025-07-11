@@ -2751,3 +2751,8 @@ Xie, Yihui. 2014. Printr: Automatically Print R Objects According to Knitr Outpu
 
 Zeileis, Achim. 2016. Dynlm: Dynamic Linear Regression.
 
+
+---
+
+[⬅️ Previous](part005.html) | [Next ➡️](../index.html)
+
