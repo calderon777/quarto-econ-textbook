@@ -211,6 +211,7 @@ Then proceed to Installing RStudio.
 - Click on 'Next' if you agree and on 'Install' and 'Finish' to complete the process.
 
 ### Introduction to R
+After downloading and installing open RStudio, we will cover now some tutorials. 
 
 **Long Tutorial**
 
@@ -261,9 +262,9 @@ The above will render a result within the 'Console' panel, this is the code `set
 
 - Copy and paste the outcome of you console in your R code; next time you will only need to hit 'ctrl' and 'enter' to set working directory.
 
-![Image 12](/images/image15.png)
+![setwd() example in your R Script](/images/image15.png)
 
-- In line number 4, type 5*5 and hit 'ctrl' and 'enter', the console will show the code and the result, 25.
+- In line number 4, type `5*5` and hit 'ctrl' and 'enter', the console will show the code and the result, 25.
 
 - Let's create a matrix; use the lines 5 and 6 in your script and hit 'ctrl' & 'enter' to line 5 and then 6.
 
