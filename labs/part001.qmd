@@ -536,7 +536,9 @@ And that's it! By following these steps, you'll be well on your way to learning 
 
 - Type `?plot` on the console, this opens the help panel for 'plot'. Click on the link ‘Generic X-Y’ Plotting on the console to review more arguments you can use in the function plot().
 
-### Opening files from the book Principles of Econometrics with R
+---
+
+### 📂 Opening files from the book Principles of 🔢📈Econometrics with R
 *This section is adapted from Hill, Griffiths, and Lim 2011
 To open a data file for the Principles of Econometrics textbook, (Hill, Griffiths, and Lim 2011):
 ```{r, eval=FALSE}
@@ -547,6 +549,8 @@ data("andy") *# makes the dataset "**andy**" ready to use *?andy	*# shows inform
 *# Show a few rows in dataset: ***some**(andy)
 ```
 
+---
+
 📦 **Installing packages**
 
 > Run the following code *once* in your R console to install needed packages:
@@ -556,6 +560,8 @@ rm(list=ls()) # Caution: this clears the Environment
 install.packages("devtools")
 install.packages("remotes")
 ```
+
+---
 
 ### Creating Graphs in R
 R provides a suite of functions to create and customize graphs. Here's a brief overview:
@@ -603,7 +609,7 @@ abline(v=10)
 
 ![Examples of using the function abline()](/images/image40.png)
 
-## Lab 3 – Data Visualisation
+## Lab 8 – 👀 Data Visualisation
 Adapted from:
 Link to  files:
 
