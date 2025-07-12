@@ -125,10 +125,13 @@ Browse the Office for Budget Responsibility website. Under 'Publications' > 'Wor
         width="100%" height="400px" frameborder="0">
 </iframe>
 
-<div style="margin-bottom: -1em;">
-  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg);" />
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+
+<div style="margin-bottom: -0.998em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
-<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;" />
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
 
 ## Lab 3: Videos about R (Linked with MCQs assessment)
 
@@ -155,16 +158,29 @@ Browse the Office for Budget Responsibility website. Under 'Publications' > 'Wor
 ### 🎥 Functions 📊, Vectors 📈 and Other Structures in R or RStudio for Beginners  
 [![EP: Functions & Vectors](https://img.youtube.com/vi/rngrLdQcu-o/hqdefault.jpg)](https://youtu.be/rngrLdQcu-o){target="_blank"}
 
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+
+<div style="margin-bottom: -0.998em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
 ## Lab 4: Performance and Evaluation I
 
-![Image 2](/images/image5.png)
+![Performance and Evaluation](/images/image5.png)
 
 
-![Image 3](/images/image6.png)
+![Data Partitioning](/images/image6.png)
+
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+
+<div style="margin-bottom: -0.998em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
 
 ## Lab 5: Prerequisite - A Quick intro to R
-
 
 ### 1. Install R and RStudio on your laptops/gadgets
 
@@ -194,8 +210,6 @@ Then proceed to Installing RStudio.
 
 - Click on 'Next' if you agree and on 'Install' and 'Finish' to complete the process.
 
-
-
 ### Introduction to R
 
 **Long Tutorial**
@@ -213,37 +227,37 @@ You need to have installed R and RStudio to continue with this lab.
 
 - Let's choose a better appeareance for our RStudio. Click on "Tools" and then "Global Options."
 
-![Image 5](/images/image8.png)
+![In RStudio, click on 'Tools' and 'Global Options'](/images/image8.png)
 
 - Afterwards, in the window "Options", click on "Appearance", RStudio theme: "Modern", Editor font: "Courier", Editor theme: Cobalt. Finally, click on "Apply"
 
-![Image 6](/images/image9.png)
+![You are here by clicking on Tools>Global Options..>Appereance>Modern>Courier>Cobalt>Apply](/images/image9.png)
 
 - Now, we want to open a file to save the code that we are learning during this session. Click on 'File', 'New File', and 'R Script'; or simply press Ctrl+Shift+N; this will open a new panel called 'Script' where we are going to write the commands for R. The name of the script is Untitled 1. At the end of this session save the script in a folder for this module.
 
-![Image 7](/images/image10.png)
+![Click on File>New File>R Script](/images/image10.png)
 
 Let's learn how to write our own comments in our R code/ script. 
 
-- On the script panel, type the caracter # and then write 'LAB ONE – ECON2545 – AND THE DATE TODAY'. 
+- On the script panel, type the caracter `#` and then write `'LAB ONE – ECON2545 – AND THE DATE TODAY'`. 
 
-R will ignore any line of command starting with #. You can use # to add comments, titles, reminders within your R code/ R Script.
+R will ignore any line of command starting with `#`. You can use `#` to add comments, titles, reminders within your R code/ R Script. If you did it right, your R Script shall look like this:
 
-![Image 8](/images/image11.png)
+![Comments are crucial to learn R](/images/image11.png)
 
 The Rstudio screen has four windows or panels: 1. Console. 2. Environment and history. 3. Files, plots, packages and help. 4. The R script(s) and data view. The R script is where you keep a record of your work or commands - in a line by line basis. For Stata users this would be like the do-file, for SPSS users is like the syntax and for SAS users the SAS program.
 
-- Let's type 'getwd()' in line number '2' and hit the keys 'ctrl+enter' in your keyboard at the same time. If you did this correctly you will see in the console panel the folder or working directory that R is using to download and upload data.
+- Let's type `getwd()` in line number '2' and hit the keys 'ctrl+enter' in your keyboard at the same time - The + indicates 'do it at the same time', you dont need to press the key '+'  . If you did this correctly you will see in the console panel the folder or working directory that R is using to download and upload data.
 
-![Image 9](/images/image12.png)
+![This image shows how your R Script should look and the outcome in the console -bottom panel after using ctrl+enter](/images/image12.png)
 
-Let's create a folder in Windows for your course using File Explorer. I called my folder 'R code – LABs'. Afterwards, in RStudio' go to 'Session', 'Set Working Directory', and 'Choose Directory', afterwards, select the folder 'R code – LABs' or the name you used.
+Let's create a folder in Windows for your course using 📁 File Explorer. I called my folder 'R code – LABs'. Afterwards, in RStudio' go to 'Session', 'Set Working Directory', 'Choose Directory', and select the folder 'R code – LABs' or the name you used.
 
-![Image 10](/images/image13.png)
+![Create your folder and then click on Session>Set Working Directory>Choose Directory](/images/image13.png)
 
-The above will result in code within the 'Console', the code is setwd(and a path/directory to the folder in your computer). Copy and paste that in your R code; next time you will only need to hit 'ctrl+enter' to set the directory or folder where you are going to work in R.
+The above will render a result within the 'Console' panel, this is the code `setwd(and a path/directory to your chosen folder in your computer)`. Copy and paste that in your R code; next time you will only need to hit 'ctrl+enter' on 'setwd(your directory)' to set the directory or folder where you are going to work in R.
 
-![Image 11](/images/image14.png)
+![This is the code you shall copy and paste in your R Script, ignore '>'](/images/image14.png)
 
 - Copy and paste the outcome of you console in your R code; next time you will only need to hit 'ctrl' and 'enter' to set working directory.
 
@@ -279,24 +293,31 @@ Another way to install add-ons is to type the command install.packages("name of 
 
 ![Image 17](/images/image20.png)
 
-### You must activate the package by typing, for example, library(forecast). This will automatically check the 'forecast' package.
+You must activate the package by typing, for example, `library(forecast)`. This will automatically check the 'forecast' package.
 
-![Image 18](/images/image25.jpg)
+![Image 18](/images/image21.jpg)
 
-![Image 19](/images/image26.jpg)
+![Image 19](/images/image22.jpg)
 
 ### We will use the package forecast in this course to analyse and predict economic time series.
 
 ### Do not forget to save your R script in your own course folder! Use the icon to save, I called my file "lab001" and now is available , folder 'R code – LABs'
 
-![Image 20](/images/image27.jpg)
+![Image 20](/images/image23.jpg)
 
-## Lab 1 – R certification & Package swirl
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+
+<div style="margin-bottom: -0.998em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
+## Lab 6 – R certification & Package swirl
 **Access LinkedIn Learning – First time logging in **
 *****Adapted from the library resources
 Open any web browser and navigate to
 
-![Image 21](/images/image28.jpg)
+![Image 21](/images/image24.jpg)
 
 Enter your DMU email address:
 For students – your login credentials will be your DMU email address in the format Pnumber@my365.dmu.ac.uk
@@ -304,7 +325,7 @@ For DMU staff this is your Outlook full email address.
 **Select Continue**
 Select the 'Sign in with Single Sign On' blue button.
 
-![Image 22](/images/image29.jpg)
+![Image 22](/images/image25.jpg)
 
 You will be taken to DMU's Single Sign in screen. Sign in with your login details.
 **DMU Students**:
@@ -350,7 +371,7 @@ Next you will be prompted to further personalise your learning experience. This 
 
 ![Image 30](/images/image36.png)
 
-*Figure 10 Courses or Video Recommendations** *
+**Figure 10 Courses or Video Recommendations**
 In your LinkedIn Learning personalised dashboard, the top main navigation bar will remain throughout as you watch video resources and resume videos when needed. The home icon appear will take you to your main LinkedIn Learning home page, where you can view recommended content, search resources.
 ** **
 **Now that your account is activated – just bookmark this direct URL link** **to login to LinkedIn Learning**
@@ -422,65 +443,77 @@ swirl::progress()
 This will show you which lessons you've completed and which ones you still need to work on.
 And that's it! By following these steps, you'll be well on your way to learning R programming with swirl. Happy learning!
 
-## Lab 2 – Uploading Excel Files to R
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+
+<div style="margin-bottom: -0.998em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
+<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+
+<div style="margin-bottom: -0.998em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
+## Lab 7 – Uploading Excel Files to R and Basic Plotting
 
 ### Introduction to R - uploading Data from Excel and CSV files
 
-### Introduction to R making basic plots in R
+- Go to ONS.gov.uk
 
-### Introduction to R - uploading Data from Excel and CSV files
+- Click on ‘data’ In the GDP quarter-on-quarter section.
 
-### Go to ONS.gov.uk
+- Click on Download full-time series as .xls
 
-### Click on ‘data’ In the GDP quarter-on-quarter section.
+- Go to your folder ‘downloads’
 
-### Click on Download full-time series as .xls
+- Rename the file as “gdp qoq”
 
-### Go to your folder ‘downloads’
+- Save the file in your subfolder’ data’ on your folder “econ2545”. We created this folder during the previous lab.
 
-### Rename the file as “gdp qoq”
-
-### Save the file in your subfolder’ data’ on your folder “econ2545”. We created this folder during the previous lab.
-
-### Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file.
+- Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file.
 
 ![Image 32](/images/image38.jpeg)
 
-### Open Rstudio (do not open R) and click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.
+- Open Rstudio (do not open R) and click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.
 
 ![Image 33](/images/image38.png)
 
-### On the box ‘Skip’ type the number 7. We do not want to import rows 1 to 7.
+- On the box ‘Skip’ type the number 7. We do not want to import rows 1 to 7.
 
-### Copy the R code by clicking on the ‘copy’ icon.
+- Copy the R code by clicking on the ‘copy’ icon.
 
 ![Image 34](/images/image39.jpeg)
 
-### Click on import.
+- Click on import.
 
-### Go to your R script and paste (ctrl + v) the copied R code. You shall have the following code:
+- Go to your R script and paste (ctrl + v) the copied R code. You shall have the following code:
 
 ![Image 35](/images/image39.png)
 
-### Plot the time series. Use the command plot.
+- Plot the time series. Use the command plot.
 
 ![Image 36](/images/image4.emf)
 
-### Find the unemployment dataset in ONS, but this time download the full-time series as ‘.csv’ file, can you paste the appropriate code for csv files in your R script?
+- Find the unemployment dataset in ONS, but this time download the full-time series as ‘.csv’ file, can you paste the appropriate code for csv files in your R script?
 
-### Type ‘?plot’ and click on ‘Generic X-Y’ Plotting on the console to review more arguments you can use.
+- Type ‘?plot’ and click on ‘Generic X-Y’ Plotting on the console to review more arguments you can use.
 
 ### Opening files from the book Principles of Econometrics with R
 *This section is adapted from Hill, Griffiths, and Lim 2011
 To open a data file for the Principles of Econometrics textbook, (Hill, Griffiths, and Lim 2011):
+```{r, eval=FALSE}
 remotes::install_github("ccolonescu/PoEdata")
-**library**(PoEdata)
-**data**("andy") *# makes the dataset "**andy**" ready to use *?andy	*# shows information about the dataset*
+library(PoEdata)
+data("andy") *# makes the dataset "**andy**" ready to use *?andy	*# shows information about the dataset*
 *# Show head of dataset, with variables as column names: ***head**(andy)
 *# Show a few rows in dataset: ***some**(andy)
+```
 
-> 📦 **Installing packages**
->
+📦 **Installing packages**
+
 > Run the following code *once* in your R console to install needed packages:
 
 ```{r, eval=FALSE}
