@@ -452,7 +452,15 @@ swirl()
 
 After entering this command, you will be prompted to enter your name. Type your name and press enter.
 
-![Tybe your name and hit enter](/images/image36a.PNG)
+![Type your name and hit enter](/images/image36a.PNG)
+
+Then, swirl says that the three dots … means ‘read and hit enter’; you also need to press enter after answering exercises.
+
+![... the three dots: Read the prompt and hit enter](/images/image36b.PNG)
+
+Afterwards, swirl will carry on telling you how to numbers to choose topics, etc. Just read the prompts and follow the instructions until you need to choose a course. Remember to use `ESC` key if you plan to exit swirl, otherwise you will not be able to use R for programming.
+
+If you are already at the prompt, type `bye()` to exit and save your progress. When you exit properly, you'll see a short message letting you know you've done so.
 
 
 **👣 Step 3:** Choose a Course
@@ -479,17 +487,14 @@ swirl::progress()
 This will show you which lessons you've completed and which ones you still need to work on.
 And that's it! By following these steps, you'll be well on your way to learning R programming with swirl. Happy learning!
 
----
-
 <div style="margin-bottom: -1em;">
   <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
 <img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
+## Lab 7 – Uploading 🧮 Excel Files to R and 📈 Basic Plotting
 
-## Lab 7 – Uploading Excel Files to R and Basic Plotting
-
-### Introduction to R - uploading Data from Excel and CSV files
+### 🤝 Introduction to R - 📤 uploading Data from Excel and CSV files
 
 - Go to ONS.gov.uk
 
@@ -503,33 +508,33 @@ And that's it! By following these steps, you'll be well on your way to learning 
 
 - Save the file in your subfolder’ data’ on your folder “econ2545”. We created this folder during the previous lab.
 
-- Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file.
+- Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file and close.
 
-![Image 32](/images/image38.jpeg)
+![In yellow: the changes we made on the Excel file, names for the variables](/images/image36.png)
 
-- Open Rstudio (do not open R) and click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.
+- In Rstudio (recall not to open R), click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.
 
-![Image 33](/images/image38.png)
+![Click on 'Import Dataset' ](/images/image37.png)
 
 - On the box ‘Skip’ type the number 7. We do not want to import rows 1 to 7.
 
 - Copy the R code by clicking on the ‘copy’ icon.
 
-![Image 34](/images/image39.jpeg)
+![We changed the box 'Skip:' to 7 and copy the code using the icon 📋](/images/image38.png)
 
-- Click on import.
+- Click on 'Import'.
 
-- Go to your R script and paste (ctrl + v) the copied R code. You shall have the following code:
+- Go to your R script and paste by using the keys 'ctrl+v'. You shall have the following code:
 
-![Image 35](/images/image39.png)
+![We pasted the lines 13 to 15](/images/image39.png)
 
 - Plot the time series. Use the command plot.
 
-![Image 36](/images/image4.emf)
+![Function plot()](/images/image40.png)
 
 - Find the unemployment dataset in ONS, but this time download the full-time series as ‘.csv’ file, can you paste the appropriate code for csv files in your R script?
 
-- Type ‘?plot’ and click on ‘Generic X-Y’ Plotting on the console to review more arguments you can use.
+- Type `?plot` on the console, this opens the help panel for 'plot'. Click on the link ‘Generic X-Y’ Plotting on the console to review more arguments you can use in the function plot().
 
 ### Opening files from the book Principles of Econometrics with R
 *This section is adapted from Hill, Griffiths, and Lim 2011

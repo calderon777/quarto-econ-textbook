@@ -281,9 +281,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#bonus-section---optional" id="toc-bonus-section---optional" class="nav-link" data-scroll-target="#bonus-section---optional">🎒 Bonus Section - Optional 🤷</a></li>
   <li><a href="#package-swirl" id="toc-package-swirl" class="nav-link" data-scroll-target="#package-swirl">💻 Package Swirl 🌀</a></li>
   </ul></li>
-  <li><a href="#lab-7-uploading-excel-files-to-r-and-basic-plotting" id="toc-lab-7-uploading-excel-files-to-r-and-basic-plotting" class="nav-link" data-scroll-target="#lab-7-uploading-excel-files-to-r-and-basic-plotting">Lab 7 – Uploading Excel Files to R and Basic Plotting</a>
+  <li><a href="#lab-7-uploading-excel-files-to-r-and-basic-plotting" id="toc-lab-7-uploading-excel-files-to-r-and-basic-plotting" class="nav-link" data-scroll-target="#lab-7-uploading-excel-files-to-r-and-basic-plotting">Lab 7 – Uploading 🧮 Excel Files to R and 📈 Basic Plotting</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-r---uploading-data-from-excel-and-csv-files" id="toc-introduction-to-r---uploading-data-from-excel-and-csv-files" class="nav-link" data-scroll-target="#introduction-to-r---uploading-data-from-excel-and-csv-files">Introduction to R - uploading Data from Excel and CSV files</a></li>
+  <li><a href="#introduction-to-r---uploading-data-from-excel-and-csv-files" id="toc-introduction-to-r---uploading-data-from-excel-and-csv-files" class="nav-link" data-scroll-target="#introduction-to-r---uploading-data-from-excel-and-csv-files">🤝 Introduction to R - 📤 uploading Data from Excel and CSV files</a></li>
   <li><a href="#opening-files-from-the-book-principles-of-econometrics-with-r" id="toc-opening-files-from-the-book-principles-of-econometrics-with-r" class="nav-link" data-scroll-target="#opening-files-from-the-book-principles-of-econometrics-with-r">Opening files from the book Principles of Econometrics with R</a></li>
   <li><a href="#creating-graphs-in-r" id="toc-creating-graphs-in-r" class="nav-link" data-scroll-target="#creating-graphs-in-r">Creating Graphs in R</a></li>
   <li><a href="#basic-plotting" id="toc-basic-plotting" class="nav-link" data-scroll-target="#basic-plotting">Basic Plotting:</a></li>
@@ -933,9 +933,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="..\images/image36a.PNG" class="img-fluid figure-img"></p>
-<figcaption>Tybe your name and hit enter</figcaption>
+<figcaption>Type your name and hit enter</figcaption>
 </figure>
 </div>
+<p>Then, swirl says that the three dots … means ‘read and hit enter’; you also need to press enter after answering exercises.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/image36b.PNG" class="img-fluid figure-img"></p>
+<figcaption>… the three dots: Read the prompt and hit enter</figcaption>
+</figure>
+</div>
+<p>Afterwards, swirl will carry on telling you how to numbers to choose topics, etc. Just read the prompts and follow the instructions until you need to choose a course. Remember to use <code>ESC</code> key if you plan to exit swirl, otherwise you will not be able to use R for programming.</p>
+<p>If you are already at the prompt, type <code>bye()</code> to exit and save your progress. When you exit properly, you’ll see a short message letting you know you’ve done so.</p>
 <p><strong>👣 Step 3:</strong> Choose a Course Next, you’ll be prompted to choose a course. If this is your first time using swirl, you’ll need to install a course. To install a course, type: Replace “Course Name” with the name of the course you want to install. A list of available courses can be found on the swirl website. You will need to install the R Programming course. Type: After the course is installed, start swirl again: You will be prompted to select a course. Choose “R Programming” from the list.</p>
 <blockquote class="blockquote">
 <p>install_from_swirl(“Course Name”)</p>
@@ -946,7 +955,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>👣 Step 4:</strong> Complete Lessons You will now be prompted to select a lesson. Choose the first lesson and follow the instructions to complete it. The lesson will consist of interactive exercises that will introduce you to the basics of R programming. As you progress, swirl will guide you through different lessons to gradually build up your R programming skills.</p>
 <p><strong>👣 Step 5:</strong> Progress Tracking swirl keeps track of your progress. You can check your progress at any time by running: swirl::progress() This will show you which lessons you’ve completed and which ones you still need to work on. And that’s it! By following these steps, you’ll be well on your way to learning R programming with swirl. Happy learning!</p>
-<hr>
 <div style="margin-bottom: -1em;">
 <p><img src="../images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8"></p>
 </div>
@@ -954,9 +962,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="lab-7-uploading-excel-files-to-r-and-basic-plotting" class="level2">
-<h2 class="anchored" data-anchor-id="lab-7-uploading-excel-files-to-r-and-basic-plotting">Lab 7 – Uploading Excel Files to R and Basic Plotting</h2>
+<h2 class="anchored" data-anchor-id="lab-7-uploading-excel-files-to-r-and-basic-plotting">Lab 7 – Uploading 🧮 Excel Files to R and 📈 Basic Plotting</h2>
 <section id="introduction-to-r---uploading-data-from-excel-and-csv-files" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-to-r---uploading-data-from-excel-and-csv-files">Introduction to R - uploading Data from Excel and CSV files</h3>
+<h3 class="anchored" data-anchor-id="introduction-to-r---uploading-data-from-excel-and-csv-files">🤝 Introduction to R - 📤 uploading Data from Excel and CSV files</h3>
 <ul>
 <li><p>Go to ONS.gov.uk</p></li>
 <li><p>Click on ‘data’ In the GDP quarter-on-quarter section.</p></li>
@@ -964,21 +972,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Go to your folder ‘downloads’</p></li>
 <li><p>Rename the file as “gdp qoq”</p></li>
 <li><p>Save the file in your subfolder’ data’ on your folder “econ2545”. We created this folder during the previous lab.</p></li>
-<li><p>Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file.</p></li>
+<li><p>Open the excel file and set column names to ‘quarters’ and ‘gdp’ in columns A and B. Save the file and close.</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/image38.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Image 32</figcaption>
+<p><img src="..\images/image36.png" class="img-fluid figure-img"></p>
+<figcaption>In yellow: the changes we made on the Excel file, names for the variables</figcaption>
 </figure>
 </div>
 <ul>
-<li>Open Rstudio (do not open R) and click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.</li>
+<li>In Rstudio (recall not to open R), click on ‘Import Dataset’, ‘from excel’, and choose the appropriate file on your folder ‘datasets’.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/image38.png" class="img-fluid figure-img"></p>
-<figcaption>Image 33</figcaption>
+<p><img src="..\images/image37.png" class="img-fluid figure-img"></p>
+<figcaption>Click on ‘Import Dataset’</figcaption>
 </figure>
 </div>
 <ul>
@@ -987,18 +995,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/image39.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Image 34</figcaption>
+<p><img src="..\images/image38.png" class="img-fluid figure-img"></p>
+<figcaption>We changed the box ‘Skip:’ to 7 and copy the code using the icon 📋</figcaption>
 </figure>
 </div>
 <ul>
-<li><p>Click on import.</p></li>
-<li><p>Go to your R script and paste (ctrl + v) the copied R code. You shall have the following code:</p></li>
+<li><p>Click on ‘Import’.</p></li>
+<li><p>Go to your R script and paste by using the keys ‘ctrl+v’. You shall have the following code:</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="..\images/image39.png" class="img-fluid figure-img"></p>
-<figcaption>Image 35</figcaption>
+<figcaption>We pasted the lines 13 to 15</figcaption>
 </figure>
 </div>
 <ul>
@@ -1006,13 +1014,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/image4.emf" class="img-fluid figure-img"></p>
-<figcaption>Image 36</figcaption>
+<p><img src="..\images/image40.png" class="img-fluid figure-img"></p>
+<figcaption>Function plot()</figcaption>
 </figure>
 </div>
 <ul>
 <li><p>Find the unemployment dataset in ONS, but this time download the full-time series as ‘.csv’ file, can you paste the appropriate code for csv files in your R script?</p></li>
-<li><p>Type ‘?plot’ and click on ‘Generic X-Y’ Plotting on the console to review more arguments you can use.</p></li>
+<li><p>Type <code>?plot</code> on the console, this opens the help panel for ‘plot’. Click on the link ‘Generic X-Y’ Plotting on the console to review more arguments you can use in the function plot().</p></li>
 </ul>
 </section>
 <section id="opening-files-from-the-book-principles-of-econometrics-with-r" class="level3">
