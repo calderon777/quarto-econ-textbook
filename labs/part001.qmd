@@ -127,23 +127,26 @@ Browse the Office for Budget Responsibility website. Under 'Publications' > 'Wor
 </iframe>
 
 <div style="
+  position: relative;
   margin: 3em 0;
   text-align: center;
   border-top: 2px solid #ccc;
-  position: relative;
+  height: 1.5em;
 ">
   <span style="
-    position: relative;
-    top: -0.8em;
-    background: white;
+    background: #fff;
     padding: 0 1em;
-    font-size: 1em;
-    color: #999;
+    font-size: 0.95em;
+    color: #888;
+    font-family: 'Georgia', serif;
+    position: relative;
+    top: -0.85em;
     font-style: italic;
   ">
-    --- End of Page ---
+    End of Page
   </span>
 </div>
+
 
 ## Lab 3: Videos about R (Linked with MCQs assessment)
 
