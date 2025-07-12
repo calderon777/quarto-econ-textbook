@@ -127,8 +127,8 @@ Browse the Office for Budget Responsibility website. Under 'Publications' > 'Wor
 </iframe>
 
 
-<div style="transform: rotate(180deg); margin-bottom: 2em;">
-  <img src="../images/torn-paper-divider.svg" alt="End of Lab" style="width: 100%;" />
+<div style="margin-bottom: 2em;">
+  <img src="../images/torn-paper-divider.svg" alt="End of Lab" style="width: 100%; transform: rotate(180deg);" />
 </div>
 <img src="/images/grunge-divider-3.svg" alt="End of Page" style="width: 100%; margin: 2em 0;" />
 
