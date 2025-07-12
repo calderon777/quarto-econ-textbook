@@ -398,29 +398,36 @@ To find out more about using LinkedIn Learning, please refer to the 'LinkedIn Le
 
 ![LinkedIn Learning!](/images/image35.jpg)
 
+---
+
 ### ✍️ Practice
 **Hands-on** 🛠️ , you must upload as part of your assessment an screenshot of a certification in R from LinkedIn. The deadline is three days after the face-to-face delivery date of this lab via Turnitin.
 
-### 🎒 Bonus Section - Optional**
+---
+
+### 🎒 Bonus Section - Optional 🤷 
 There are hundreds of R Programming Certifications, Tutorials, Courses and Training Online, etc. Explore further online:
 
-•	Free Course Trial – R Programming Certification by Johns Hopkins University (Coursera)
-•	Data Science: R Basics Certificate by Harvard University (edX)
-•	Free Course Trial – Statistics with R Certification by Duke University (Coursera)
-•	Free Course Trial – Software Development in R Certification by Johns Hopkins University (Coursera)  
-•	Programming for Data Science with R Nanodegree Certification (Udacity)
-•	R Programming Course A-Z™: R For Data Science With Real Exercises (Udemy)
-•	Data Science and Machine Learning Bootcamp with R (Udemy)
-•	R Programming: Advanced Analytics In R For Data Science
-•	Statistics with R – Beginner Level
-•	R Programming Courses & Tutorials Online (Pluralsight)
-•	R for Data Science Course (LinkedIn Learning)
+-	Free Course Trial – R Programming Certification by Johns Hopkins University (Coursera)
+-	Data Science: R Basics Certificate by Harvard University (edX)
+-	Free Course Trial – Statistics with R Certification by Duke University (Coursera)
+-	Free Course Trial – Software Development in R Certification by Johns Hopkins University (Coursera)  
+-	Programming for Data Science with R Nanodegree Certification (Udacity)
+-	R Programming Course A-Z™: R For Data Science With Real Exercises (Udemy)
+-	Data Science and Machine Learning Bootcamp with R (Udemy)
+-	R Programming: Advanced Analytics In R For Data Science
+-	Statistics with R – Beginner Level
+-	R Programming Courses & Tutorials Online (Pluralsight)
 
+---
 
 ### 💻 Package Swirl 🌀
+
+**Prerequisite:** you need to open RStudio before hand and follow the instructions below.
+
 ‘swirl’ is an R package designed to teach you R programming and data science interactively. Here's a step-by-step guide on how to use swirl:
 
-**👣Step 1**: Install and Load the swirl Package
+**👣 Step 1:** Install and Load the swirl Package
 
 You only need to install the packages for the very first time in personal computers. If you are using a public computer you need to install everytime you start a session. 
 
@@ -435,15 +442,20 @@ Once installed, load the ‘swirl’ package with the following command:
 library(swirl)
 ```
 
-## Step 2: Start swirl and Follow the Prompts
+**👣 Step 2:** Start swirl and Follow the Prompts
+
 To start swirl, enter the following command:
-After entering this command, you will be prompted to enter your name. Type your name and press enter.
 
 ```{r, eval=FALSE}
 swirl()
 ```
 
-## Step 3: Choose a Course
+After entering this command, you will be prompted to enter your name. Type your name and press enter.
+
+![Tybe your name and hit enter](/images/image36a.PNG)
+
+
+**👣 Step 3:** Choose a Course
 Next, you'll be prompted to choose a course. If this is your first time using swirl, you'll need to install a course. To install a course, type:
 Replace "Course Name" with the name of the course you want to install. A list of available courses can be found on the swirl website.
 You will need to install the R Programming course. Type:
@@ -457,29 +469,23 @@ install_from_swirl("R Programming")
 swirl()
 ```
 
-## Step 4: Complete Lessons
+**👣 Step 4:** Complete Lessons
 You will now be prompted to select a lesson. Choose the first lesson and follow the instructions to complete it. The lesson will consist of interactive exercises that will introduce you to the basics of R programming.
 As you progress, swirl will guide you through different lessons to gradually build up your R programming skills.
 
-## Step 5: Progress Tracking
+**👣 Step 5:** Progress Tracking
 swirl keeps track of your progress. You can check your progress at any time by running:
 swirl::progress()
 This will show you which lessons you've completed and which ones you still need to work on.
 And that's it! By following these steps, you'll be well on your way to learning R programming with swirl. Happy learning!
 
-<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
+---
 
-<div style="margin-bottom: -0.998em;">
+<div style="margin-bottom: -1em;">
   <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
 <img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
-<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
-
-<div style="margin-bottom: -0.998em;">
-  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
-</div>
-<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
 ## Lab 7 – Uploading Excel Files to R and Basic Plotting
 
