@@ -6,8 +6,6 @@ format: html
 
 ## Lab 1: 📄 Introduction &  📋 Assignment Brief
 
-
-
 - **Faculty of Business and Law**
 - **Module Title**: *Econometrics & Data Analytics*
 - **Module Code**: *BECS2002*
@@ -103,7 +101,7 @@ Example AI statement:
 - See [DMU Referencing Guide](https://library.dmu.ac.uk/refguide) for help.
 - Seek academic or wellbeing support via the Student Gateway or your personal tutor.
 
-### Practice Lab – Interactive Version
+### ✍️ Practice
 
 <iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
 
@@ -121,13 +119,13 @@ This lab reviews how forecasting is use by economists in the real life.
 
 Browse the Office for Budget Responsibility website. Under 'Publications' > 'Working Papers', find and read the abstract of *Working Paper No.19: The OBR's forecast performance*. Here’s your interactive tutorial. Submit your answers and get feedback instantly!
 
+### ✍️ Practice
 <iframe src="https://calderon777.shinyapps.io/lab2_open_questions/"
         width="100%" height="400px" frameborder="0">
 </iframe>
 
-<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
 
-<div style="margin-bottom: -0.998em;">
+<div style="margin-bottom: -1em;">
   <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
 <img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
@@ -135,58 +133,47 @@ Browse the Office for Budget Responsibility website. Under 'Publications' > 'Wor
 
 ## Lab 3: Videos about R (Linked with MCQs assessment)
 
-### 🎥 Introduction: How to Download and Install R & RStudio, Step-by-Step Guide ✨  
-[![EP: Install R & RStudio](https://img.youtube.com/vi/XvBel00McqM/hqdefault.jpg)](https://youtu.be/XvBel00McqM){target="_blank"}
+### 🎥 Introduction: How to Download and Install R & RStudio, Step-by-Step Guide ✨
 
----
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XvBel00McqM?cc_load_policy=1" title="Install R & RStudio" frameborder="0" allowfullscreen> </iframe>
 
-### 🎥 Setting a Working Directory and Subfolders 🧙‍♂️  
-[![EP: Working Directory](https://img.youtube.com/vi/62zHF8fZrFk/hqdefault.jpg)](https://youtu.be/62zHF8fZrFk){target="_blank"}
+### 🎥 Setting a Working Directory and Subfolders 🧙‍♂️
+<iframe width="560" height="315" src="https://www.youtube.com/embed/62zHF8fZrFk?cc_load_policy=1" title="Working Directory in R" frameborder="0" allowfullscreen> </iframe>
 
----
+### 🎥 Using RStudio or R for the first time 👑
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yNNrt_vSndA?cc_load_policy=1" title="First Time Using R" frameborder="0" allowfullscreen> </iframe>
 
-### 🎥 Using RStudio or R for the first time 👑  
-[![EP: First Time in R](https://img.youtube.com/vi/yNNrt_vSndA/hqdefault.jpg)](https://youtu.be/yNNrt_vSndA){target="_blank"}
+### 🎥 Packages, Vocabulary 🐣, Structure and Commenting in R or RStudio for Beginners
+<iframe width="560" height="315" src="https://www.youtube.com/embed/owIvCe6jO5I?cc_load_policy=1" title="Packages and Structure in R" frameborder="0" allowfullscreen> </iframe>
 
----
+### 🎥 Functions 📊, Vectors 📈 and Other Structures in R or RStudio for Beginners
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rngrLdQcu-o?cc_load_policy=1" title="Functions and Vectors in R" frameborder="0" allowfullscreen> </iframe>
 
-### 🎥 Packages, Vocabulary 🐣, Structure and Commenting in R or RStudio for Beginners  
-[![EP: Packages & Structure](https://img.youtube.com/vi/owIvCe6jO5I/hqdefault.jpg)](https://youtu.be/owIvCe6jO5I){target="_blank"}
 
----
-
-### 🎥 Functions 📊, Vectors 📈 and Other Structures in R or RStudio for Beginners  
-[![EP: Functions & Vectors](https://img.youtube.com/vi/rngrLdQcu-o/hqdefault.jpg)](https://youtu.be/rngrLdQcu-o){target="_blank"}
-
-<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
-
-<div style="margin-bottom: -0.998em;">
+<div style="margin-bottom: -1em;">
   <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
 <img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
-## Lab 4: Performance and Evaluation I
+## Lab 4: Performance and Evaluation
 
 ![Performance and Evaluation](/images/image5.png)
 
 
 ![Data Partitioning](/images/image6.png)
 
-<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
-
-<div style="margin-bottom: -0.998em;">
+<div style="margin-bottom: -1em;">
   <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
-<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
-
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0; opacity: 0.8" />
 
 ## Lab 5: Prerequisite - A Quick intro to R
 
-### 1. Install R and RStudio on your laptops/gadgets
+### 💾 Install R and RStudio on your laptops/gadgets
 
 RStudio is a wrapper for R; we are using RStudio because it makes looks R more organised and straightforward. Follow the following instructions:
 
-- go to www.r-project.com
+- go to https://www.r-project.org
 
 - click on 'CRAN mirror'
 
@@ -210,15 +197,15 @@ Then proceed to Installing RStudio.
 
 - Click on 'Next' if you agree and on 'Install' and 'Finish' to complete the process.
 
-### Introduction to R
+### 📘 Introduction to R
 After downloading and installing open RStudio, we will cover now some tutorials. 
 
-**Long Tutorial**
+👨‍💻 **Long Tutorial**
 
 We would cover a brief introduction on this labs, students would like to cover a longer tutorial to get use to R quickly. Click on this link: https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
 
 
-**Quick tutorial - RStudio Screen**
+👨‍💻 **Quick tutorial - RStudio Screen**
 
 You need to have installed R and RStudio to continue with this lab. 
 
@@ -266,59 +253,62 @@ The above will render a result within the 'Console' panel, this is the code `set
 
 - In line number 4, type `5*5` and hit 'ctrl' and 'enter', the console will show the code and the result, 25.
 
-- Let's create a matrix; use the lines 5 and 6 in your script and hit 'ctrl' & 'enter' to line 5 and then 6.
+- Let's also create a matrix. Use the in the picture below -lines 5 and 6, put them on your script and hit ctrl+enter to line 5 and then 6.
 
-![Image 13](/images/image16.png)
+![A multiplication and your first matrix](/images/image16.png)
 
 If you did it correctly, the outcome in the console will be as follows:
 
-![Image 14](/images/image17.png)
+![Multiplication and matrix output in your Console](/images/image17.png)
 
 - In the line 5, you asked R to create a matrix called 'A', with numbers from 1 to 8, with four rows and two columns.
 
 Have a look at the 'Environment' panel, you can see in there all active objects(e.g. matrix A), and the panel 'History' shows a list of commands used do far.
 
-![Image 15](/images/image18.png)
+![Environment Panel](/images/image18.png)
 
-- To see the matrix A in a new window, type the command View(A) in line 7 and hit the keys 'ctrl+ enter' to run line 7. Afterwards, come back to your R script 'Untitled 1'.
+- To see the matrix A in a new window, type the command `View(A)` in line 7 and hit the keys 'ctrl+enter' to run line 7, this will send you to a different tab. Afterwards, come back to your R script by clicking on 'Untitled 1'.
 
-![Image 16](/images/image19.png)
+![Sample of function View()](/images/image19.png)
 
 **Packages tab**
 
 The package tab shows the list of add-ons included in the installation of RStudio. If checked, the package is loaded into R, if not, any command related to that package won't work, you will need select it. You can also install other add-ons by clicking on the 'Install Packages' icon.
 
-Another way to install add-ons is to type the command install.packages("name of the package"), and then you will be able to open the library of commands of that package.
+Another way to install add-ons is to type the function `install.packages("name of the package")`, and then you will be able to open the library of commands of that package.
 
-- In line 8, to install the package forecast, type install.packages(“forecast”) and hit ctrl+enter. In the next window, you can hit yes to restart RStudio. See the picture below, you shall not get errors in the console, and at the end, the sign '>' will let you know the instalation run OK.
+- In line 8, to install the package forecast, type `install.packages(“forecast”)` and hit ctrl+enter. In the next window, you can hit yes to restart RStudio. See the picture below, you shall not get errors in the console, and at the end, the sign '>' will let you know the instalation run OK.
 
-![Image 17](/images/image20.png)
+![Function install.packages() and installing package 'forecast'](/images/image20.png)
 
-You must activate the package by typing, for example, `library(forecast)`. This will automatically check the 'forecast' package.
+You must activate the package by typing 'library(the package)', for example, `library(forecast)` and ctrl+enter. In this case, this will automatically open all functions within the 'forecast' package.
 
-![Image 18](/images/image21.jpg)
+![library() function and sample with package 'forecast'](/images/image21.png)
 
-![Image 19](/images/image22.jpg)
+![The Console will show this result after 'running' library("forecast")](/images/image22.png)
 
-### We will use the package forecast in this course to analyse and predict economic time series.
+We will use the package forecast in this course to analyse and predict economic time series.
 
-### Do not forget to save your R script in your own course folder! Use the icon to save, I called my file "lab001" and now is available , folder 'R code – LABs'
+Do not forget to 💾 save your R script in your own course folder! Use the icon to save, I called my file "lab001" and now is available , folder 'R code – LABs'
 
-![Image 20](/images/image23.jpg)
+![Remember to save your R Scripts, this will save you a lot time!](/images/image23.png)
 
-<iframe src="https://calderon777.shinyapps.io/lab1_learnr_tutorial/" width="100%" height="400px"></iframe>
-
-<div style="margin-bottom: -0.998em;">
+<div style="margin-bottom: -1em;">
   <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
 </div>
 <img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
 ## Lab 6 – R certification & Package swirl
-**Access LinkedIn Learning – First time logging in **
-*****Adapted from the library resources
-Open any web browser and navigate to
+
+### 📜 Getting your first R Certification
+
+**Access LinkedIn Learning – First time logging in**
+
+***Adapted from the library resources***
 
 ![Image 21](/images/image24.jpg)
+
+Open any web browser and navigate to www.Linkedin.com
 
 Enter your DMU email address:
 For students – your login credentials will be your DMU email address in the format Pnumber@my365.dmu.ac.uk
