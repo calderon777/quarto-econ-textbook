@@ -563,10 +563,10 @@ install.packages("remotes")
 
 ---
 
-### Creating Graphs in R
+### 📈 Creating Graphs in R
 R provides a suite of functions to create and customize graphs. Here's a brief overview:
 
-### Basic Plotting:
+**Basic Plotting:**
 Function: plot()
 Usage: To plot data points and lines.
 Arguments:
@@ -579,20 +579,25 @@ type: Determines the style of the plot. Options include:
 "n": No plot, creates an empty graph. Useful as a foundation for other plot elements.
 
 
-### Plotting Mathematical Curves:
+### 🔢 Plotting Mathematical Curves:
 Function: curve()
 Usage: To plot a curve based on a mathematical function over a specified range.
 Example:
 Key Argument:
 “add”: If set to TRUE, the curve is added to an existing graph.
 
-```{r}
-curve(x^1, from=-2, to=2, xlab="x", ylab="y = x" ) # Add another curve to the existing graph:*
-curve(x^2, add = TRUE) #plot(1:100, type='n')*
+```{r echo=TRUE}
+curve(x^1, from=-2, to=2, xlab="x", ylab="y = x" ) 
+# Plots a straight line from x = -2 to 2
+
+curve(x^2, add = TRUE)
+# Adds a parabola to the **existing** plot
+
 curve(sqrt(x), from=0, to=100, xlab="x", ylab="y")
+# Starts a **new** plot, this one replaces the previous plot
 ```
 
-### Adding Lines:
+### 📉 Adding Lines:
 Function: abline()
 Usage: To add lines defined by specific parameters to a graph.
 Arguments:
