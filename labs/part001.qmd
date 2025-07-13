@@ -586,15 +586,19 @@ Example:
 Key Argument:
 “add”: If set to TRUE, the curve is added to an existing graph.
 
-```{r echo=TRUE}
-curve(x^1, from=-2, to=2, xlab="x", ylab="y = x" ) 
-# Plots a straight line from x = -2 to 2
+```{r}
+# Plot the first curve: y = x
+curve(x^1, from = -2, to = 2, xlab = "x", ylab = "y", ylim = c(-2, 10))
 
+# Add a second curve: y = x^2
 curve(x^2, add = TRUE)
-# Adds a parabola to the **existing** plot
+```
 
-curve(sqrt(x), from=0, to=100, xlab="x", ylab="y")
-# Starts a **new** plot, this one replaces the previous plot
+```{r}
+# y = sqrt(x)
+# This function is only defined for x ≥ 0
+curve(sqrt(x), from = 0, to = 10)
+
 ```
 
 ### 📉 Adding Lines:
@@ -612,7 +616,15 @@ curve(x^2, from=0, to=20)
 abline(v=10)
 ```
 
-![Examples of using the function abline()](/images/image40.png)
+
+## 🧪 Try It: Curve Playground
+
+Use the interactive tool below to experiment with mathematical functions.
+
+<iframe src="https://calderon777.shinyapps.io/lab7_curve_playground/"
+        width="100%" height="600px" style="border: none;"></iframe>
+
+---
 
 ## Lab 8 – 👀 Data Visualisation
 Adapted from:
