@@ -88,8 +88,13 @@ Lab 9: – Intro to Refinitiv
 
 Lab 10: Refinitiv: News, forecasts, Macrox
 
+**Scan me!!!**
+[QR Code - Scan me! ](/images/scan_me.png)
+
 
 ---
+
+
 
 
 [Next ➡️](labs/part001.html)
