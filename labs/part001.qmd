@@ -923,15 +923,19 @@ Continue to work through the Refinitv Eikon training materials and explore the s
 
 ![Image 76](/images/image71.png)
 
+---
 
-**Activity 13.**
-
-![Image 76](/images/image9.png)
-
-**Workshop – ****Terminal Access**** to Bloomberg**
+**Workshop – Terminal Access to Bloomberg**
 This is an OPTIONAL material; students can download the lab for Access to Bloomberg Terminals access in bb, folder ‘LABs’ Handbook’. The lab can also be downloaded from the shared folder for  on .
 
-## Lab 6 – Refinitiv :News, forecasts, Macrox
+---
+
+<div style="margin-bottom: -1em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
+## Lab 11 – Refinitiv :News, forecasts, Macrox
 Open the user manual on bb, module site, find the folder ‘Labs’. Students must cover pages 9 to 13; “Setting up Thomson Reuters Eikon”.
 
 ## Activity 1 – Read the news for the UK.
