@@ -626,39 +626,53 @@ Use the interactive tool below to experiment with mathematical functions.
 
 ---
 
+<div style="margin-bottom: -1em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
+
 ## Lab 8 – 👀 Data Visualisation
-Adapted from:
+Adapted from: https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174
 Link to  files:
 
-### See the code below. Load the built-in dataset into R and type the following command in the console:
+Let's explore R datasets using a basic level tutorial in visualisation. We will work in RStudio. You can type `data()` and enter in the RStudio console, this opens a new tab with very interesting datasets. 
+```{r}
+data()  #Explore the built-in datasets
+```
 
-### data()  #Explore the built-in datasets
+Now, load the built-in dataset 'airquality' into RStudio - type `data(airquality)` in the console:
 
-### data(airquality)
+```{r}
+data(airquality)
+```
 
-### Data exploration:
+If everything is OK, in the console panel you will see the airquality dataset.
 
-### str(airquality) #It displays the internal structure of an R object
+Let's perform data exploration.
+```{r}
+str(airquality) #the function 'str()' displays the internal structure of an R object
+```
 
-### Exploring the beginning of the data or the end of the data
+The output of `str(airquality)` shows the numer of observations (153) and number of variables (6). There is also information about variable names, type integer (int) or number (num), and a some sample observations.
 
-### head(airquality, 7)
+We can also Explore the beginning of the data and the end of the data with the funcions `head()` and `tail()`. 
+```{r}
+head(airquality, 7)
 
-### tail(airquality,5)
-
-![Image 38](/images/image41.jpg)
+tail(airquality,5)
+```
 
 **Descriptive statistics**
+
+One easy way to check for key descriptive statistics is to use the function `summary()`, check this descriptive statitics for the dataset 'ariquality' as follows:
 
 ```{r}
 summary(airquality)
 ```
 
-![Image 39](/images/image42.jpg)
 
-**Use the ‘Graphics’ package for plotting basic graphs**
-**Plot the ozone column from ****airquality**
-**Plot a graph between ozone and wind to visuali****s****e a possible relation. Is there a negative correlation**** between ozone and air speed****?**
+Use the `graphics` for plotting basic graphs. Plot the ozone column from airquality. Plot a graph between ozone and wind to visualise a possible relation. Is there a negative correlation between ozone and air speed?
 
 ```{r}
 library(help = "graphics")
@@ -666,38 +680,28 @@ plot(airquality$Ozone)
 plot(airquality$Ozone, airquality$Wind)
 ```
 
-![Image 40](/images/image43.png)
-
-**Plot the entire dataset****. Is there a positive correlation between temperature and ozone level?**
+Plot the entire dataset. Is there a positive correlation between temperature and ozone level?
 
 ```{r}
 plot(airquality)
 ```
 
-![Image 41](/images/image44.png)
-
-**points and lines **
-**high density lines**
+You can also plot graphs 'points and lines' or 'high density lines' graphs.
 
 ```{r}
 plot(airquality$Ozone, type= "b")
 plot(airquality$Ozone, type= "h")
 ```
 
-**type ?plot()**
+Now, type `?plot()`, this will open the help for the function `plot()`. It is important to read this help files as they have many more arguments that you can use when using the functions.
 
-**labels and titles**
+We can also change graph labels and titles:
 ```{r}
 plot(airquality$Ozone, xlab = 'ozone Concentration', ylab = 'No of Instances', main = 'Ozone levels in NY city', col = 'green')
 ```
 
-![Image 42](/images/image45.png)
 
-**horizontal bar plots**
-**vertical bar plots**
-**Create a histogram of the column solar radiation and explain the output.**
-hist(airquality$Solar.R)
-**Generate a boxplot of solar radiation. Explain the output.**
+The following code shows how to create Horizontal bar plots, vertical bar plots:
 
 ```{r}
 barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col= 'green',horiz = TRUE)
@@ -705,18 +709,18 @@ barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone lev
 hist(airquality$Solar.R, main = 'Solar Radiation values in air',xlab = 'Solar rad.', col='red')
 ```
 
-![Image 43](/images/image46.png)
+We can also create a histogram of the column solar radiation. Try to explain the output:
+```{r}
+hist(airquality$Solar.R)
+```
 
-**Generate multiple box plots**
+Let's generate a boxplot of solar radiation. Explain the output.
 
 ```{r}
 boxplot(airquality[,0:4], main='Multiple Box plots')
 ```
 
-![Image 44](/images/image47.png)
-
-**Generate a grid charts **
-hist(airquality$Solar.R)
+Now, generate a grid 3x3 chart:
 
 ```{r}
 par(mfrow=c(3,3), mar=c(2,5,2,1), las=1, bty="n")
@@ -726,195 +730,200 @@ plot(airquality$Ozone, type= "c")
 plot(airquality$Ozone, type= "s")
 plot(airquality$Ozone, type= "h")
 barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col='green',horiz = TRUE)
+hist(airquality$Solar.R)
 boxplot(airquality$Solar.R)
 boxplot(airquality[,0:4], main='Multiple Box plots')
 ```
 
-![Image 45](/images/image48.png)
 
-Other visualisation packages include lattice (good for kernel density plots) , ggplot2, plotty, maps (to plot country maps). Explore more on the link:
+Other visualisation packages include lattice (good for kernel density plots) , ggplot2, plotty, maps (to plot country maps). Explore more on the link:https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174
+ 
+---
 
-## Lab 4 - Mock/Practice test & AI AND R
+<div style="margin-bottom: -1em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
 
-### MOCK/PRACTICE TEST
+
+## Lab 9 - Mock/Practice test & AI AND R
+
+### 📝 MOCK/PRACTICE TEST
 Go to the module site in the LZ. Go to the tile ‘Assessments’ and click on “Mock/Practice MCQs”. Students can take the test as many times they want. Each time, students will receive many new questions.
 
-### Using ChatGPT to Write and Debug Simple R Scripts
+### 🤖 Using AI (e.g. ChatGPT) to Write and Debug Simple R Scripts
 
-### Introduction
+**Introduction**
 This lab will guide students through the process of writing and debugging simple R scripts with the assistance of ChatGPT. Whether you're a beginner or an experienced R user, ChatGPT can provide valuable insights and help streamline your coding process.
 
-## Prerequisites
+**Prerequisites**
 Basic understanding of R syntax and programming concepts.
 R and RStudio installed on your computer.
 
-### Writing R Scripts with ChatGPT
+**Writing R Scripts with ChatGPT**
 
-## Step 1: Define Your Objective
+**👣 Step 1: Define Your Objective**
 Start by clearly stating what you want to achieve with your R script. For example:
 "I want to calculate the mean of a numeric vector."
 "I need to create a histogram of a dataset."
 
-## Step 2: Ask ChatGPT for Code Snippets
+**👣 Step 2: Ask ChatGPT for Code Snippets**
 Once your objective is clear, ask ChatGPT for a code snippet that accomplishes your task. For instance:
+
 "Can you provide an R script to calculate the mean of a vector?"
+
 "Show me how to create a histogram in R."
+
 Ask ChatGPT: "Can you provide an R script to calculate the mean of a numeric vector?"
+
 ChatGPT might provide a snippet like this:
 
-![Image 46](/images/image49.png)
+![Sample snippet in Chatgpt about R](/images/image51.png)
 
-## Step 3: Analyze the Provided Code
+**👣Step 3: Analyze the Provided Code**
 ChatGPT will give you a code snippet. Read through it carefully and make sure you understand each part. You can ask ChatGPT to explain any lines or functions that are unclear.
 
-## Step 4: Run the Code in RStudio
+**👣 Step 4: Run the Code in RStudio**
+
 Copy the code snippet into RStudio (use an script) and run it. Observe the output to see if it meets your expectations.
 
-### Debugging R Scripts with ChatGPT
+### 🐞 Debugging R Scripts with ChatGPT
 
-## Step 1: Identify the Problem
+**👣 Step 1: Identify the Problem**
+
 If the code doesn't work as expected, identify the error message or the unexpected output. For example:
-Error messages in the console.
-Results that don’t match your expectations.
-You run the script, but you receive an error: Error in mean(height): object 'height' not found.
 
-## Step 2: Ask ChatGPT for Help
+- Error messages in the console.
+- Results that don’t match your expectations.
+- You run the script, but you receive an error: Error in mean(height): object 'height' not found.
+
+**👣 Step 2: Ask ChatGPT for Help**
 Describe the problem to ChatGPT. Be specific about the error or the issue. For example:
-"I received an error message that says 'object not found'. What does this mean?"
-"The histogram is not displaying any data. Can you help me fix it?"
-"I tried to calculate the mean of a vector, but I got an error saying 'object not found'. Here's my code..."
 
-## Step 3: Implement the Suggested Solutions
+- "I received an error message that says 'object not found'. What does this mean?"
+- "The histogram is not displaying any data. Can you help me fix it?"
+- "I tried to calculate the mean of a vector, but I got an error saying 'object not found'. 
+- Here's my code..."
+
+**👣 Step 3: Implement the Suggested Solutions**
 ChatGPT will suggest solutions or ask further questions to clarify the issue. Follow the suggestions step by step, adjusting your code as needed.
 ChatGPT might respond with: "It looks like there's a typo in your code. The object you're trying to calculate the mean for is 'heights', not 'height'."
 
-## Step 4: Test the Adjusted Code
+**👣 Step 4: Test the Adjusted Code**
 After implementing the changes, rerun your script. If issues persist, describe the new output to ChatGPT, and continue the debugging process.
 
-![Image 47](/images/image5.png)
+![Ask AI to adjust your code](/images/image52.png)
 
-### Best Practices for Using ChatGPT with R
+**Best Practices for Using ChatGPT with R**
 Incremental Development: Write and test your code in small chunks to catch errors early.
 Clear Communication: When asking for help, provide clear and detailed information about your code and the issues you're facing.
 Understanding Over Copy-Pasting: Try to understand the code snippets provided rather than just copying and pasting them. This will improve your R programming skills over time.
 
-## Conclusion
+**Conclusion**
 With the above steps, you can effectively use ChatGPT to write and debug simple R scripts. Remember, practice is key to becoming proficient in R, and using ChatGPT can accelerate your learning by providing instant assistance and feedback.
-Additional Resources
+
+**Additional Resources:**
+The R Manuals: https://cran.r-project.org/manuals.html
+RStudio Cheatsheets: https://www.rstudio.com/resources/cheatsheets/
+
 Happy coding!
 
-## Lab 5 – Intro to Refinitiv
+---
+
+<div style="margin-bottom: -1em;">
+  <img src="/images/grunge-divider-3.svg" style="width: 100%; transform: rotate(180deg); opacity: 0.8" />
+</div>
+<img src="/images/grunge-divider-3.svg" style="width: 100%; margin: 0em 0;; opacity: 0.8" />
+
+
+## Lab 10 – Introduction to Refinitiv Workspace (LSEG)
+
 **Workshop – Introduction to Refinitiv Eikon**
-Adapted from Darren Sparkes and Tom Webster’s ACFI3307
-Complete the following activities to set up your Refinitiv Workspace account and learn the software's features.
+
+Adapted from: *Darren Sparkes and Tom Webster’s ACFI3307*
+
+**Complete the following activities to set up your Refinitiv Workspace account and learn the software's features.**
+
 **Activity 1.**
-As a registered student on the ECON2545 module you should have received an email from Refinitiv that gives you your user ID (should be your DMU email address) and a link for you to access Refinitiv workspace as in Figure 1 below (Fig. 1). If you do not seem to have received this email then please check your junk and/or spam folders. If you still think that you have not received the email then please contact me by email to let me know
+If registered, you should have received an email from Refinitiv that gives you your user ID (should be your DMU email address) and a link for you to access Refinitiv workspace as in Figure 1 below (Fig. 1). If you do not seem to have received this email then please check your junk and/or spam folders. If you still think that you have not received the email then please contact me by email to let me know at `cam.calderon@dmu.ac.uk`
+
 Please be aware that ‘Refinitiv Workspace’ is compatible with Google Chrome and Apple Safari. If you are on a Microsoft Windows computer please download Chrome to your device if you do not use it already. You may need to make it your default browser for the purposes of setting up Refinitiv Eikon after which you can reset back to your usual default browser, remembering that you will need to use Chrome whenever using Refinitv Eikon.
 
-![Image 48](/images/image50.png)
+![Welcome email](/images/image53.png)
 
-![Image 49](/images/image51.png)
-
-****
 **Activity 2.**
 You will be taken to Chrome to set up a password to use with your ID as in Fig. 2 below. Please ensure that you choose a password that you can remember and/or write it down somewhere (perhaps on your phone) so that you will be able to access Eikon in the future.
 
-![Image 50](/images/image52.png)
+![Note password requirements](/images/image54.png)
 
 **Activity 3.**
 
-![Image 51](/images/image53.png)
-
-![Image 52](/images/image54.png)
+![Select 'Open in Web'](/images/image55.png)
 
 **Activity 4.**
 
-![Image 53](/images/image55.png)
-
-![Image 54](/images/image56.png)
+![Your choice!](/images/image56.png)
 
 **Activity 5.**
 
-![Image 55](/images/image57.png)
+![About you!](/images/image57.png)
 
-![Image 56](/images/image58.png)
+![Select 'Student'](/images/image58.png)
 
-Fig. 6
+![Your profile](/images/image59.png)
 
-![Image 57](/images/image59.png)
-
-Fig. 7
-
-![Image 58](/images/image6.png)
-
-****
 **Activity 6.**
 
-![Image 59](/images/image60.png)
+![Work through the 'Welcome' app features ](/images/image60.png)
 
-![Image 60](/images/image61.png)
+![Features](/images/image61.png)
 
-Fig. 9
-
-![Image 61](/images/image62.png)
-
-****
 **Activity 7.**
-You should be presented with your home screen as in Fig. 10. If your screen does not look exactly the same as Fig. 10, there is no need to worry. You will have the chance to set your homescreen to what you want in the future.
-Fig. 10
+You should be presented with your home screen. If your screen does not look exactly the same, there is no need to worry. You will have the chance to set your homescreen to what you want in the future.
 
-![Image 62](/images/image63.png)
+![Home screen](/images/image62.png)
 
-**Activity 8.****	****	**
-Fig 11.
+**Activity 8.**
 
-![Image 63](/images/image64.png)
+![Select settings!](/images/image63.png)
 
-![Image 64](/images/image65.png)
+![Image 64](/images/image64.png)
 
-![Image 65](/images/image66.png)
+![Image 65](/images/image65.png)
 
-![Image 66](/images/image67.png)
+**Activity 9**
 
-![Image 67](/images/image68.png)
+![Image 66](/images/image66.png)
 
-![Image 68](/images/image69.png)
+**Activity 10**
 
-****
+![Image 67](/images/image67.png)
 
-![Image 69](/images/image7.png)
-
-Fig. 14
-
-![Image 70](/images/image70.png)
-
-**Activity 10.**
-
-![Image 71](/images/image71.png)
-
-![Image 72](/images/image72.png)
 
 As sown in Fig. 16, Refinitiv have a series of training videos for you to watch that will cover how to use the Refinitiv software. Most of these are only a couple of minutes long. The first time that you click on a video you will be asked to sign in with your **DMU EMAIL ADDRESS**.
 The training videos will enhance your ability to use the software and will, therefore, **directly impact upon your ability to manage your ****presentation**** assignment**** and final examination**. However, I recommend that once you have signed in, you go to Activity 11 to view the videos as part of the user ‘Certification’ process rather than doing them as a standalone exercise.
-Fig. 16
 
-![Image 73](/images/image73.png)
+![Image 68](/images/image68.png)
+
 
 **Activity 11.**
 Refinitiv also has a user ‘Certification’ qualification. This can be accessed from the menu bar as shown in Fig.18.
-Fig. 18
 
-![Image 74](/images/image74.png)
+![Image 74](/images/image69.png)
 
-Fig. 19
 
-![Image 75](/images/image8.png)
+![Image 75](/images/image70.png)
 
 The ‘Certification’ screen, as shown in Fig.19, gives details on how to complete the certificate. In brief, to obtain certification status, you must complete training videos and e-learning modules and then pass a 60-minute test including 30 multiple-choice questions. You will need to select the Eikon Product Certification (Fig 19.) and this will take you to the required Learning Materials.
-Students must begin to complete the Refinitiv Workspace certification during the lab. Not only will this help students for their assessment, but it will also **enhance ****their**** CV****s**** for presentation to potential employers**.
-Fig.19
+
+Students must begin to complete the Refinitiv Workspace certification during the lab. Not only will this help students for their assessment, but it will also enhance their CV's for presentation to potential employers.
+
 **Activity 12.**
 Continue to work through the Refinitv Eikon training materials and explore the software as part of your self-study. The quicker you become familiar with using the software, the easier you will find our labs throughout the academic year.
+
+![Image 76](/images/image71.png)
+
+
 **Activity 13.**
 
 ![Image 76](/images/image9.png)
